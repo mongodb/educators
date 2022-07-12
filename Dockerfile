@@ -4,15 +4,14 @@ FROM node:16-alpine AS builder
 ARG NPM_AUTH=$NPM_AUTH
 ARG NPM_EMAIL=$NPM_EMAIL
 
-RUN echo hi
-
 WORKDIR /educators
 COPY package.json yarn.lock .npmrc ./
+
+RUN echo ${NPM_EMAIL}
 RUN yarn install --frozen-lockfile
 
 # Build
 COPY . .
-RUN echo "HELLO"
 RUN yarn build
 
 RUN addgroup --system --gid 1001 nodejs

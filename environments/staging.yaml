@@ -3,8 +3,8 @@ service:
   targetPort: 3000
 
 envSecrets:
-  NPM_EMAIL: devcenter-secrets
-  NPM_AUTH: devcenter-secrets
+  NPM_EMAIL: educators-secrets
+  NPM_AUTH: educators-secrets
 
 autoscaling:
   minReplicas: 1
