@@ -1,0 +1,41 @@
+service:
+  type: ClusterIP
+  targetPort: 3000
+
+envSecrets:
+  NPM_EMAIL: devcenter-secrets
+  NPM_AUTH: devcenter-secrets
+
+autoscaling:
+  minReplicas: 1
+  maxReplicas: 1
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 80
+
+probes:
+  enabled: true
+  path: /academia/api/health/
+  headers: {}
+  liveness:
+    httpGet: true
+    initialDelaySeconds: 10
+    periodSeconds: 60
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 3
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 2Gi
+
+ingress:
+  enabled: true
+  path: /academia
+  hosts: ["educators.devrel.staging.corp.mongodb.com"]
