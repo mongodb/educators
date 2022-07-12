@@ -1,4 +1,3 @@
-############# STAGING #############
 ---
 depends_on: null
 kind: pipeline
@@ -49,6 +48,9 @@ trigger:
     - main
   event:
     - push
+  action:
+    exclude:
+      - synchronized
 
 ---
 depends_on: null
@@ -78,7 +80,6 @@ trigger:
   target:
     - staging
 
-############# PROD #############
 ---
 depends_on: null
 kind: pipeline
@@ -120,6 +121,9 @@ trigger:
     - production
   event:
     - push
+  action:
+    exclude:
+      - synchronized
 
 ---
 depends_on: null
