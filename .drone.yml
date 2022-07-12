@@ -45,7 +45,7 @@ steps:
 
 trigger:
   branch:
-    - main
+    - DEVHUB-1383
   event:
     - push
 
