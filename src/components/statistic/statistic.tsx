@@ -11,7 +11,7 @@ export default function Statistic({
 			{/* @ts-ignore */}
 			<TypographyScale
 				variant="heading1"
-				customElement='span'
+				customElement="span"
 				sx={styles.StatisticCount}
 			>
 				{count}

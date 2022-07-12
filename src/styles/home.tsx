@@ -1,10 +1,11 @@
 import { ThemeUICSSObject } from 'theme-ui';
 
 const HomePageMainStyles: ThemeUICSSObject = {
+	overflow: 'hidden',
 	paddingTop: ['inc70', null, null, 'inc100'],
 	paddingBottom: ['inc70', null, null, 'inc90'],
-	paddingLeft: ['inc30', null, null, 'inc70'],
-	paddingRight: ['inc30', null, null, 'inc70'],
+	paddingLeft: ['inc30', 'inc50', null, 'inc70'],
+	paddingRight: ['inc30', 'inc50', null, 'inc70'],
 };
 
 const HomePageHeroButton: ThemeUICSSObject = {
@@ -15,9 +16,8 @@ const HomePageHeroButton: ThemeUICSSObject = {
 const HomePageStatsSection: ThemeUICSSObject = {
 	display: 'flex',
 	flexDirection: ['column', 'row', null, null],
-	justifyContent: 'space-between',
-	maxWidth: ['100%', '580px', '700px', '1120px'], // TODO: clean up/verify
-	margin: '0 auto',
+	justifyContent: 'center',
+	marginBottom: ['inc70', null, null, 'inc90'],
 };
 
 export default {

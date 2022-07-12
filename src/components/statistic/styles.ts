@@ -4,9 +4,9 @@ const StatisticWrapper: ThemeUICSSObject = {
 	display: 'flex',
 	flexDirection: 'column',
 	textAlign: 'center',
-	maxWidth: ['100%', '200px', null, '336px'], // TODO: more dynamic
-	paddingLeft: ['0', '24px', null, null],
-	paddingRight: ['0', '24px', null, null],
+	width: ['100%', '206px', null, '400px'],
+	paddingLeft: ['0', 'inc40', null, 'inc50'],
+	paddingRight: ['0', 'inc40', null, 'inc50'],
 	paddingBottom: ['24px', '0', null, null],
 	'&:last-of-type': {
 		paddingBottom: '0',
