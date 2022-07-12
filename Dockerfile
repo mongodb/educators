@@ -7,7 +7,6 @@ ARG NPM_EMAIL=$NPM_EMAIL
 WORKDIR /educators
 COPY package.json yarn.lock .npmrc ./
 
-RUN echo ${NPM_EMAIL}
 RUN yarn install --frozen-lockfile
 
 # Build
