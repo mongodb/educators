@@ -1,4 +1,4 @@
 export interface StatisticProps {
-	count: string;
-	description: string;
+  count: string;
+  description: string;
 }
