@@ -4,12 +4,16 @@ import theme from '@mdb/flora/theme';
 const CardWrapper: ThemeUICSSObject = {
   display: 'flex',
   flexDirection: 'column',
-  maxWidth: '432px',
-  padding: theme.space.cards.paddingXS,
+  maxWidth: ['100%', null, null, '432px'],
+  padding: ['inc40', null, null, 'inc50'],
   fill: theme.colors.panels.card.bg,
   border: `1px solid ${theme.colors.card.default.border}`,
   borderRadius: 'inc50',
   boxShadow: '0px 4px 10px -4px rgba(0, 30, 43, 0.3)',
+  '&:hover': {
+    border: '1px solid #023430',
+    boxShadow: '0px 3px 20px rgba(0, 0, 0, 0.15)'
+  }
 };
 
 const CardContent: ThemeUICSSObject = {
