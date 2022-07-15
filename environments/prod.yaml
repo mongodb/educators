@@ -2,6 +2,9 @@ service:
   type: ClusterIP
   targetPort: 3000
 
+env:
+  IS_PROD: true
+
 envSecrets:
   NPM_EMAIL: educators-secrets
   NPM_AUTH: educators-secrets
@@ -38,4 +41,4 @@ resources:
 ingress:
   enabled: true
   path: /academia
-  hosts: ["educators.devrel.prod.corp.mongodb.com"]
+  hosts: ['educators.devrel.prod.corp.mongodb.com']
