@@ -3,6 +3,7 @@ import { Button } from '@mdb/flora';
 import Hero from 'components/hero';
 import Statistic from 'components/statistic';
 import ContentPreview from 'components/content-preview';
+import StudentResources from 'components/student-resources';
 
 import styles from 'styles/home';
 
@@ -34,6 +35,7 @@ export default function Home(): JSX.Element {
           title="Additional Content"
           content={additionalContent}
         />
+				<StudentResources />
       </main>
     </>
   );

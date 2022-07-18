@@ -21,6 +21,7 @@ const StatisticCount: ThemeUICSSObject = {
 
 const StatisticDesc: ThemeUICSSObject = {
   lineHeight: '24px',
+  color: '#001E2B',
 };
 
 const styles = {
