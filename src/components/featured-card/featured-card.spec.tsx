@@ -11,7 +11,6 @@ describe('[component] Feartured Card', () => {
   //       description="Read on for more really cool stuff"
   //     />
   //   );
-
   //   const count = screen.getByText('15 Lessons');
   //   expect(count).toBeInTheDocument();
   // });

@@ -5,11 +5,11 @@ export default interface FeaturedCardProps {
   noBorder?: boolean;
   fullWidth?: boolean;
   cta?: {
-    type: 'button' | 'link',
+    type: 'button' | 'link';
     text: string;
-  },
+  };
   imgSizes?: {
     height: Array<string | null>;
     width: Array<string | null>;
-  }
+  };
 }

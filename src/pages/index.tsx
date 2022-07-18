@@ -35,7 +35,7 @@ export default function Home(): JSX.Element {
           title="Additional Content"
           content={additionalContent}
         />
-				<StudentResources />
+        <StudentResources />
       </main>
     </>
   );

@@ -12,8 +12,8 @@ const CardWrapper: ThemeUICSSObject = {
   boxShadow: '0px 4px 10px -4px rgba(0, 30, 43, 0.3)',
   '&:hover': {
     border: '1px solid #023430',
-    boxShadow: '0px 3px 20px rgba(0, 0, 0, 0.15)'
-  }
+    boxShadow: '0px 3px 20px rgba(0, 0, 0, 0.15)',
+  },
 };
 
 const CardContent: ThemeUICSSObject = {

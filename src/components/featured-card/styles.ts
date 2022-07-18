@@ -4,22 +4,22 @@ import { ThemeUICSSObject } from 'theme-ui';
 const FeaturedCardWrapper: ThemeUICSSObject = {
   marginRight: [0, null, null, 'inc40'],
   '&:last-of-type': {
-    marginRight: 0
+    marginRight: 0,
   },
   color: 'inherit',
-	textDecoration: 'none',
-	display: 'flex',
+  textDecoration: 'none',
+  display: 'flex',
   flexWrap: 'nowrap',
   flexDirection: ['column', 'row', null, null],
-	width: '100%',
-	alignItems: 'center',
-	paddingTop: ['inc50', 'inc70', null, 'inc80'],
+  width: '100%',
+  alignItems: 'center',
+  paddingTop: ['inc50', 'inc70', null, 'inc80'],
   paddingBottom: ['inc70', null, null, 'inc80'],
   paddingLeft: ['inc70', null, null, 'inc100'],
   paddingRight: ['inc70', null, null, 'inc100'],
-	boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
   border: '1px solid #E7EEEC',
-	borderRadius: '40px',
+  borderRadius: '40px',
   backgroundColor: '#FFFFFF',
   marginBottom: ['inc40', null, null, 0],
 };
@@ -60,7 +60,7 @@ const FeaturedCardImageWrapper: ThemeUICSSObject = {
 
 const FeaturedCardImage: ThemeUICSSObject = {
   position: 'relative',
-  marginRight: [null, null, '-22px', '-72px'] // moves icon over to fit text/icon in card
+  marginRight: [null, null, '-22px', '-72px'], // moves icon over to fit text/icon in card
 };
 
 /* --- fullWidth PROP CARD STYLES --- */
