@@ -1,4 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
+import { COLOR_DARK_PRIMARY } from 'styles/variables';
 
 const HERO_BORDER_RADIUS = ['80px', null, null, '180px'];
 const HERO_DEFAULT_SPACING = ['inc70', null, null, 'inc100'];
@@ -10,7 +11,7 @@ const HeroWrapper: ThemeUICSSObject = {
   paddingRight: '24px',
   borderBottomLeftRadius: HERO_BORDER_RADIUS,
   borderBottomRightRadius: HERO_BORDER_RADIUS,
-  backgroundColor: '#001E2B', // TODO: put this in a var or is available somewhere in theme?
+  backgroundColor: COLOR_DARK_PRIMARY,
 };
 
 const HeroTitle: ThemeUICSSObject = {

@@ -1,27 +1,27 @@
 import { ThemeUICSSObject } from 'theme-ui';
+import { COLOR_WHITE, COLOR_DARK_SECONDARY } from 'styles/variables';
 
 /* -- BASE CARD STYLES --- */
 const FeaturedCardWrapper: ThemeUICSSObject = {
-  marginRight: [0, null, null, 'inc40'],
-  '&:last-of-type': {
-    marginRight: 0,
-  },
-  color: 'inherit',
-  textDecoration: 'none',
+  width: '100%',
   display: 'flex',
   flexWrap: 'nowrap',
   flexDirection: ['column', 'row', null, null],
-  width: '100%',
   alignItems: 'center',
   paddingTop: ['inc50', 'inc70', null, 'inc80'],
   paddingBottom: ['inc70', null, null, 'inc80'],
   paddingLeft: ['inc70', null, null, 'inc100'],
   paddingRight: ['inc70', null, null, 'inc100'],
+  marginRight: [null, null, null, 'inc40'],
+  marginBottom: ['inc40', null, null, 0],
   boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
   border: '1px solid #E7EEEC',
   borderRadius: '40px',
-  backgroundColor: '#FFFFFF',
-  marginBottom: ['inc40', null, null, 0],
+  backgroundColor: COLOR_WHITE,
+  '&:last-of-type': {
+    marginRight: 0,
+    marginBottom: 0,
+  },
 };
 
 const FeaturedCardText: ThemeUICSSObject = {
@@ -31,19 +31,19 @@ const FeaturedCardText: ThemeUICSSObject = {
 };
 
 const FeaturedCardTitle: ThemeUICSSObject = {
-  color: '#023430',
+  color: COLOR_DARK_SECONDARY,
   marginBottom: 'inc40',
 };
 
 const FeaturedCardSubtitle: ThemeUICSSObject = {
   marginBottom: 'inc60',
-  lineHeight: ['inc20', 'inc30', null, null],
+  lineHeight: [null, null, null, 'inc30']
 };
 
 const FeaturedCardContent: ThemeUICSSObject = {
   order: [2, 1, null, null],
   height: '100%',
-  width: [null, '50%', '50%', '50%'],
+  width: [null, '50%', null, '50%'],
   alignItems: 'start',
   display: 'flex',
   flexDirection: 'column',
@@ -60,7 +60,7 @@ const FeaturedCardImageWrapper: ThemeUICSSObject = {
 
 const FeaturedCardImage: ThemeUICSSObject = {
   position: 'relative',
-  marginRight: [null, null, '-22px', '-72px'], // moves icon over to fit text/icon in card
+  marginRight: [null, null, '-22px', '-72px'],
 };
 
 /* --- fullWidth PROP CARD STYLES --- */
@@ -79,13 +79,13 @@ const FeaturedCardContent_FullWidth: ThemeUICSSObject = {
 };
 
 const FeaturedCardTitle_FullWidth: ThemeUICSSObject = {
-  color: '#023430',
+  color: COLOR_DARK_SECONDARY,
 };
 
 const FeaturedCardSubtitle_FullWidth: ThemeUICSSObject = {
-  fontSize: ['16px', '16px', null, '18px !important'],
-  lineHeight: ['32px', '32px', null, null],
-  marginBottom: '24px !important',
+  fontSize: ['inc20', 'inc20', null, 'inc30'],
+  lineHeight: ['inc30', 'inc30', null, 'inc30'],
+  marginBottom: '24px',
 };
 
 const FeaturedCardImage_FullWidth: ThemeUICSSObject = {

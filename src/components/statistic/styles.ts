@@ -1,4 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
+import { COLOR_DARK_PRIMARY  } from 'styles/variables';
 
 const StatisticWrapper: ThemeUICSSObject = {
   display: 'flex',
@@ -21,7 +22,7 @@ const StatisticCount: ThemeUICSSObject = {
 
 const StatisticDesc: ThemeUICSSObject = {
   lineHeight: '24px',
-  color: '#001E2B',
+  color: COLOR_DARK_PRIMARY,
 };
 
 const styles = {

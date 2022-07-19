@@ -1,5 +1,4 @@
 import {
-  FeaturedCard as FloraFeaturedCard,
   GridLayout,
   TypographyScale,
 } from '@mdb/flora';
@@ -64,18 +63,18 @@ export default function StudentResources(): JSX.Element {
         />
         <div sx={styles.StudentResourcesSecondaryCardsWrapper}>
           <FeaturedCard
-            imgSrc="/academia/computer.svg"
             title="MongoDB Internships"
             subtitle="Work on teams and projects that will be used by thousands of developers and organizations across the world."
+            imgSrc="/academia/computer.svg"
             imgSizes={{
               width: ['119px', null, '168px', '179px'],
               height: ['129px', null, '182px', '194px'],
             }}
           />
           <FeaturedCard
-            imgSrc="/academia/directory.svg"
             title="Student Demo Apps"
             subtitle="Inspire your students with Demo Apps that students have created with the power of MongoDB."
+            imgSrc="/academia/directory.svg"
             imgSizes={{
               width: ['119px', null, '168px', '179px'],
               height: ['129px', null, '182px', '194px'],

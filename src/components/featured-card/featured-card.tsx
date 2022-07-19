@@ -4,16 +4,16 @@ import FeaturedCardProps from './types';
 import styles from './styles';
 
 export default function FeaturedCard({
-  cta = {
-    type: 'link',
-    text: 'Learn More',
-  },
   title,
   imgSrc,
   subtitle,
   imgSizes,
   noBorder = false,
   fullWidth = false,
+  cta = {
+    type: 'link',
+    text: 'Learn More',
+  },
 }: FeaturedCardProps): JSX.Element {
   return (
     <div
@@ -30,6 +30,7 @@ export default function FeaturedCard({
         }}
       >
         <div sx={styles.FeaturedCardText}>
+          {/* @ts-ignore */}
           <TypographyScale
             variant="heading5"
             customElement="h3"
@@ -40,6 +41,7 @@ export default function FeaturedCard({
           >
             {title}
           </TypographyScale>
+          {/* @ts-ignore */}
           <TypographyScale
             variant="body3"
             sx={{
@@ -53,6 +55,7 @@ export default function FeaturedCard({
         {cta.type === 'button' ? (
           <Button>{cta.text}</Button>
         ) : (
+          // @ts-ignore
           <Link linkIcon="arrow">{cta.text}</Link>
         )}
       </div>
@@ -64,7 +67,7 @@ export default function FeaturedCard({
             ...(fullWidth && { ...styles.FeaturedCardImage_FullWidth }),
           }}
         >
-          <Image alt="mongod-db icon" src={imgSrc as string} layout="fill" />
+          <Image alt="mongoDB icon" src={imgSrc as string} layout="fill" />
         </div>
       </div>
     </div>
