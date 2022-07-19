@@ -1,7 +1,4 @@
-import {
-  GridLayout,
-  TypographyScale,
-} from '@mdb/flora';
+import { GridLayout, TypographyScale } from '@mdb/flora';
 import FeaturedCard from 'components/featured-card';
 import styles from './styles';
 
@@ -13,6 +10,7 @@ function PurpleBlobSVG() {
       viewBox="0 0 1317 1317"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid="background-blob"
       sx={{
         position: 'absolute',
         zIndex: '-1',

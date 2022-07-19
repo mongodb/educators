@@ -37,7 +37,7 @@ const FeaturedCardTitle: ThemeUICSSObject = {
 
 const FeaturedCardSubtitle: ThemeUICSSObject = {
   marginBottom: 'inc60',
-  lineHeight: [null, null, null, 'inc30']
+  lineHeight: [null, null, null, 'inc30'],
 };
 
 const FeaturedCardContent: ThemeUICSSObject = {

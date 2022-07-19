@@ -1,5 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_DARK_PRIMARY  } from 'styles/variables';
+import { COLOR_DARK_PRIMARY } from 'styles/variables';
 
 const StatisticWrapper: ThemeUICSSObject = {
   display: 'flex',
