@@ -1,5 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_DARK_PRIMARY } from 'styles/variables';
+import { COLOR_DARK_PRIMARY, COLOR_GREEN_PRIMARY } from 'styles/variables';
 
 const StatisticWrapper: ThemeUICSSObject = {
   display: 'flex',
@@ -15,7 +15,7 @@ const StatisticWrapper: ThemeUICSSObject = {
 };
 
 const StatisticCount: ThemeUICSSObject = {
-  color: '#00684A',
+  color: COLOR_GREEN_PRIMARY,
   marginBottom: '8px',
   fontFamily: 'euclid-circular-a',
 };

@@ -1,5 +1,9 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_WHITE, COLOR_DARK_SECONDARY } from 'styles/variables';
+import {
+  COLOR_WHITE,
+  COLOR_DARK_SECONDARY,
+  COLOR_DARK_PRIMARY,
+} from 'styles/variables';
 
 /* -- BASE CARD STYLES --- */
 const FeaturedCardWrapper: ThemeUICSSObject = {
@@ -31,11 +35,12 @@ const FeaturedCardText: ThemeUICSSObject = {
 };
 
 const FeaturedCardTitle: ThemeUICSSObject = {
-  color: COLOR_DARK_SECONDARY,
+  color: COLOR_DARK_PRIMARY,
   marginBottom: 'inc40',
 };
 
 const FeaturedCardSubtitle: ThemeUICSSObject = {
+  color: COLOR_DARK_SECONDARY,
   marginBottom: 'inc60',
   lineHeight: [null, null, null, 'inc30'],
 };
@@ -83,6 +88,7 @@ const FeaturedCardTitle_FullWidth: ThemeUICSSObject = {
 };
 
 const FeaturedCardSubtitle_FullWidth: ThemeUICSSObject = {
+  color: COLOR_DARK_PRIMARY,
   fontSize: ['inc20', 'inc20', null, 'inc30'],
   lineHeight: ['inc30', 'inc30', null, 'inc30'],
   marginBottom: '24px',

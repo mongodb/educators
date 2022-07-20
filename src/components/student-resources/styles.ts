@@ -1,4 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
+import { COLOR_BLACK } from 'styles/variables';
 
 const StudentResourcesWrapper: ThemeUICSSObject = {
   position: 'relative',
@@ -6,7 +7,15 @@ const StudentResourcesWrapper: ThemeUICSSObject = {
   gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
 };
 
+const StudentResourcesBG: ThemeUICSSObject = {
+  position: 'absolute',
+  zIndex: '-1',
+  top: 0,
+  left: ['-290px', '-170px', '-190px', '200px'],
+};
+
 const StudentResourcesTitle: ThemeUICSSObject = {
+  color: COLOR_BLACK,
   textAlign: 'center',
   marginBottom: 'inc30',
 };
@@ -24,6 +33,7 @@ const StudentResourcesSecondaryCardsWrapper: ThemeUICSSObject = {
 };
 
 const styles = {
+  StudentResourcesBG,
   StudentResourcesTitle,
   StudentResourcesWrapper,
   StudentResourcesDescription,

@@ -1,10 +1,12 @@
 import { ThemeUICSSObject } from 'theme-ui';
+import { COLOR_BLACK } from 'styles/variables';
 
 const ContentPreviewWrapper: ThemeUICSSObject = {
   marginBottom: ['inc70', null, null, 'inc100'],
 };
 
 const ContentPreviewTitle: ThemeUICSSObject = {
+  color: COLOR_BLACK,
   gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
 };
 

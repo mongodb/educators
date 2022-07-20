@@ -19,7 +19,11 @@ export default function Card({
       <div sx={styles.CardContent}>
         <Pill text={tag} variant="identifier" sx={styles.CardPill} />
         {/* @ts-ignore */}
-        <TypographyScale variant="heading6" sx={styles.CardTitle}>
+        <TypographyScale
+          customElement="h4"
+          variant="heading6"
+          sx={styles.CardTitle}
+        >
           {title}
         </TypographyScale>
         {/* @ts-ignore */}
