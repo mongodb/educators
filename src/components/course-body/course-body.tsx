@@ -1,4 +1,3 @@
-import { TypographyScale } from '@mdb/flora';
 import CourseBodyProps from './types';
 import styles from './styles';
 

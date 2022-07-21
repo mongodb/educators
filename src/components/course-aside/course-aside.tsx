@@ -53,7 +53,7 @@ export default function CourseAside({
           <h3 sx={styles.CourseAsideLabel}>Pre-requisites</h3>
           <ul sx={styles.CourseAsideReqList}>
             {prerequisites.map(req => (
-              <li>{req}</li>
+              <li key={req}>{req}</li>
             ))}
           </ul>
         </div>

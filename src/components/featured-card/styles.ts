@@ -18,7 +18,7 @@ const FeaturedCardWrapper: ThemeUICSSObject = {
   paddingRight: ['inc70', null, null, 'inc100'],
   marginRight: [null, null, null, 'inc40'],
   marginBottom: ['inc40', null, null, 0],
-  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+  boxShadow: 'level01',
   border: '1px solid #E7EEEC',
   borderRadius: '40px',
   backgroundColor: COLOR_WHITE,
