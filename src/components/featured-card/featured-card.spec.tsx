@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import FeaturedCard from '.';
 
-describe('[component] Feartured Card', () => {
+describe('[component] Featured Card', () => {
   it('renders default props and provided props', () => {
     render(
       <FeaturedCard
