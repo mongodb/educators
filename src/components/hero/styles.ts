@@ -1,4 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
+import theme from '@mdb/flora/theme';
 
 const HERO_BORDER_RADIUS = ['80px', null, null, '180px'];
 const HERO_DEFAULT_SPACING = ['inc70', null, null, 'inc100'];
@@ -6,11 +7,11 @@ const HERO_DEFAULT_SPACING = ['inc70', null, null, 'inc100'];
 const HeroWrapper: ThemeUICSSObject = {
   paddingTop: HERO_DEFAULT_SPACING,
   paddingBottom: HERO_DEFAULT_SPACING,
-  paddingLeft: '24px',
-  paddingRight: '24px',
+  paddingLeft: 'inc40',
+  paddingRight: 'inc40',
   borderBottomLeftRadius: HERO_BORDER_RADIUS,
   borderBottomRightRadius: HERO_BORDER_RADIUS,
-  backgroundColor: '#001E2B', // TODO: put this in a var or is available somewhere in theme?
+  backgroundColor: theme.colors.blue80,
 };
 
 const HeroTitle: ThemeUICSSObject = {

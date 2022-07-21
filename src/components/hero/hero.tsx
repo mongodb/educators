@@ -1,5 +1,5 @@
 import { TypographyScale } from '@mdb/flora';
-import { HeroProps } from './types';
+import HeroProps from './types';
 import styles from './styles';
 
 const defaultDescription =
