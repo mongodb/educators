@@ -1,11 +1,11 @@
 import { Link } from '@mdb/flora';
-import CourseAsideProps from './types';
+import CourseListProps from './types';
 import styles from './styles';
 
 export default function CourseList({
   lessons,
   wrapperStyles,
-}: CourseAsideProps): JSX.Element {
+}: CourseListProps): JSX.Element {
   return (
     <section
       sx={{
