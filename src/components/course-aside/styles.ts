@@ -1,5 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_DARK_SECONDARY, COLOR_GREEN_PRIMARY } from 'styles/variables';
+import theme from '@mdb/flora/theme';
 
 const TEXT_OVERLAY: {
   [key: string]: string | number;
@@ -34,11 +34,11 @@ const CourseAsideLabel: ThemeUICSSObject = {
 const CourseAsideDetail: ThemeUICSSObject = {
   fontSize: 'inc50',
   fontWeight: 500,
-  color: COLOR_GREEN_PRIMARY,
+  color: theme.colors.green60,
 };
 
 const CourseAsideReqList: ThemeUICSSObject = {
-  color: '#3D4F58',
+  color: theme.colors.black60,
   marginLeft: '18px', // lines up bullet points from <ul /> with label
   '> li': {
     fontSize: 'inc30',
@@ -51,7 +51,7 @@ const CourseAsidePrompt: ThemeUICSSObject = {
   padding: '24px 24px 28px',
   borderRadius: 'inc50',
   overflow: 'hidden',
-  backgroundColor: COLOR_DARK_SECONDARY,
+  backgroundColor: theme.colors.green80,
   '> span': {
     display: 'block',
     ...TEXT_OVERLAY,

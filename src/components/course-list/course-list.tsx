@@ -24,7 +24,7 @@ export default function CourseList({
       <p>
         The materials are freely available for non-commercial use and are
         licensed under
-        <a>
+        <a sx={styles.CourseListLegalLink}>
           {' '}
           Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported
           License

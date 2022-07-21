@@ -1,5 +1,4 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_BLACK } from 'styles/variables';
 
 const StudentResourcesWrapper: ThemeUICSSObject = {
   position: 'relative',
@@ -15,7 +14,7 @@ const StudentResourcesBG: ThemeUICSSObject = {
 };
 
 const StudentResourcesTitle: ThemeUICSSObject = {
-  color: COLOR_BLACK,
+  color: '#000000',
   textAlign: 'center',
   marginBottom: 'inc30',
 };

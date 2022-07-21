@@ -1,10 +1,9 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_BLACK } from './variables';
 
 const CoursePageMain: ThemeUICSSObject = {
   overflow: 'hidden',
   lineHeight: 'inc30', // the entire page across all viewports has 32px line height
-  color: COLOR_BLACK,
+  color: '#000000',
   paddingTop: ['inc50', null, null, 'inc80'],
   paddingBottom: ['inc80', null, null, 'inc130'],
   paddingLeft: ['inc50', null, null, 'inc110'],

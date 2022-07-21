@@ -1,12 +1,12 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_DARK_PRIMARY } from 'styles/variables';
+import theme from '@mdb/flora/theme';
 
 const CourseHeaderWrapper: ThemeUICSSObject = {
   paddingTop: ['inc40', null, null, 'inc70'],
   paddingBottom: ['inc60', 'inc50', null, 'inc70'],
   paddingLeft: ['inc50', null, null, 'inc110'],
   paddingRight: ['inc50', null, null, 'inc110'],
-  backgroundColor: COLOR_DARK_PRIMARY,
+  backgroundColor: theme.colors.blue80,
 };
 
 const CourseHeaderGrid: ThemeUICSSObject = {

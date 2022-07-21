@@ -1,5 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_DARK_PRIMARY, COLOR_WHITE } from 'styles/variables';
+import theme from '@mdb/flora/theme';
 
 const SocialShareWrapper: ThemeUICSSObject = {
   display: 'flex',
@@ -31,12 +31,12 @@ const CopyLinkTooltipArrow: ThemeUICSSObject = {
   marginLeft: 'inc20',
   borderLeft: '8px solid transparent',
   borderRight: '8px solid transparent',
-  borderBottom: `8px solid ${COLOR_DARK_PRIMARY}`,
+  borderBottom: `8px solid ${theme.colors.blue80}`,
 };
 
 const CopyLinkTooltipBody: ThemeUICSSObject = {
-  background: COLOR_DARK_PRIMARY,
-  color: COLOR_WHITE,
+  background: theme.colors.blue80,
+  color: theme.colors.black00,
   borderRadius: 'inc20',
   padding: ['inc10', null, null, 'inc20'],
   fontSize: ['inc00', null, null, 'inc10'],
