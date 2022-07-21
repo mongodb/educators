@@ -62,7 +62,7 @@ export default function CourseAside({
       <div sx={styles.CourseAsidePrompt}>
         {/* @ts-ignore */}
         <TypographyScale inverse variant="body1">
-          Join the Educator's Community!
+          Join the Educator{"'"}s Community!
         </TypographyScale>
         {/* @ts-ignore */}
         <TypographyScale

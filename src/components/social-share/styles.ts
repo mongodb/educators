@@ -12,11 +12,11 @@ const SocialShareIcon: ThemeUICSSObject = {
 
 const CopyLinkWrapper: ThemeUICSSObject = {
   position: 'relative',
-  'button': {
+  button: {
     outline: 'none',
     border: 'none',
-    background: 'transparent'
-  }
+    background: 'transparent',
+  },
 };
 
 const CopyLinkTooltip: ThemeUICSSObject = {
@@ -53,7 +53,6 @@ const styles = {
   CopyLinkTooltip,
   CopyLinkTooltipBody,
   CopyLinkTooltipArrow,
-
 };
 
 export default styles;

@@ -27,7 +27,7 @@ const CourseListLegalLink: ThemeUICSSObject = {
   '&:hover': {
     cursor: 'pointer',
     borderBottom: `2px solid ${theme.colors.black80}`,
-  }
+  },
 };
 
 const styles = {

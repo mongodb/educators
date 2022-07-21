@@ -26,16 +26,13 @@ export default function SocialShare({
       data-testid="social-share"
     >
       {linkUrl && (
-        <div sx={{
-          ...styles.CopyLinkWrapper,
-          ...styles.SocialShareIcon,
-        }}>
-          <button
-            type="button"
-            title="Copy Link"
-            onClick={handleOnLinkClick}
-
-          >
+        <div
+          sx={{
+            ...styles.CopyLinkWrapper,
+            ...styles.SocialShareIcon,
+          }}
+        >
+          <button type="button" title="Copy Link" onClick={handleOnLinkClick}>
             <img src="/academia/link.svg" alt="mongoDB link icon" />
           </button>
           {showTooltip && (
@@ -82,4 +79,3 @@ export default function SocialShare({
     </div>
   );
 }
-

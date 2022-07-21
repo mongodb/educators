@@ -27,5 +27,5 @@ describe('[component] Course Body', () => {
 
     const container = screen.getByTestId('social-share');
     expect(container.childNodes.length).toEqual(3);
-  })
+  });
 });
