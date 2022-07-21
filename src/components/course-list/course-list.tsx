@@ -14,9 +14,10 @@ export default function CourseList({
       }}
     >
       <h2>Lessons</h2>
-      <ol>
+      <ol data-testid="lesson-list">
         {lessons.map(lesson => (
           <li key={lesson.title}>
+            {/* @ts-ignore */}
             <Link sx={styles.CourseListLinks}>{lesson.title}</Link>
           </li>
         ))}

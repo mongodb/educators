@@ -23,6 +23,7 @@ export default function SocialShare({
         ...styles.SocialShareWrapper,
         ...wrapperStyles,
       }}
+      data-testid="social-share"
     >
       {linkUrl && (
         <div sx={{

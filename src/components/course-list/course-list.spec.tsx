@@ -1,8 +1,22 @@
 import { render, screen } from '@testing-library/react';
-import CourseBody from '.';
+import CourseList from '.';
 
 describe('[component] Course Body', () => {
   it('renders the component', () => {
-    render(<CourseBody />);
+    render(
+      <CourseList
+        lessons={[
+          { title: 'Lorem Ipsum' },
+          { title: 'Dolor Sit Amet' }
+        ]}
+      />
+    );
+
+    const title = screen.getByText('Lessons');
+    expect(title).toBeInTheDocument();
+
+    const list = screen.getByTestId('lesson-list');
+    expect(list.childNodes.length).toEqual(2);
+    expect(list.childNodes[0]).toContainHTML('</li>');
   });
 });

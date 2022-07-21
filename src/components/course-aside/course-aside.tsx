@@ -15,6 +15,7 @@ export default function CourseAside({
         ...styles.CourseAsideWrapper,
         ...wrapperStyles,
       }}
+      data-testid="course-aside"
     >
       <section sx={styles.CourseAsideSection}>
         <div sx={styles.CourseAsideWidget}>
@@ -59,9 +60,11 @@ export default function CourseAside({
         </div>
       </section>
       <div sx={styles.CourseAsidePrompt}>
+        {/* @ts-ignore */}
         <TypographyScale inverse variant="body1">
           Join the Educator's Community!
         </TypographyScale>
+        {/* @ts-ignore */}
         <TypographyScale
           inverse
           variant="body3"
@@ -70,6 +73,7 @@ export default function CourseAside({
           Join to receive our newsletter and get connected with MongoDB
           professionals.
         </TypographyScale>
+        {/* @ts-ignore */}
         <Link inverse linkIcon="arrow" sx={styles.CourseAsidePromptLink}>
           Join Now
         </Link>

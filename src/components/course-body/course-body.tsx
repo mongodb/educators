@@ -2,7 +2,7 @@ import CourseBodyProps from './types';
 import styles from './styles';
 
 /* 
-  TODO: this can be combined into one section that just loops through 2 items,
+  TODO: this can probably be combined into one section that just loops through 2 items,
   revist this once getting an idea of data structure
 */
 
