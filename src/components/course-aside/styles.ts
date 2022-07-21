@@ -39,7 +39,7 @@ const CourseAsideDetail: ThemeUICSSObject = {
 
 const CourseAsideReqList: ThemeUICSSObject = {
   color: theme.colors.black60,
-  marginLeft: '18px', // lines up bullet points from <ul /> with label
+  marginLeft: 'inc20', // lines up bullet points from <ul /> with label
   '> li': {
     fontSize: 'inc30',
   },
@@ -48,7 +48,10 @@ const CourseAsideReqList: ThemeUICSSObject = {
 const CourseAsidePrompt: ThemeUICSSObject = {
   display: ['none', null, null, 'block'],
   position: 'relative',
-  padding: '24px 24px 28px',
+  paddingTop: 'inc40',
+  paddingBottom: '28px',
+  paddingRight: 'inc40',
+  paddingLeft: 'inc40',
   borderRadius: 'inc50',
   overflow: 'hidden',
   backgroundColor: theme.colors.green80,
