@@ -1,5 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
-import { COLOR_WHITE, COLOR_DARK_SECONDARY } from 'styles/variables';
+import theme from '@mdb/flora/theme';
 
 /* -- BASE CARD STYLES --- */
 const FeaturedCardWrapper: ThemeUICSSObject = {
@@ -14,10 +14,10 @@ const FeaturedCardWrapper: ThemeUICSSObject = {
   paddingRight: ['inc70', null, null, 'inc100'],
   marginRight: [null, null, null, 'inc40'],
   marginBottom: ['inc40', null, null, 0],
-  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-  border: '1px solid #E7EEEC',
-  borderRadius: '40px',
-  backgroundColor: COLOR_WHITE,
+  boxShadow: 'level01',
+  border: `1px solid ${theme.colors.card.default.border}`,
+  borderRadius: 'inc70',
+  backgroundColor: theme.colors.black00,
   '&:last-of-type': {
     marginRight: 0,
     marginBottom: 0,
@@ -31,12 +31,13 @@ const FeaturedCardText: ThemeUICSSObject = {
 };
 
 const FeaturedCardTitle: ThemeUICSSObject = {
-  color: COLOR_DARK_SECONDARY,
+  color: theme.colors.blue80,
   marginBottom: 'inc40',
 };
 
 const FeaturedCardSubtitle: ThemeUICSSObject = {
   marginBottom: 'inc60',
+  color: theme.colors.green80,
   lineHeight: [null, null, null, 'inc30'],
 };
 
@@ -79,13 +80,14 @@ const FeaturedCardContent_FullWidth: ThemeUICSSObject = {
 };
 
 const FeaturedCardTitle_FullWidth: ThemeUICSSObject = {
-  color: COLOR_DARK_SECONDARY,
+  color: theme.colors.green80,
 };
 
 const FeaturedCardSubtitle_FullWidth: ThemeUICSSObject = {
+  color: theme.colors.blue80,
   fontSize: ['inc20', 'inc20', null, 'inc30'],
   lineHeight: ['inc30', 'inc30', null, 'inc30'],
-  marginBottom: '24px',
+  marginBottom: 'inc40',
 };
 
 const FeaturedCardImage_FullWidth: ThemeUICSSObject = {
