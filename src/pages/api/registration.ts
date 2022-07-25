@@ -2,8 +2,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { Registration, validateRegistrationBody } from 'src/lib/registration';
 import { uploadToAirtable } from 'src/lib/airtable';
+import { uploadToAppServices } from 'src/lib/app-services';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const registrationHandler = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
   if (req.method !== 'POST') {
     return res.status(405).send('This is a POST-only endpoint.');
   }
@@ -13,7 +17,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).send(err.message);
   }
 
-  await uploadToAirtable(req.body as Registration);
+  // Don't need to await these since they can fail gracefully.
+  uploadToAirtable(req.body as Registration);
+  uploadToAppServices(req.body as Registration);
 
   return res.status(200).json({});
 };
+
+export default registrationHandler;

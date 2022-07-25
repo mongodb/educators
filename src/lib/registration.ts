@@ -64,9 +64,6 @@ export const validateRegistrationBody = (body: any) => {
       throw Error(`${key} is required`);
     }
   }
-  if (!jobFunctions.includes(body.jobFunction)) {
-    throw Error(`${body.jobFunction} is not a valid value for jobFunction`);
-  }
 
   if (!teachingStatuses.includes(body.teachingStatus)) {
     throw Error(
