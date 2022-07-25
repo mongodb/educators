@@ -1,7 +1,7 @@
-import { Interpolation, Theme } from '@emotion/react';
+import { CSSInterpolation } from '@emotion/css';
 import theme from '@mdb/flora/theme';
 
-export const GlobalStyles: Interpolation<Theme> = {
+export const GlobalStyles: CSSInterpolation = {
   '*': {
     margin: 0,
     padding: 0,
