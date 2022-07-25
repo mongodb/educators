@@ -16,6 +16,7 @@ const CopyLinkWrapper: ThemeUICSSObject = {
     outline: 'none',
     border: 'none',
     background: 'transparent',
+    cursor: 'pointer',
   },
 };
 

@@ -30,13 +30,13 @@ const CourseHeaderTitle: ThemeUICSSObject = {
 
 const CourseHeaderActions: ThemeUICSSObject = {
   display: 'flex',
-  flexDirection: ['column', 'row', null, 'column'],
-  alignItems: ['flex-start', 'flex-end', null, 'initial'],
+  flexDirection: ['column', null, 'row', 'column'],
+  alignItems: ['flex-start', null, 'center', 'initial'],
   alignSelf: 'flex-end',
   gridColumnStart: ['span 12', null, null, '9'],
   gridColumnEnd: ['span 12', null, null, '12'],
   '> button': {
-    marginTop: ['inc50', null, null, 'inc50'],
+    marginTop: ['inc50', null, 0, 'inc50'],
     marginLeft: [0, 'inc30', null, 0],
   },
 };
