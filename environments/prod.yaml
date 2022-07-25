@@ -2,9 +2,14 @@ service:
   type: ClusterIP
   targetPort: 3000
 
+env:
+  IS_PROD: true
+
 envSecrets:
   NPM_EMAIL: educators-secrets
   NPM_AUTH: educators-secrets
+  AIRTABLE_BASE_ID: educators-secrets
+  AIRTABLE_API_KEY: educators-secrets
 
 autoscaling:
   minReplicas: 2
