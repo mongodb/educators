@@ -16,7 +16,7 @@ export default function ContentPreview({
         <TypographyScale
           variant="heading5"
           customElement="h3"
-          sx={styles.ContentPreviewLayoutGrid}
+          sx={styles.ContentPreviewTitle}
         >
           {title}
         </TypographyScale>

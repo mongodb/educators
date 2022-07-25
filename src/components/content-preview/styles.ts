@@ -4,7 +4,7 @@ const ContentPreviewWrapper: ThemeUICSSObject = {
   marginBottom: ['inc70', null, null, 'inc100'],
 };
 
-const ContentPreviewLayoutGrid: ThemeUICSSObject = {
+const ContentPreviewTitle: ThemeUICSSObject = {
   gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
 };
 
@@ -16,8 +16,8 @@ const ContentPreviewGrid: ThemeUICSSObject = {
 
 const styles = {
   ContentPreviewGrid,
+  ContentPreviewTitle,
   ContentPreviewWrapper,
-  ContentPreviewLayoutGrid,
 };
 
 export default styles;

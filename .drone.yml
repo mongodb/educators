@@ -32,12 +32,12 @@ steps:
         from_secret: ecr_access_key
       secret_key:
         from_secret: ecr_secret_key
-      values_files: ["environments/staging.yaml"]
+      values_files: ['environments/staging.yaml']
 
   - name: deploy-staging
     image: drone/cli:1.4.0-alpine
     commands:
-    - drone build promote mongodb/educators ${DRONE_BUILD_NUMBER} staging
+      - drone build promote mongodb/educators ${DRONE_BUILD_NUMBER} staging
     environment:
       DRONE_SERVER: ${DRONE_SYSTEM_PROTO}://${DRONE_SYSTEM_HOST}
       DRONE_TOKEN:
@@ -71,7 +71,7 @@ steps:
       api_server: https://api.staging.corp.mongodb.com
       kubernetes_token:
         from_secret: staging_kubernetes_token
-      values_files: ["environments/staging.yaml"]
+      values_files: ['environments/staging.yaml']
 
 trigger:
   event:
@@ -114,7 +114,7 @@ steps:
         from_secret: ecr_access_key
       secret_key:
         from_secret: ecr_secret_key
-      values_files: ["environments/prod.yaml"]
+      values_files: ['environments/prod.yaml']
 
 trigger:
   branch:
@@ -144,7 +144,7 @@ steps:
       api_server: https://api.prod.corp.mongodb.com
       kubernetes_token:
         from_secret: prod_kubernetes_token
-      values_files: ["environments/prod.yaml"]
+      values_files: ['environments/prod.yaml']
 
 trigger:
   event:

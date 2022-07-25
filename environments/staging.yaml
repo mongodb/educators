@@ -38,4 +38,4 @@ resources:
 ingress:
   enabled: true
   path: /academia
-  hosts: ["educators.devrel.staging.corp.mongodb.com"]
+  hosts: ['educators.devrel.staging.corp.mongodb.com']
