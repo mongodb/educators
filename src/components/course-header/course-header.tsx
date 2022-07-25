@@ -12,6 +12,7 @@ export default function CourseHeader({
         {/* @ts-ignore */}
         <Link
           inverse
+          href="/academia"
           linkIcon="chevron-left"
           sx={styles.CourseHeaderBreadcrumb}
         >

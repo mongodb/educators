@@ -2,11 +2,16 @@ import { render, screen } from '@testing-library/react';
 import Form from '.';
 
 describe('[component] Form', () => {
-  // it('renders default props and provided props', () => {
-  //   render(<Form />);
-  //   const title = screen.getByText('MongoDB for Educators');
-  //   expect(title).toBeInTheDocument();
-  //   const desc = screen.getByText('Test description');
-  //   expect(desc).toBeInTheDocument();
-  // });
+  it('renders the component', () => {
+    render(<Form isOpen onClose={() => {}} />);
+
+    const form = screen.getByTestId('form-modal');
+    expect(form).toBeInTheDocument();
+  });
+
+  it('does not render the component if isOpen prop is false', () => {
+    const { container } = render(<Form isOpen={false} onClose={() => {}} />);
+
+    expect(container.firstChild).toBeNull();
+  });
 });

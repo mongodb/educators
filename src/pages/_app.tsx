@@ -15,6 +15,7 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>MongoDB Educator Center</title>
+        <link rel="icon" href="/academia/favicon.ico" />
       </Head>
       <ThemeProvider theme={theme}>
         <Layout isFormOpen={isFormOpen}>
