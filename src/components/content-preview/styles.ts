@@ -5,6 +5,7 @@ const ContentPreviewWrapper: ThemeUICSSObject = {
 };
 
 const ContentPreviewTitle: ThemeUICSSObject = {
+  color: '#000000',
   gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
 };
 
