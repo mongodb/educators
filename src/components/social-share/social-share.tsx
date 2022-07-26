@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from 'components/image';
 import SocialShareProps from './types';
 import styles from './styles';
 
@@ -33,7 +34,7 @@ export default function SocialShare({
           }}
         >
           <button type="button" title="Copy Link" onClick={handleOnLinkClick}>
-            <img src="/academia/link.svg" alt="mongoDB link icon" />
+            <Image alt="mongoDB link icon" src="/academia/link.svg" />
           </button>
           {showTooltip && (
             <div sx={styles.CopyLinkTooltip}>
@@ -51,7 +52,7 @@ export default function SocialShare({
           title="mongoDB related facebook link"
           sx={styles.SocialShareIcon}
         >
-          <img src="/academia/facebook.svg" alt="mongoDB facebook icon" />
+          <Image alt="mongoDB facebook icon" src="/academia/facebook.svg" />
         </a>
       )}
       {twitterUrl && (
@@ -62,7 +63,7 @@ export default function SocialShare({
           title="mongoDB related twitter link"
           sx={styles.SocialShareIcon}
         >
-          <img src="/academia/twitter.svg" alt="mongoDB twitter icon" />
+          <Image src="/academia/twitter.svg" alt="mongoDB twitter icon" />
         </a>
       )}
       {linkedInUrl && (
@@ -73,7 +74,7 @@ export default function SocialShare({
           title="mongoDB related linkedin link"
           sx={styles.SocialShareIcon}
         >
-          <img src="/academia/linkedin.svg" alt="mongoDB linkedin icon" />
+          <Image src="/academia/linkedin.svg" alt="mongoDB linkedin icon" />
         </a>
       )}
     </div>
