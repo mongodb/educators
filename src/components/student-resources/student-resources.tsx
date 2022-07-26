@@ -1,5 +1,6 @@
 import { GridLayout, TypographyScale } from '@mdb/flora';
 import FeaturedCard from 'components/featured-card';
+import Image from 'components/image';
 import styles from './styles';
 
 export default function StudentResources(): JSX.Element {
@@ -7,10 +8,10 @@ export default function StudentResources(): JSX.Element {
     // @ts-ignore
     <GridLayout>
       <section sx={styles.StudentResourcesWrapper}>
-        <img
+        <Image
           src="/academia/brand-shape-large.svg"
           alt="mongoDB brand icon"
-          sx={styles.StudentResourcesBG}
+          styles={styles.StudentResourcesBG}
         />
         {/* @ts-ignore */}
         <TypographyScale variant="heading2" sx={styles.StudentResourcesTitle}>

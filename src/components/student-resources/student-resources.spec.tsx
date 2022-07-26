@@ -5,7 +5,7 @@ describe('[component] Student Resources', () => {
   it('renders the component', () => {
     render(<StudentResources />);
 
-    const bg = screen.getByTestId('background-blob');
+    const bg = screen.getByAltText('mongoDB brand icon');
     expect(bg).toBeInTheDocument();
   });
 });

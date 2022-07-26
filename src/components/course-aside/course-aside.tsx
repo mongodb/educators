@@ -1,6 +1,9 @@
 import { Link, TypographyScale } from '@mdb/flora';
+
+import Image from 'components/image';
 import SocialShare from 'components/social-share';
 import CourseAsideProps from './types';
+
 import styles from './styles';
 
 export default function CourseAside({
@@ -83,10 +86,10 @@ export default function CourseAside({
         >
           Join Now
         </Link>
-        <img
-          src="/academia/brand-shape-small.svg"
+        <Image
           alt="mongoDB brand shape"
-          sx={styles.CourseAsidePromptBG}
+          styles={styles.CourseAsidePromptBG}
+          src="/academia/brand-shape-small.svg"
         />
       </div>
     </aside>
