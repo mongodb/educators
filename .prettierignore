@@ -9,3 +9,4 @@ Dockerfile
 .drone.yml
 .*ignore
 coverage/
+public/
