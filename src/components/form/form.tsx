@@ -7,6 +7,75 @@ import {
 import FormProps from './types';
 import styles from './styles';
 
+interface FieldInterface {
+  name: string;
+  label: string;
+  options?: Array<string>;
+  component: 'text-input' | 'select' | 'text-area' | 'checkbox';
+}
+
+const fields: Array<FieldInterface> = [
+  {
+    name: 'firstName',
+    label: 'First Name',
+    component: 'text-input',
+  },
+  {
+    name: 'lastName',
+    label: 'Last Name',
+    component: 'text-input',
+  },
+  {
+    name: 'email',
+    label: 'Email',
+    component: 'text-input',
+  },
+  {
+    name: 'jobFunction',
+    label: 'Your Job Function',
+    component: 'select',
+    options: jobFunctions,
+  },
+  {
+    name: 'teachingStatus',
+    label: 'Teaching Status',
+    component: 'select',
+    options: teachingStatuses,
+  },
+  {
+    name: 'institutionName',
+    label: 'Name of Institution',
+    component: 'text-input',
+  },
+  {
+    name: 'institutionType',
+    label: 'Institution Type',
+    component: 'select',
+    options: institutionTypes,
+  },
+  {
+    name: 'location',
+    label: 'Country',
+    component: 'select',
+    options: ['United States of America', 'Canada', 'Mexico'], // TODO: proper list of these - fetched data?
+  },
+  {
+    name: 'courseName',
+    label: 'Course Name',
+    component: 'text-input',
+  },
+  {
+    name: 'courseSyllabus',
+    label: 'Course Syllabus',
+    component: 'text-input',
+  },
+  {
+    name: 'agreedToEmails',
+    label: 'I agree to receive emails from MongoDB, Inc.',
+    component: 'checkbox',
+  },
+];
+
 export default function Form({
   isOpen,
   onClose,
@@ -16,8 +85,8 @@ export default function Form({
       <div sx={styles.FormModal}>
         {/* @ts-ignore */}
         <FormPanel
-          title="Join the MongoDB Educator Community"
           onClose={onClose}
+          title="Join the MongoDB Educator Community"
         >
           <FormGeneric
             inverse
@@ -25,73 +94,15 @@ export default function Form({
               width: ['100%', '440px', null, '100%'],
             }}
           >
-            <Field
-              component="text-input"
-              // validators={[isRequired(), minLength(3), maxLength(10)]}
-              name="firstName"
-              label="First Name"
-            />
-            <Field
-              component="text-input"
-              // validators={[isRequired(), minLength(3), maxLength(20)]}
-              name="lastName"
-              label="Last Name"
-            />
-            <Field
-              component="text-input"
-              // validators={[isRequired(), minLength(3), pattern('email')]}
-              name="email"
-              label="email"
-            />
-            <Field
-              component="select"
-              name="job"
-              inverse
-              label="Your job function"
-              options={jobFunctions}
-            />
-            <Field
-              component="select"
-              name="teachingStatus"
-              label="Teaching Status"
-              options={teachingStatuses}
-            />
-            <Field
-              component="text-input"
-              // validators={[isRequired(), minLength(3), pattern('email')]}
-              name="institution"
-              label="Name of Institution"
-            />
-            <Field
-              component="select"
-              name="institutiontype"
-              label="Institution Type"
-              options={institutionTypes}
-            />
-            <Field
-              component="select"
-              name="country"
-              label="Country"
-              options={['United States of America', 'Canada', 'Mexico']}
-            />
-            <Field
-              component="text-input"
-              // validators={[isRequired(), minLength(3), maxLength(20)]}
-              name="coursename"
-              label="Course Name"
-            />
-            <Field
-              component="text-area"
-              // validators={[isRequired(), minLength(3), maxLength(100)]}
-              name="courseSyllabus"
-              label="Course Syllabus"
-            />
-            <Field
-              component="checkbox"
-              // validators={[mustConsent()]}
-              name="terms"
-              label="I agree to receive emails from MongoDB, Inc."
-            />
+            {fields.map(({ name, label, component, options }) => (
+              <Field
+                key={name}
+                name={name}
+                label={label}
+                component={component}
+                options={options || []}
+              />
+            ))}
             <Button
               type="submit"
               // we need to add width 100% to both elements for button to fill entire width
