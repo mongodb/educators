@@ -2,7 +2,7 @@ import Airtable, { FieldSet } from 'airtable';
 import { Registration } from 'src/lib/registration';
 
 // Using field IDs as recommended by the Airtable API docs in case of changes to field names.
-export interface AirtableRegistration extends FieldSet {
+interface AirtableRegistration extends FieldSet {
   fldYmXYcslTbizpfS: string; // First Name
   fldIONH4fC6lue54Y: string; // Last Name
   fldSmiHwvKFiPNtKn: string; // Insitution Name
@@ -32,9 +32,7 @@ const getAirtableRegistration = (reg: Registration): AirtableRegistration => ({
   fld5o6nNVtTkyOKNM: reg.teachingStatus,
 });
 
-export const uploadToAirtable = async (
-  body: Registration
-): Promise<string | undefined> => {
+export const uploadToAirtable = async (body: Registration): Promise<void> => {
   if (!process.env['IS_PROD']) {
     console.log('Bypassed Airtable upload in non-production environment.');
     return;
