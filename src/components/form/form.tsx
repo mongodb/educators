@@ -67,7 +67,7 @@ const fields: Array<FieldInterface> = [
   {
     name: 'courseSyllabus',
     label: 'Course Syllabus',
-    component: 'text-input',
+    component: 'text-area',
   },
   {
     name: 'agreedToEmails',
