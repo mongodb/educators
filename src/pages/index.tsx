@@ -7,15 +7,16 @@ import StudentResources from 'components/student-resources';
 
 import styles from 'styles/home';
 
-export default function Home(): JSX.Element {
+interface HomePageProps {
+  openForm: () => void;
+}
+
+export default function Home({ openForm }: HomePageProps): JSX.Element {
   return (
     <>
       <Hero
         cta={
-          <Button
-            onClick={() => alert('modal coming soon')}
-            sx={styles.HomePageHeroButton}
-          >
+          <Button onClick={openForm} sx={styles.HomePageHeroButton}>
             Join MongoDB{"'"}s Educator Community
           </Button>
         }

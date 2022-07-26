@@ -6,6 +6,7 @@ import styles from './styles';
 export default function CourseAside({
   level,
   length,
+  openForm,
   wrapperStyles,
   prerequisites,
 }: CourseAsideProps): JSX.Element {
@@ -74,7 +75,12 @@ export default function CourseAside({
           professionals.
         </TypographyScale>
         {/* @ts-ignore */}
-        <Link inverse linkIcon="arrow" sx={styles.CourseAsidePromptLink}>
+        <Link
+          inverse
+          linkIcon="arrow"
+          onClick={openForm}
+          sx={styles.CourseAsidePromptLink}
+        >
           Join Now
         </Link>
         <img

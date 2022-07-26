@@ -70,7 +70,7 @@ export const validateRegistrationBody = (body: any) => {
 
   if (!teachingStatuses.includes(body.teachingStatus)) {
     throw Error(
-      `${body.eachingStatus} is not a valid value for teachingStatus`
+      `${body.teachingStatus} is not a valid value for teachingStatus`
     );
   }
 

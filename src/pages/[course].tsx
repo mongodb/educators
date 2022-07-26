@@ -7,11 +7,16 @@ import CourseList from 'components/course-list';
 
 import styles from 'styles/course';
 
-export default function CoursePage() {
+interface CoursePageProps {
+  openForm: () => void;
+}
+
+export default function CoursePage({ openForm }: CoursePageProps) {
   return (
     <>
       <CourseHeader title="Introduction to Modern Databases" />
       <main sx={styles.CoursePageMain}>
+        {/* @ts-ignore */}
         <GridLayout sx={styles.CoursePageGrid}>
           <CourseBody
             formatText={mockFormatText}
@@ -19,6 +24,7 @@ export default function CoursePage() {
             wrapperStyles={styles.CoursePageBody}
           />
           <CourseAside
+            openForm={openForm}
             level={courseData.level}
             length={courseData.length}
             prerequisites={courseData.pre_reqs}
