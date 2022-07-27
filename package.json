@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test:watch": "jest --watch",
+    "test:all": "jest --passWithNoTests",
     "pretty:write": "prettier --write .",
     "pretty:check": "prettier --check ."
   },
@@ -29,6 +30,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.3",
+    "react-select-country-list": "^2.2.3",
     "remark-directive": "2.0.1",
     "theme-ui": "0.14.5"
   },
@@ -38,6 +40,9 @@
     "@types/node": "18.0.3",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
+    "@types/react-select-country-list": "^2.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.0",
     "eslint-config-prettier": "^8.5.0",

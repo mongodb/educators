@@ -1,5 +1,5 @@
 import Airtable, { FieldSet } from 'airtable';
-import { Registration } from 'src/lib/registration';
+import { Registration } from 'lib/registration';
 
 // Using field IDs as recommended by the Airtable API docs in case of changes to field names.
 interface AirtableRegistration extends FieldSet {

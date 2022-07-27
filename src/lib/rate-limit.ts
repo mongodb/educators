@@ -2,7 +2,7 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const LRU = require('lru-cache');
+const LRU = require('lru-cache'); // eslint-disable-line
 
 interface RateLimitOptions {
   max: number;
@@ -12,7 +12,7 @@ interface RateLimitOptions {
 export const MAX_POSTS_PER_PERIOD = 5;
 
 export const getIP = (req: NextApiRequest) => {
-  let ip = req.headers['x-forwarded-for'] || '';
+  const ip = req.headers['x-forwarded-for'] || '';
   let realIp: string;
   if (Array.isArray(ip)) {
     realIp = ip[0];
