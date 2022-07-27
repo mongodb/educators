@@ -2,11 +2,6 @@ import Markdown from 'components/markdown';
 import CourseBodyProps from './types';
 import styles from './styles';
 
-/* 
-  TODO: this can probably be combined into one section that just loops through 2 items,
-  revist this once getting an idea of data structure
-*/
-
 const markdownText = `## Course Outline
 
 This course is designed to cover a broad spectrum of topics on MongoDB and non-relational databases geared towards learners from beginner to advanced levels. The course includes lessons on comparing and contrasting relational and non-relational databases, outlining the architecture of MongoDB, and detailing how to model data in a document-oriented database. 
