@@ -47,7 +47,7 @@ const registrationFieldsToTypes: { [key: string]: string } = {
   teachingStatus: 'string',
 };
 
-export const validateRegistrationBody = (body: any) => {
+export const validateRegistrationBody = (body: { [key: string]: string }) => {
   const bodyKeys = Object.keys(body);
   for (const key in registrationFieldsToTypes) {
     if (!bodyKeys.includes(key)) {

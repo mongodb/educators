@@ -1,4 +1,4 @@
 export default interface ContentPreviewProps {
   title: string;
-  content: Array<any>;
+  content: Array<any>; // eslint-disable-line
 }

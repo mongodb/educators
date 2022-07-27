@@ -1,1 +1,1 @@
-export default interface StudentResourcesProps {}
+export default interface StudentResourcesProps {} // eslint-disable-line

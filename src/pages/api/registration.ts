@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { Registration, validateRegistrationBody } from 'src/lib/registration';
-import { uploadToAirtable } from 'src/lib/airtable';
-import { uploadToAppServices } from 'src/lib/app-services';
+import { Registration, validateRegistrationBody } from 'lib/registration';
+import { uploadToAirtable } from 'lib/airtable';
+import { uploadToAppServices } from 'lib/app-services';
 
-import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'src/lib/rate-limit';
+import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
 
 const limiter = rateLimit({
   max: 600, // cache limit of 600 per 30 second period.
@@ -28,8 +28,8 @@ const registrationHandler = async (
 
   try {
     validateRegistrationBody(req.body);
-  } catch (err: any) {
-    return res.status(400).send(err.message);
+  } catch (err) {
+    return res.status(400).send((err as Error).message);
   }
 
   // Don't need to await these since they can fail gracefully.

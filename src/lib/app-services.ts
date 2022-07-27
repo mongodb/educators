@@ -1,4 +1,4 @@
-import { Registration } from 'src/lib/registration';
+import { Registration } from 'lib/registration';
 import axios from 'axios';
 
 interface AppServicesRegistration {
@@ -53,9 +53,9 @@ export const uploadToAppServices = async (
   const payload = getAppServicesRegistration(body);
   try {
     await axios.post(url, payload, { headers });
-  } catch (err: any) {
+  } catch (err) {
     console.error(
-      `Failed to upload registration to App Services: ${err.message}`
+      `Failed to upload registration to App Services: ${(err as Error).message}`
     );
     return;
   }
