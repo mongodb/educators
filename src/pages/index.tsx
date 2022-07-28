@@ -1,3 +1,5 @@
+import { GetStaticProps } from 'next';
+
 import { Button } from '@mdb/flora';
 
 import Hero from 'components/hero';
@@ -6,12 +8,20 @@ import ContentPreview from 'components/content-preview';
 import StudentResources from 'components/student-resources';
 
 import styles from 'styles/home';
+import { ContentItem, getAllContent } from 'lib/cms-content';
 
+interface PageProps {
+  content: ContentItem[];
+}
 interface HomePageProps {
   openForm: () => void;
+  content: ContentItem[];
 }
 
-export default function Home({ openForm }: HomePageProps): JSX.Element {
+export default function Home({
+  openForm,
+  content,
+}: HomePageProps): JSX.Element {
   return (
     <>
       <Hero
@@ -41,6 +51,14 @@ export default function Home({ openForm }: HomePageProps): JSX.Element {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<PageProps> = async () => {
+  const content = await getAllContent();
+
+  return {
+    props: { content },
+  };
+};
 
 /* ********* TEMP: MOCK DATA FOR MOCKUP BUILDOUT ********* */
 
