@@ -3,6 +3,8 @@ FROM node:16-alpine AS builder
 # Install deps
 ARG NPM_AUTH=$NPM_AUTH
 ARG NPM_EMAIL=$NPM_EMAIL
+ARG CMS_URL=$CMS_URL
+ARG CMS_API_KEY=$CMS_API_KEY
 
 WORKDIR /educators
 COPY package.json yarn.lock .npmrc ./

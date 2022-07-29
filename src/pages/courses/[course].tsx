@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPaths } from 'next';
 import { GridLayout } from '@mdb/flora';
 
 import CourseHeader from 'components/course-header';
@@ -5,13 +6,18 @@ import CourseBody from 'components/course-body';
 import CourseAside from 'components/course-aside';
 import CourseList from 'components/course-list';
 
+import { ContentItem, getAllContent, getContentBySlug } from 'lib/cms-content';
 import styles from 'styles/course';
 
+interface PageProps {
+  content: ContentItem;
+}
 interface CoursePageProps {
   openForm: () => void;
+  content: ContentItem;
 }
 
-export default function CoursePage({ openForm }: CoursePageProps) {
+export default function CoursePage({ openForm, content }: CoursePageProps) {
   return (
     <>
       <CourseHeader title="Introduction to Modern Databases" />
@@ -39,6 +45,35 @@ export default function CoursePage({ openForm }: CoursePageProps) {
     </>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const content = await getAllContent();
+  const paths = content
+    .filter(({ contentType }) => contentType === 'Course')
+    .map(({ slug }) => ({ params: { course: slug } }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
+  if (!params?.course) {
+    throw Error('No course slug passed to getStaticProps');
+  }
+  const { course } = params;
+
+  const content = await getContentBySlug(course as string);
+  if (content.contentType !== 'Course') {
+    throw Error(
+      `Content of type ${content.contentType} should not generate pages, only courses have pages.`
+    );
+  }
+  return {
+    props: { content },
+  };
+};
 
 /* --- TEMP MOCK DATA UNTIL INTEGRATION --- */
 const mockOutlineText = [
