@@ -23,30 +23,31 @@ export interface ContentItem {
 const itemMap = ({
   title,
   contentType,
-  longDescription,
   slug,
-  externalLink,
-  level,
-  durationHours,
   shortDescription,
-  lessons,
-  fileDownload,
+
+  longDescription = null,
+  externalLink = null,
+  level = null,
+  durationHours = null,
+  lessons = [],
+  fileDownload = null,
 }: any): ContentItem => {
   return {
     title,
     contentType,
-    longDescription: longDescription || null,
     slug,
-    externalLink: externalLink || null,
-    level: level || null,
-    durationHours: durationHours === undefined ? null : durationHours,
     shortDescription,
-    lessons: lessons
-      ? lessons.map((lesson: any) => ({
-          title: lesson.title,
-          link: lesson.link,
-        }))
-      : undefined,
+    longDescription,
+
+    externalLink,
+    level,
+    durationHours,
+    // The below properties actually have many more fields in the CMS, so we filter them out here.
+    lessons: lessons.map((lesson: Lesson) => ({
+      title: lesson.title,
+      link: lesson.link,
+    })),
     fileDownload: fileDownload?.url || null,
   };
 };
