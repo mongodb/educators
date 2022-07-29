@@ -1,5 +1,9 @@
 import { Button } from '@mdb/flora';
 
+import heroData from 'data/hero.json';
+import statisticsData from 'data/statistics.json';
+import studentResourcesData from 'data/student-resources.json';
+
 import Hero from 'components/hero';
 import Statistic from 'components/statistic';
 import ContentPreview from 'components/content-preview';
@@ -15,49 +19,39 @@ export default function Home({ openForm }: HomePageProps): JSX.Element {
   return (
     <>
       <Hero
+        title={heroData.title}
+        subtitle={heroData.subtitle}
         cta={
           <Button onClick={openForm} sx={styles.HomePageHeroButton}>
-            Join MongoDB{"'"}s Educator Community
+            {heroData.buttonText}
           </Button>
         }
       />
       <main sx={styles.HomePageMainStyles}>
         <section sx={styles.HomePageStatsSection}>
-          {statistics.map(stat => (
+          {statisticsData.map(stat => (
             <Statistic
-              key={stat.count} // TODO: better keys when actual data used
+              key={stat.id}
               count={stat.count}
               description={stat.description}
             />
           ))}
         </section>
-        <ContentPreview title="Lecture Slides" content={lectureSlides} />
+        <ContentPreview title="Curriculum Resources" content={lectureSlides} />
         <ContentPreview
-          title="Additional Content"
+          title="Additional Educator Resources"
           content={additionalContent}
         />
-        <StudentResources />
+        <StudentResources
+          mainCard={studentResourcesData.mainCard}
+          subCards={studentResourcesData.subCards}
+        />
       </main>
     </>
   );
 }
 
 /* ********* TEMP: MOCK DATA FOR MOCKUP BUILDOUT ********* */
-
-const statistics = [
-  {
-    count: '140K',
-    description: 'Open positions for professionals with MongoDB skills',
-  },
-  {
-    count: '100K',
-    description: 'Companies use MongoDB',
-  },
-  {
-    count: '300+',
-    description: 'Universities in the MongoDB for Academia educator community',
-  },
-];
 
 const lectureSlides = [
   {

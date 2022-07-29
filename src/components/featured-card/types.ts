@@ -7,6 +7,7 @@ export default interface FeaturedCardProps {
   cta?: {
     type: 'button' | 'link';
     text: string;
+    href: string;
   };
   imgSizes?: {
     height: Array<string | null>;

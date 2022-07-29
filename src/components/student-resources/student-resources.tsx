@@ -1,9 +1,15 @@
 import { GridLayout, TypographyScale } from '@mdb/flora';
-import FeaturedCard from 'components/featured-card';
+
 import Image from 'components/image';
+import FeaturedCard from 'components/featured-card';
+
+import StudentResourcesProps from './types';
 import styles from './styles';
 
-export default function StudentResources(): JSX.Element {
+export default function StudentResources({
+  mainCard,
+  subCards,
+}: StudentResourcesProps): JSX.Element {
   return (
     // @ts-ignore
     <GridLayout>
@@ -15,50 +21,50 @@ export default function StudentResources(): JSX.Element {
         />
         {/* @ts-ignore */}
         <TypographyScale variant="heading2" sx={styles.StudentResourcesTitle}>
-          Resources for Students
+          Student Resources
         </TypographyScale>
         {/* @ts-ignore */}
         <TypographyScale
           color="secondary"
           sx={styles.StudentResourcesDescription}
         >
-          MongoDB offers resources and opportunities to empower students to make
-          the most of MongoDB
+          MongoDB offers resources and opportunities to prepare and empower
+          students with in-demand skills and resume-worthy certifications.
         </TypographyScale>
         <FeaturedCard
           noBorder
           fullWidth
+          title="Get $200 of Benefits with the MongoDB Student Pack"
+          subtitle="Access free Certification and $50 in Atlas Credits with the Github Student Pack"
           cta={{
             type: 'button',
             text: 'Learn More',
+            href: mainCard.href,
           }}
-          imgSrc="/academia/desk.svg"
+          imgSrc={mainCard.imgSrc}
           imgSizes={{
             width: ['202px', '340px', null, '431px'],
             height: ['202px', '340px', null, '431px'],
           }}
-          title="Get $200 of Benefits with the MongoDB Student Pack"
-          subtitle="Access free Certification and $50 in Atlas Credits with the Github Student Pack"
         />
         <div sx={styles.StudentResourcesSecondaryCardsWrapper}>
-          <FeaturedCard
-            title="MongoDB Internships"
-            subtitle="Work on teams and projects that will be used by thousands of developers and organizations across the world."
-            imgSrc="/academia/computer.svg"
-            imgSizes={{
-              width: ['119px', null, '168px', '179px'],
-              height: ['129px', null, '182px', '194px'],
-            }}
-          />
-          <FeaturedCard
-            title="Student Demo Apps"
-            subtitle="Inspire your students with Demo Apps that students have created with the power of MongoDB."
-            imgSrc="/academia/directory.svg"
-            imgSizes={{
-              width: ['119px', null, '168px', '179px'],
-              height: ['129px', null, '182px', '194px'],
-            }}
-          />
+          {subCards.map(card => (
+            <FeaturedCard
+              key={card.title}
+              title={card.title}
+              subtitle={card.subtitle}
+              cta={{
+                type: 'link',
+                text: 'Learn more',
+                href: card.href,
+              }}
+              imgSrc={card.imgSrc}
+              imgSizes={{
+                width: ['119px', null, '168px', '179px'],
+                height: ['129px', null, '182px', '194px'],
+              }}
+            />
+          ))}
         </div>
       </section>
     </GridLayout>
