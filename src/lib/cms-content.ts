@@ -8,6 +8,7 @@ export interface Lesson {
 }
 
 export interface ContentItem {
+  id: string;
   title: string;
   contentType: ContentType;
   longDescription?: string;
@@ -21,11 +22,11 @@ export interface ContentItem {
 }
 
 const itemMap = ({
+  id,
   title,
   contentType,
   slug,
   shortDescription,
-
   longDescription = null,
   externalLink = null,
   level = null,
@@ -34,12 +35,12 @@ const itemMap = ({
   fileDownload = null,
 }: any): ContentItem => {
   return {
+    id,
     title,
     contentType,
     slug,
     shortDescription,
     longDescription,
-
     externalLink,
     level,
     durationHours,

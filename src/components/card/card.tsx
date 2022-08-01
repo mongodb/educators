@@ -1,10 +1,4 @@
-import {
-  Link,
-  Pill,
-  SystemIcon,
-  HorizontalRule,
-  TypographyScale,
-} from '@mdb/flora';
+import { Pill, HorizontalRule, TypographyScale } from '@mdb/flora';
 import CardProps from './types';
 import styles from './styles';
 
@@ -13,6 +7,7 @@ export default function Card({
   title,
   count,
   description,
+  actions = <></>,
 }: CardProps): JSX.Element {
   return (
     <div sx={styles.CardWrapper}>
@@ -30,7 +25,7 @@ export default function Card({
         <TypographyScale variant="body3" color="secondary">
           {description}
         </TypographyScale>
-        {count && (
+        {!!count && (
           /* @ts-ignore */
           <TypographyScale
             variant="body3"
@@ -47,14 +42,7 @@ export default function Card({
           marginTop: !count ? '30px' : 'inc40',
         }}
       />
-      <div sx={styles.CardActions}>
-        {/* @ts-ignore */}
-        <SystemIcon name="external" />
-        {/* @ts-ignore */}
-        <Link sx={styles.CardLink} linkIcon="chevron">
-          Learn More
-        </Link>
-      </div>
+      {actions}
     </div>
   );
 }
