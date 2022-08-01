@@ -15,13 +15,15 @@ const HomePageHeroButton: ThemeUICSSObject = {
 
 const HomePageStatsSection: ThemeUICSSObject = {
   display: 'flex',
-  flexDirection: ['column', 'row', null, null],
+  flexDirection: ['column', null, 'row', null],
   justifyContent: 'center',
   marginBottom: ['inc70', null, null, 'inc90'],
 };
 
-export default {
+const styles = {
   HomePageMainStyles,
   HomePageHeroButton,
   HomePageStatsSection,
 };
+
+export default styles;

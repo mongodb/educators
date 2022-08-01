@@ -5,12 +5,12 @@ const StatisticWrapper: ThemeUICSSObject = {
   display: 'flex',
   flexDirection: 'column',
   textAlign: 'center',
-  width: ['100%', '206px', null, '400px'],
-  paddingLeft: ['0', 'inc40', null, 'inc50'],
-  paddingRight: ['0', 'inc40', null, 'inc50'],
-  paddingBottom: ['inc40', '0', null, null],
+  width: ['100%', null, null, '400px'],
+  paddingLeft: [0, null, 'inc40', 'inc50'],
+  paddingRight: [0, null, 'inc40', 'inc50'],
+  paddingBottom: ['inc40', null, 0, null],
   '&:last-of-type': {
-    paddingBottom: '0',
+    paddingBottom: 0,
   },
 };
 

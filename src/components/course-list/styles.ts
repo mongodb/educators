@@ -4,9 +4,10 @@ import theme from '@mdb/flora/theme';
 const CourseListWrapper: ThemeUICSSObject = {
   gridColumn: ['span 12', null, null, 'span 7'],
   ol: {
-    marginLeft: 'inc30',
+    marginLeft: 'inc40',
     marginBottom: 'inc60',
     color: theme.colors.blue80,
+    listStyleType: 'decimal-leading-zero',
   },
   li: {
     marginTop: 'inc30',

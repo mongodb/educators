@@ -2,12 +2,9 @@ import { TypographyScale } from '@mdb/flora';
 import HeroProps from './types';
 import styles from './styles';
 
-const defaultDescription =
-  'These resources are for educators who want to prepare students for careers that require in-demand database skills that power modern applications.';
-
 export default function Hero({
-  title = 'MongoDB for Educators',
-  description = defaultDescription,
+  title,
+  subtitle,
   cta = <></>,
 }: HeroProps): JSX.Element {
   return (
@@ -19,7 +16,7 @@ export default function Hero({
       <div sx={styles.HeroContent}>
         {/* @ts-ignore */}
         <TypographyScale inverse variant="body1">
-          {description}
+          {subtitle}
         </TypographyScale>
         {cta}
       </div>
