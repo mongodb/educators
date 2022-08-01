@@ -16,7 +16,7 @@ export default function CourseHeader({
           linkIcon="chevron-left"
           sx={styles.CourseHeaderBreadcrumb}
         >
-          View All MongoDB for Educators Content
+          Back to MongoDB for Educators Home
         </Link>
         {/* @ts-ignore */}
         <TypographyScale
@@ -34,7 +34,7 @@ export default function CourseHeader({
             // @ts-ignore
             linkIcon="download"
           >
-            Download Slides
+            Download
           </Link>
         </div>
       </GridLayout>

@@ -5,12 +5,13 @@ import styles from './styles';
 
 export default function FeaturedCard({
   title,
-  imgSrc,
   subtitle,
   imgSizes,
+  imgSrc = '',
   noBorder = false,
   fullWidth = false,
   cta = {
+    href: '',
     type: 'link',
     text: 'Learn More',
   },
@@ -53,10 +54,14 @@ export default function FeaturedCard({
           </TypographyScale>
         </div>
         {cta.type === 'button' ? (
-          <Button>{cta.text}</Button>
+          <Button target="_blank" href={cta.href}>
+            {cta.text}
+          </Button>
         ) : (
           // @ts-ignore
-          <Link linkIcon="arrow">{cta.text}</Link>
+          <Link href={cta.href} target="_blank" linkIcon="arrow">
+            {cta.text}
+          </Link>
         )}
       </div>
       <div sx={styles.FeaturedCardImageWrapper}>

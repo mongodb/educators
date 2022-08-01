@@ -74,8 +74,8 @@ export default function CourseAside({
           variant="body3"
           sx={styles.CourseAsidePromptBody}
         >
-          Join to receive our newsletter and get connected with MongoDB
-          professionals.
+          Engage with a community of passionate educators and MongoDB
+          professionals!
         </TypographyScale>
         {/* @ts-ignore */}
         <Link
