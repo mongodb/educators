@@ -9,7 +9,7 @@ describe('[component] Course Body', () => {
       />
     );
 
-    const title = screen.getByText('Lessons');
+    const title = screen.getByText('Lesson Slides');
     expect(title).toBeInTheDocument();
 
     const list = screen.getByTestId('lesson-list');
