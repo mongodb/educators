@@ -8,5 +8,4 @@ const buildEslintCommand = filenames =>
 module.exports = {
   '*.{js,jsx,ts,tsx}': [buildEslintCommand],
   '*': ['yarn pretty:write'], // .prettierrc takes care of filtering files.
-  '*.{js,jsx,ts,tsx}': ['yarn test:all'],
 };
