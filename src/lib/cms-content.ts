@@ -20,13 +20,13 @@ export interface ContentItem {
   lessons?: Lesson[];
   fileDownload?: string;
 }
-
+// TODO: will come back and solidify all types after full data integration
 const itemMap = ({
-  id,
-  title,
-  contentType,
-  slug,
-  shortDescription,
+  id = null,
+  title = null,
+  contentType = null,
+  slug = null,
+  shortDescription = null,
   longDescription = null,
   externalLink = null,
   level = null,

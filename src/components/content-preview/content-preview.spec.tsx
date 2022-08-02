@@ -8,16 +8,20 @@ describe('[component] Content Preview', () => {
         title="Lorem Ipsum"
         content={[
           {
-            tag: 'Technology',
-            title: 'Introduction to Coding',
-            description: 'Anyone can code. Lets just go nuts.',
-            count: 46,
+            id: '1546',
+            slug: 'my-class',
+            title: 'My Class',
+            lessons: [],
+            contentType: 'Course',
+            externalLink: 'my-external-link',
+            fileDownload: 'my-file-download',
+            shortDescription: 'my-short-description',
           },
         ]}
       />
     );
 
-    const tag = screen.getByText('Technology');
+    const tag = screen.getByText('Course');
     expect(tag).toBeInTheDocument();
   });
 });

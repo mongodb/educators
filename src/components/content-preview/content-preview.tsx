@@ -75,7 +75,9 @@ function getCardActions({
     default: <></>,
   };
 
-  return actionMapper[contentType.toLowerCase()] || actionMapper.default;
+  return contentType
+    ? actionMapper[contentType.toLowerCase()]
+    : actionMapper.default;
 }
 
 export default function ContentPreview({
