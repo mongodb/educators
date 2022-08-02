@@ -37,7 +37,7 @@ const itemMap = ({
   return {
     id,
     title,
-    contentType,
+    contentType: contentType === 'CaseStudy' ? 'Case Study' : contentType,
     slug,
     shortDescription,
     longDescription,

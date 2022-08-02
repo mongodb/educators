@@ -24,11 +24,7 @@ export default function CoursePage({ openForm, content }: CoursePageProps) {
       <main sx={styles.CoursePageMain}>
         {/* @ts-ignore */}
         <GridLayout sx={styles.CoursePageGrid}>
-          <CourseBody
-            formatText={mockFormatText}
-            outlineText={mockOutlineText}
-            wrapperStyles={styles.CoursePageBody}
-          />
+          <CourseBody wrapperStyles={styles.CoursePageBody} />
           <CourseAside
             openForm={openForm}
             level={courseData.level}
@@ -54,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
@@ -64,12 +60,23 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
   }
   const { course } = params;
 
-  const content = await getContentBySlug(course as string);
-  if (content.contentType !== 'Course') {
-    throw Error(
-      `Content of type ${content.contentType} should not generate pages, only courses have pages.`
-    );
+  let content;
+  try {
+    content = await getContentBySlug(course as string);
+  } catch (err) {
+    // Force a 404 on a slug that doesn't exist.
+    return {
+      notFound: true,
+    };
   }
+
+  if (content.contentType !== 'Course') {
+    // Force a 404 on non-course fallback route.
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: { content },
   };
