@@ -30,36 +30,21 @@ const reavlidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(500).json({ error: { message: 'Something went wrong' } });
   }
 
-  const { model, entry } = req.body;
+  const { slug, contentType } = req.body;
 
-  if (!model || !entry) {
+  if (!slug || !contentType) {
     return res
       .status(400)
-      .send('"model" and "entry" must be defined on the body');
-  }
-
-  if (model !== 'academia') {
-    console.log(
-      `Did not revalidate because collection was ${model}, not academia.`
-    );
-    return res.status(200).json({ revalidated: false });
+      .send('"slug" and "contentType" must be defined in the body');
   }
 
   try {
     await res.revalidate('/academia');
-    console.log('Successfully revalidated home page');
-    if (entry.contentType !== 'Course') {
+    if (contentType !== 'Course') {
       return res.json({ revalidated: true });
     }
-    if (!entry.slug) {
-      return res
-        .status(400)
-        .send('"slug" must be defined in the "entry" object to revalidate');
-    }
-    await res.revalidate(`/academia/courses/${entry.slug}`);
-    console.log('Successfully revalidated', entry.slug);
+    await res.revalidate(`/academia/courses/${slug}`);
   } catch (err) {
-    console.log(err);
     return res.status(500).send('Error revalidating');
   }
 

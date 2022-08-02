@@ -47,7 +47,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = content
     .filter(({ contentType }) => contentType === 'Course')
     .map(({ slug }) => ({ params: { course: slug } }));
-  console.log('Getting paths:', paths);
 
   return {
     paths,
@@ -60,11 +59,11 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
     throw Error('No course slug passed to getStaticProps');
   }
   const { course } = params;
+
   let content;
   try {
     content = await getContentBySlug(course as string);
   } catch (err) {
-    console.log(`Getting props, but no slug for ${course}`);
     // Force a 404 on a slug that doesn't exist.
     return {
       notFound: true,
@@ -72,15 +71,12 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
   }
 
   if (content.contentType !== 'Course') {
-    console.log(
-      `Getting props, but ${course} is a ${content.contentType}, not a Course`
-    );
     // Force a 404 on non-course fallback route.
     return {
       notFound: true,
     };
   }
-  console.log('Got props for', content.title);
+
   return {
     props: { content },
   };

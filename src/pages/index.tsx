@@ -73,7 +73,6 @@ export const getStaticProps: GetStaticProps<{
     lectures: [],
     resources: [],
   };
-  console.log('Getting all content for home page:');
 
   (await getAllContent()).forEach(item =>
     item.contentType === 'Course'
