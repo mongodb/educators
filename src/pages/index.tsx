@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps<{
     resources: [],
   };
 
-  (await getAllContent()).filter(item =>
+  (await getAllContent()).forEach(item =>
     item.contentType === 'Course'
       ? content.lectures.push(item)
       : content.resources.push(item)

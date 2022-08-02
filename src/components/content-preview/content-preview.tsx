@@ -101,17 +101,17 @@ export default function ContentPreview({
             ({
               id,
               slug,
-              title,
               lessons,
               contentType,
               externalLink,
               fileDownload,
               shortDescription,
+              title: cardTitle,
             }) => {
               return (
                 <Card
                   key={id}
-                  title={title}
+                  title={cardTitle}
                   tag={contentType}
                   count={lessons?.length}
                   description={shortDescription}
