@@ -7,7 +7,7 @@ const limiter = rateLimit({
   ttl: 60 * 1000,
 });
 
-const reavlidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const revalidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const token = process.env.REVALIDATE_TOKEN;
 
   if (!token) {
@@ -27,7 +27,7 @@ const reavlidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const IP = getIP(req);
     await limiter.check(res, MAX_POSTS_PER_PERIOD, IP || '');
   } catch {
-    return res.status(500).json({ error: { message: 'Something went wrong' } });
+    return res.status(429).json({ error: { message: 'Rate limit exceeded' } });
   }
 
   const { slug, contentType } = req.body;
@@ -45,10 +45,11 @@ const reavlidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     await res.revalidate(`/academia/courses/${slug}`);
   } catch (err) {
+    console.error(`There was an error revalidating ${slug}`);
     return res.status(500).send('Error revalidating');
   }
 
   return res.json({ revalidated: true });
 };
 
-export default reavlidateHandler;
+export default revalidateHandler;
