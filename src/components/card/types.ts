@@ -3,4 +3,5 @@ export default interface CardProps {
   title: string;
   count?: number;
   description: string;
+  actions?: JSX.Element;
 }

@@ -53,7 +53,7 @@ const FeaturedCardContent: ThemeUICSSObject = {
 
 const FeaturedCardImageWrapper: ThemeUICSSObject = {
   order: [1, 2, null, null],
-  width: [null, '50%', null, '50%'],
+  width: [null, '50%', null, null],
   display: [null, 'flex', null, null],
   justifyContent: [null, 'center', null, null],
   marginBottom: ['inc40', 0, null, null],

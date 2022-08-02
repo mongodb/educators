@@ -38,22 +38,10 @@ const CardDivider: ThemeUICSSObject = {
   marginBottom: 'inc30',
 };
 
-const CardActions: ThemeUICSSObject = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-};
-
-const CardLink: ThemeUICSSObject = {
-  height: '28px',
-};
-
 const styles = {
   CardPill,
-  CardLink,
   CardTitle,
   CardContent,
-  CardActions,
   CardWrapper,
   CardDivider,
   CardLessonCount,
