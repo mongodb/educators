@@ -55,7 +55,7 @@ export default function StudentResources({
               subtitle={card.subtitle}
               cta={{
                 type: 'link',
-                text: 'Learn more',
+                text: card.cta || '',
                 href: card.href,
               }}
               imgSrc={card.imgSrc}

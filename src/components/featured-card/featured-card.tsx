@@ -1,5 +1,5 @@
 import { Link, Button, TypographyScale } from '@mdb/flora';
-import Image from 'next/image';
+import Image from 'components/image';
 import FeaturedCardProps from './types';
 import styles from './styles';
 
@@ -64,15 +64,23 @@ export default function FeaturedCard({
           </Link>
         )}
       </div>
-      <div sx={styles.FeaturedCardImageWrapper}>
+      <div
+        sx={{
+          ...styles.FeaturedCardImageWrapper,
+          ...(fullWidth && { ...styles.FeaturedCardImageWrapper_FullWidth }),
+        }}
+      >
         <div
           sx={{
-            ...styles.FeaturedCardImage,
             ...(imgSizes && { ...imgSizes }),
             ...(fullWidth && { ...styles.FeaturedCardImage_FullWidth }),
           }}
         >
-          <Image alt="mongoDB icon" src={imgSrc as string} layout="fill" />
+          <Image
+            alt="mongoDB icon"
+            src={imgSrc}
+            styles={styles.FeaturedCardImage}
+          />
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ type Card = {
   subtitle: string;
   imgSrc: string;
   href: string;
+  cta?: string;
 };
 export default interface StudentResourcesProps {
   mainCard: Card;
