@@ -24,7 +24,7 @@ export default function CoursePage({ openForm, content }: CoursePageProps) {
       <main sx={styles.CoursePageMain}>
         {/* @ts-ignore */}
         <GridLayout sx={styles.CoursePageGrid}>
-          <CourseBody />
+          <CourseBody wrapperStyles={styles.CoursePageBody} />
           <CourseAside
             openForm={openForm}
             level={courseData.level}
