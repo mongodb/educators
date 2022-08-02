@@ -13,8 +13,8 @@ import ContentPreviewProps from './types';
 import styles from './styles';
 
 function getCardActions({
-  contentType,
   slug,
+  contentType,
   externalLink,
   fileDownload,
 }: {
@@ -43,8 +43,8 @@ function getCardActions({
     course: (
       <div sx={styles.ContentPreviewCardMultiActions}>
         <a target="_blank" rel="noreferrer" href={externalLink}>
-          {/* @ts-ignore */}
           <SystemIcon
+            // @ts-ignore
             name="external"
             sx={styles.ContentPreviewCardExternalBtn}
           />
@@ -114,8 +114,8 @@ export default function ContentPreview({
                   count={lessons?.length}
                   description={shortDescription}
                   actions={getCardActions({
-                    contentType,
                     slug,
+                    contentType,
                     externalLink,
                     fileDownload,
                   })}

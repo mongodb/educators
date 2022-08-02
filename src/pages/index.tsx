@@ -14,9 +14,14 @@ import StudentResources from 'components/student-resources';
 
 import styles from 'styles/home';
 
+interface ContentData {
+  lectures: ContentItem[];
+  resources: ContentItem[];
+}
+
 interface HomePageProps {
   openForm: () => void;
-  content: any;
+  content: ContentData;
 }
 
 export default function Home({
@@ -62,9 +67,9 @@ export default function Home({
 }
 
 export const getStaticProps: GetStaticProps<{
-  content: ContentItem[];
+  content: ContentData;
 }> = async () => {
-  const content: any = {
+  const content: ContentData = {
     lectures: [],
     resources: [],
   };
