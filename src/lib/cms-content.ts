@@ -8,6 +8,7 @@ export interface Lesson {
 }
 
 export interface ContentItem {
+  id: string;
   title: string;
   contentType: ContentType;
   longDescription?: string;
@@ -19,13 +20,13 @@ export interface ContentItem {
   lessons?: Lesson[];
   fileDownload?: string;
 }
-
+// TODO: will come back and solidify all types after full data integration
 const itemMap = ({
-  title,
-  contentType,
-  slug,
-  shortDescription,
-
+  id = null,
+  title = null,
+  contentType = null,
+  slug = null,
+  shortDescription = null,
   longDescription = null,
   externalLink = null,
   level = null,
@@ -34,12 +35,12 @@ const itemMap = ({
   fileDownload = null,
 }: any): ContentItem => {
   return {
+    id,
     title,
     contentType,
     slug,
     shortDescription,
     longDescription,
-
     externalLink,
     level,
     durationHours,
