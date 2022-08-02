@@ -10,13 +10,15 @@
       "title": "MongoDB Internships",
       "subtitle": "Students gain valuable industry experience through projects that will be used by thousands of developers and organizations across the world. Share our internships today!",
       "imgSrc": "/academia/computer.svg",
-      "href": "https://www.mongodb.com/careers/departments/college-students"
+      "href": "https://www.mongodb.com/careers/departments/college-students",
+      "cta": "View MongoDB Internship Opportunities"
     },
     {
       "title": "Student Demo Applications",
       "subtitle": "Inspire learners with code examples from applications developed by students.",
       "imgSrc": "/academia/directory.svg",
-      "href": "https://www.mongodb.com/developer/search/?s=&contributedBy=Student"
+      "href": "https://www.mongodb.com/developer/search/?s=&contributedBy=Student",
+      "cta": "View MongoDB Student Demo Apps"
     }
   ]
 }
