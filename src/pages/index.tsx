@@ -63,6 +63,10 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const content = await getAllContent();
+  console.log(
+    'Getting all content for home page:',
+    content.map(({ title }) => title)
+  );
 
   return {
     props: { content },
