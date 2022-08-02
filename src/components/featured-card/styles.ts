@@ -53,10 +53,6 @@ const FeaturedCardSubtitle: ThemeUICSSObject = {
   lineHeight: [null, null, null, 'inc30'],
 };
 
-const FeaturedCardLink: ThemeUICSSObject = {
-  whiteSpace: ['initial', null, 'nowrap'],
-};
-
 const FeaturedCardImageWrapper: ThemeUICSSObject = {
   order: [1, 2, null, 1],
   width: [null, '50%', null, '100%'],
@@ -125,7 +121,6 @@ const FeaturedCardWrapper_NoBorder: ThemeUICSSObject = {
 
 const styles = {
   FeaturedCardText,
-  FeaturedCardLink,
   FeaturedCardImage,
   FeaturedCardTitle,
   FeaturedCardContent,
