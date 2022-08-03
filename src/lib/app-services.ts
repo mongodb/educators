@@ -59,7 +59,5 @@ export const uploadToAppServices = async (
     );
     return;
   }
-
   console.log('Successfully uploaded registration to App Services.');
-  return;
 };
