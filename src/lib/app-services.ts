@@ -1,6 +1,8 @@
 import { Registration } from 'lib/registration';
 import axios from 'axios';
 
+import logger from './logger';
+
 interface AppServicesRegistration {
   first_name: string;
   last_name: string;
@@ -35,7 +37,7 @@ export const uploadToAppServices = async (
   body: Registration
 ): Promise<void> => {
   if (!process.env['IS_PROD']) {
-    console.log('Bypassed App Services upload in non-production environment.');
+    logger.info('Bypassed App Services upload in non-production environment.');
     return;
   }
 
@@ -54,10 +56,10 @@ export const uploadToAppServices = async (
   try {
     await axios.post(url, payload, { headers });
   } catch (err) {
-    console.error(
+    logger.error(
       `Failed to upload registration to App Services: ${(err as Error).message}`
     );
     return;
   }
-  console.log('Successfully uploaded registration to App Services.');
+  logger.info('Successfully uploaded registration to App Services.');
 };
