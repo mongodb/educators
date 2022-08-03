@@ -19,7 +19,7 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <Layout isFormOpen={isFormOpen}>
-          <Form isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
+          <Form isOpen={isFormOpen} closeForm={() => setIsFormOpen(false)} />
           <Component {...pageProps} openForm={() => setIsFormOpen(true)} />
         </Layout>
       </ThemeProvider>

@@ -3,14 +3,14 @@ import Form, { isRequired, emailPattern } from '.';
 
 describe('[component] Form', () => {
   it('renders the component', () => {
-    render(<Form isOpen onClose={() => {}} />);
+    render(<Form isOpen closeForm={() => {}} />);
 
     const form = screen.getByTestId('form-modal');
     expect(form).toBeInTheDocument();
   });
 
   it('does not render the component if isOpen prop is false', () => {
-    const { container } = render(<Form isOpen={false} onClose={() => {}} />);
+    const { container } = render(<Form isOpen={false} closeForm={() => {}} />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -33,7 +33,7 @@ describe('[component] Form', () => {
   });
 
   it('renders the expected components', () => {
-    const { container } = render(<Form isOpen onClose={() => {}} />);
+    const { container } = render(<Form isOpen closeForm={() => {}} />);
 
     // Text inputs
     const inputs = container.getElementsByTagName('input');
@@ -54,7 +54,7 @@ describe('[component] Form', () => {
 
   it('calls the onClose prop when the close modal button is clicked', () => {
     const onClose = jest.fn();
-    const { container } = render(<Form isOpen onClose={onClose} />);
+    const { container } = render(<Form isOpen closeForm={onClose} />);
 
     const closeBtn = container.getElementsByTagName('button')[0]; // first button found in component is the close button
 

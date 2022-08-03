@@ -1,4 +1,5 @@
 import { ThemeUICSSObject } from 'theme-ui';
+import theme from '@mdb/flora/theme';
 
 const FormModalWrapper: ThemeUICSSObject = {
   backgroundColor: 'rgba(0, 30, 43, 0.6)', // theme.colors.blue80 in RGB
@@ -23,9 +24,15 @@ const FormModal: ThemeUICSSObject = {
   },
 };
 
+const FormErrorMessage: ThemeUICSSObject = {
+  color: theme.colors.red30,
+  marginBottom: '-inc30', // negates spacing from gridGap
+};
+
 const styles = {
   FormModal,
   FormModalWrapper,
+  FormErrorMessage,
 };
 
 export default styles;
