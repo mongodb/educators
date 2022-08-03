@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
 import countryList from 'react-select-country-list';
 import {
@@ -7,7 +8,6 @@ import {
   institutionTypes,
   teachingStatuses,
 } from 'lib/registration';
-import { uploadToAppServices } from 'lib/app-services';
 import FormProps from './types';
 import styles from './styles';
 
@@ -132,11 +132,13 @@ export default function Form({
 
     const body = form as unknown as Registration; // converts required formValues arg type to required Registration type for POST
 
-    const req = await uploadToAppServices(body);
+    try {
+      const req = await axios.post('/academia/api/registration', body);
 
-    if (req.success) {
-      setFormSuccess(true);
-    } else {
+      if (req.status === 200) {
+        setFormSuccess(true);
+      }
+    } catch (e) {
       setFormError(true);
     }
   }
