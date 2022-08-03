@@ -8,8 +8,13 @@ env:
 envSecrets:
   NPM_EMAIL: educators-secrets
   NPM_AUTH: educators-secrets
+  CMS_URL: educators-secrets
+  CMS_API_KEY: educators-secrets
+  REVALIDATE_TOKEN: educators-secrets
   AIRTABLE_BASE_ID: educators-secrets
   AIRTABLE_API_KEY: educators-secrets
+  REGISTRATION_API_URL: educators-secrets
+  REGISTRATION_API_KEY: educators-secrets
 
 autoscaling:
   minReplicas: 2
