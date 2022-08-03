@@ -33,10 +33,10 @@ const getAppServicesRegistration = (
 
 export const uploadToAppServices = async (
   body: Registration
-): Promise<{ success: boolean }> => {
+): Promise<void> => {
   if (!process.env['IS_PROD']) {
     console.log('Bypassed App Services upload in non-production environment.');
-    return { success: false };
+    return;
   }
 
   const url = process.env['REGISTRATION_API_URL'];
@@ -57,9 +57,9 @@ export const uploadToAppServices = async (
     console.error(
       `Failed to upload registration to App Services: ${(err as Error).message}`
     );
-    return { success: false };
+    return;
   }
 
   console.log('Successfully uploaded registration to App Services.');
-  return { success: true };
+  return;
 };
