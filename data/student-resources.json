@@ -15,7 +15,7 @@
     },
     {
       "title": "Student Demo Applications",
-      "subtitle": "Inspire learners with code examples from applications developed by students.",
+      "subtitle": "Inspire learners with code examples from applications developed by students. Explore what students have created today!",
       "imgSrc": "/academia/directory.svg",
       "href": "https://www.mongodb.com/developer/search/?s=&contributedBy=Student",
       "cta": "View MongoDB Student Demo Apps"

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
 import countryList from 'react-select-country-list';
 import {
@@ -118,13 +119,32 @@ const fields: Array<FieldInterface> = [
 
 export default function Form({
   isOpen,
-  onClose,
+  closeForm,
 }: FormProps): JSX.Element | null {
+  const [formError, setFormError] = useState<boolean>(false);
+  const [formSuccess, setFormSuccess] = useState<boolean>(false);
+
   async function onSubmit(form: FormValues): Promise<void> {
+    // clear out existing error state if present
+    if (formError) {
+      setFormError(false);
+    }
+
     const body = form as unknown as Registration; // converts required formValues arg type to required Registration type for POST
-    // Temporary Implementation
-    await uploadToAppServices(body);
-    return;
+
+    const req = await uploadToAppServices(body);
+
+    if (req.success) {
+      setFormSuccess(true);
+    } else {
+      setFormError(true);
+    }
+  }
+
+  function onClose() {
+    setFormSuccess(false);
+    setFormError(false);
+    closeForm();
   }
 
   return isOpen ? (
@@ -134,6 +154,9 @@ export default function Form({
         <FormPanel
           onClose={onClose}
           title="Join the MongoDB Educator Community"
+          postSubmissionState={formSuccess}
+          postSubmissionTitle="Thanks for joining the MongoDB Educator Community!"
+          postSubmissionDescription="You have been added to our mailing list and will receive updates regarding new curriculum and relevant opportunities moving forward."
         >
           <FormGeneric
             inverse
@@ -154,6 +177,11 @@ export default function Form({
                   validators={validators || []}
                 />
               )
+            )}
+            {formError && (
+              <span sx={styles.FormErrorMessage}>
+                There was an error submitting your request. Please try again.
+              </span>
             )}
             <Button
               type="submit"
