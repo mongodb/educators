@@ -133,11 +133,8 @@ export default function Form({
     const body = form as unknown as Registration; // converts required formValues arg type to required Registration type for POST
 
     try {
-      const req = await axios.post('/academia/api/registration', body);
-
-      if (req.status === 200) {
-        setFormSuccess(true);
-      }
+      await axios.post('/academia/api/registration', body);
+      setFormSuccess(true);
     } catch (e) {
       setFormError(true);
     }
