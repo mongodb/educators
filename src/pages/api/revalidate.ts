@@ -1,55 +1,66 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
+import { responseWrapper } from 'lib/utils';
+
+import logger from 'lib/logger';
 
 const limiter = rateLimit({
   max: 5, // cache limit of 5 per 60 second period.
   ttl: 60 * 1000,
 });
+const endpoint = '/api/revalidate';
 
 const revalidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const method = req.method;
   const token = process.env.REVALIDATE_TOKEN;
 
   if (!token) {
-    console.error('REVALIDATE_TOKEN is not defined.');
-    return res.status(500).json({ error: { message: 'Something went wrong' } });
+    const message = 'REVALIDATE_TOKEN is not defined';
+    logger.warn(message); // Don't want to send this message as a response, but still want to log it.
+    return responseWrapper(res, endpoint, 500, method, {
+      message: 'Something went wrong',
+    });
   }
-
   if (req.headers.authorization !== `Bearer ${token}`) {
-    return res.status(401).json({ message: 'Invalid token' });
+    const message = 'Invalid token';
+    return responseWrapper(res, endpoint, 401, method, { message });
   }
 
-  if (req.method !== 'POST') {
-    return res.status(405).send('This is a POST-only endpoint');
+  if (method !== 'POST') {
+    const message = 'This is a POST-only endpoint';
+    return responseWrapper(res, endpoint, 405, method, { message });
   }
 
   try {
     const IP = getIP(req);
     await limiter.check(res, MAX_POSTS_PER_PERIOD, IP || '');
   } catch {
-    return res.status(429).json({ error: { message: 'Rate limit exceeded' } });
+    const message = 'Rate limit exceeded';
+    return responseWrapper(res, endpoint, 429, method, { message });
   }
 
   const { slug, contentType } = req.body;
 
   if (!slug || !contentType) {
-    return res
-      .status(400)
-      .send('"slug" and "contentType" must be defined in the body');
+    const message = '"slug" and "contentType" must be defined in the body';
+    return responseWrapper(res, endpoint, 400, method, { message });
   }
 
   try {
     await res.revalidate('/academia');
     if (contentType !== 'Course') {
-      return res.json({ revalidated: true });
+      const message = 'Revalidated home-page only';
+      return responseWrapper(res, endpoint, 200, method, { message });
     }
     await res.revalidate(`/academia/courses/${slug}`);
   } catch (err) {
-    console.error(`There was an error revalidating ${slug}`);
-    return res.status(500).send('Error revalidating');
+    const message = `There was an error revalidating ${slug}`;
+    return responseWrapper(res, endpoint, 500, method, { message });
   }
-
-  return res.json({ revalidated: true });
+  const statusCode = 200;
+  const message = `Revalidated both homepage and ${slug}`;
+  return responseWrapper(res, endpoint, 200, method, { message });
 };
 
 export default revalidateHandler;

@@ -4,6 +4,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const LRU = require('lru-cache'); // eslint-disable-line
 
+import logger from 'lib/logger';
+
 interface RateLimitOptions {
   max: number;
   ttl: number;
@@ -45,10 +47,10 @@ const rateLimit = (options: RateLimitOptions) => {
           isRateLimited ? '0' : (limit - currentUsage).toString()
         );
         if (isRateLimited) {
-          console.log(`IP (${ip}) blocked for too many requests.`);
+          logger.info(`IP (${ip}) blocked for too many requests.`);
           return reject();
         }
-        console.log(
+        logger.info(
           `IP (${ip}) at ${currentUsage}/${limit} write requests this period.`
         );
         return resolve(null);

@@ -5,38 +5,46 @@ import { uploadToAirtable } from 'lib/airtable';
 import { uploadToAppServices } from 'lib/app-services';
 
 import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
+import { responseWrapper } from 'lib/utils';
 
 const limiter = rateLimit({
   max: 600, // cache limit of 600 per 30 second period.
   ttl: 30 * 1000,
 });
 
+const endpoint = '/api/registration';
+
 const registrationHandler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  if (req.method !== 'POST') {
-    return res.status(405).send('This is a POST-only endpoint.');
+  const method = req.method;
+
+  if (method !== 'POST') {
+    const message = 'This is a POST-only endpoint.';
+    return responseWrapper(res, endpoint, 405, method, { message });
   }
 
   try {
     const IP = getIP(req);
     await limiter.check(res, MAX_POSTS_PER_PERIOD, IP || '');
   } catch {
-    return res.status(500).json({ error: { message: 'Something went wrong' } });
+    const message = 'Rate limit exceeded';
+    return responseWrapper(res, endpoint, 429, method, { message });
   }
 
   try {
     validateRegistrationBody(req.body);
   } catch (err) {
-    return res.status(400).send((err as Error).message);
+    const message = (err as Error).message;
+    return responseWrapper(res, endpoint, 400, method, { message });
   }
 
   // Don't need to await these since they can fail gracefully.
   uploadToAirtable(req.body as Registration);
   uploadToAppServices(req.body as Registration);
-
-  return res.status(200).json({});
+  const message = 'Success';
+  return responseWrapper(res, endpoint, 200, method, { message });
 };
 
 export default registrationHandler;

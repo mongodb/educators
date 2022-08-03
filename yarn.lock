@@ -1627,6 +1627,11 @@ atob@^2.1.2:
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha1-bZUX654DDSQ2ZmZR6GvZ9vE1M8k=
 
+atomic-sleep@^1.0.0:
+  version "1.0.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/atomic-sleep/-/atomic-sleep-1.0.0.tgz#eb85b77a601fc932cfe432c5acd364a9e2c9075b"
+  integrity sha1-64W3emAfyTLP5DLFrNNkqeLJB1s=
+
 axe-core@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.2.tgz#dcf7fb6dea866166c3eab33d68208afe4d5f670c"
@@ -2592,6 +2597,11 @@ fast-levenshtein@^2.0.6, fast-levenshtein@~2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
+
+fast-redact@^3.1.1:
+  version "3.1.1"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/fast-redact/-/fast-redact-3.1.1.tgz#790fcff8f808c2e12fabbfb2be5cb2deda448fa0"
+  integrity sha1-eQ/P+PgIwuEvq7+yvlyy3tpEj6A=
 
 fastq@^1.6.0:
   version "1.13.0"
@@ -4368,6 +4378,11 @@ object.values@^1.1.5:
     define-properties "^1.1.3"
     es-abstract "^1.19.1"
 
+on-exit-leak-free@^2.1.0:
+  version "2.1.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/on-exit-leak-free/-/on-exit-leak-free-2.1.0.tgz#5c703c968f7e7f851885f6459bf8a8a57edc9cc4"
+  integrity sha1-XHA8lo9+f4UYhfZFm/iopX7cnMQ=
+
 once@^1.3.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
@@ -4546,6 +4561,36 @@ picomatch@^2.0.4, picomatch@^2.2.3, picomatch@^2.3.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+pino-abstract-transport@v1.0.0:
+  version "1.0.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/pino-abstract-transport/-/pino-abstract-transport-1.0.0.tgz#cc0d6955fffcadb91b7b49ef220a6cc111d48bb3"
+  integrity sha1-zA1pVf/8rbkbe0nvIgpswRHUi7M=
+  dependencies:
+    readable-stream "^4.0.0"
+    split2 "^4.0.0"
+
+pino-std-serializers@^6.0.0:
+  version "6.0.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/pino-std-serializers/-/pino-std-serializers-6.0.0.tgz#4c20928a1bafca122fdc2a7a4a171ca1c5f9c526"
+  integrity sha1-TCCSihuvyhIv3Cp6ShccocX5xSY=
+
+pino@8.3.1:
+  version "8.3.1"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/pino/-/pino-8.3.1.tgz#99be4376d9577e3508bd6b18cd767339d4a640f4"
+  integrity sha1-mb5DdtlXfjUIvWsYzXZzOdSmQPQ=
+  dependencies:
+    atomic-sleep "^1.0.0"
+    fast-redact "^3.1.1"
+    on-exit-leak-free "^2.1.0"
+    pino-abstract-transport v1.0.0
+    pino-std-serializers "^6.0.0"
+    process-warning "^2.0.0"
+    quick-format-unescaped "^4.0.3"
+    real-require "^0.2.0"
+    safe-stable-stringify "^2.3.1"
+    sonic-boom "^3.1.0"
+    thread-stream "^2.0.0"
+
 pirates@^4.0.4:
   version "4.0.5"
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/pirates/-/pirates-4.0.5.tgz#feec352ea5c3268fb23a37c702ab1699f35a5f3b"
@@ -4615,6 +4660,11 @@ pretty-format@^28.0.0, pretty-format@^28.1.1:
     ansi-styles "^5.0.0"
     react-is "^18.0.0"
 
+process-warning@^2.0.0:
+  version "2.0.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/process-warning/-/process-warning-2.0.0.tgz#341dbeaac985b90a04ebcd844d50097c7737b2ee"
+  integrity sha1-NB2+qsmFuQoE682ETVAJfHc3su4=
+
 prompts@^2.0.1:
   version "2.4.2"
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/prompts/-/prompts-2.4.2.tgz#7b57e73b3a48029ad10ebd44f74b01722a4cb069"
@@ -4652,6 +4702,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+quick-format-unescaped@^4.0.3:
+  version "4.0.4"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/quick-format-unescaped/-/quick-format-unescaped-4.0.4.tgz#93ef6dd8d3453cbc7970dd614fad4c5954d6b5a7"
+  integrity sha1-k+9t2NNFPLx5cN1hT61MWVTWtac=
+
 react-dom@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
@@ -4675,11 +4730,6 @@ react-is@^18.0.0:
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha1-GZQx7qqi4J+GQn77tPFHPttHYJs=
 
-react-select-country-list@^2.2.3:
-  version "2.2.3"
-  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/react-select-country-list/-/react-select-country-list-2.2.3.tgz#af263072a7797a660e7bd67702495dd1f95268ab"
-  integrity sha1-ryYwcqd5emYOe9Z3Akld0flSaKs=
-
 react-markdown@8.0.3:
   version "8.0.3"
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/react-markdown/-/react-markdown-8.0.3.tgz#e8aba0d2f5a1b2124d476ee1fff9448a2f57e4b3"
@@ -4701,12 +4751,34 @@ react-markdown@8.0.3:
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
+react-select-country-list@^2.2.3:
+  version "2.2.3"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/react-select-country-list/-/react-select-country-list-2.2.3.tgz#af263072a7797a660e7bd67702495dd1f95268ab"
+  integrity sha1-ryYwcqd5emYOe9Z3Akld0flSaKs=
+
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
+
+readable-stream@^4.0.0:
+  version "4.1.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/readable-stream/-/readable-stream-4.1.0.tgz#280d0a29f559d3fb684a277254e02b6f61ae0631"
+  integrity sha1-KA0KKfVZ0/toSidyVOArb2GuBjE=
+  dependencies:
+    abort-controller "^3.0.0"
+
+real-require@^0.1.0:
+  version "0.1.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/real-require/-/real-require-0.1.0.tgz#736ac214caa20632847b7ca8c1056a0767df9381"
+  integrity sha1-c2rCFMqiBjKEe3yowQVqB2ffk4E=
+
+real-require@^0.2.0:
+  version "0.2.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/real-require/-/real-require-0.2.0.tgz#209632dea1810be2ae063a6ac084fee7e33fba78"
+  integrity sha1-IJYy3qGBC+KuBjpqwIT+5+M/ung=
 
 redent@^3.0.0:
   version "3.0.0"
@@ -4860,6 +4932,11 @@ safe-buffer@~5.1.1:
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha1-mR7GnSluAxN0fVm9/St0XDX4go0=
 
+safe-stable-stringify@^2.3.1:
+  version "2.3.1"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/safe-stable-stringify/-/safe-stable-stringify-2.3.1.tgz#ab67cbe1fe7d40603ca641c5e765cb942d04fc73"
+  integrity sha1-q2fL4f59QGA8pkHF52XLlC0E/HM=
+
 "safer-buffer@>= 2.1.2 < 3.0.0":
   version "2.1.2"
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
@@ -4955,6 +5032,13 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
+sonic-boom@^3.1.0:
+  version "3.2.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/sonic-boom/-/sonic-boom-3.2.0.tgz#ce9f2de7557e68be2e52c8df6d9b052e7d348143"
+  integrity sha1-zp8t51V+aL4uUsjfbZsFLn00gUM=
+  dependencies:
+    atomic-sleep "^1.0.0"
+
 source-map-js@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
@@ -4990,6 +5074,11 @@ space-separated-tokens@^2.0.0:
   version "2.0.1"
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/space-separated-tokens/-/space-separated-tokens-2.0.1.tgz#43193cec4fb858a2ce934b7f98b7f2c18107098b"
   integrity sha1-Qxk87E+4WKLOk0t/mLfywYEHCYs=
+
+split2@^4.0.0:
+  version "4.1.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/split2/-/split2-4.1.0.tgz#101907a24370f85bb782f08adaabe4e281ecf809"
+  integrity sha1-EBkHokNw+Fu3gvCK2qvk4oHs+Ak=
 
 sprintf-js@~1.0.2:
   version "1.0.3"
@@ -5216,6 +5305,13 @@ theme-ui@0.14.5:
     "@theme-ui/css" "0.14.5"
     "@theme-ui/mdx" "0.14.5"
     "@theme-ui/theme-provider" "0.14.5"
+
+thread-stream@^2.0.0:
+  version "2.0.0"
+  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/thread-stream/-/thread-stream-2.0.0.tgz#1ecb450324ebb1bb284d4398b8af15cb6905028c"
+  integrity sha1-HstFAyTrsbsoTUOYuK8Vy2kFAow=
+  dependencies:
+    real-require "^0.1.0"
 
 throat@^6.0.1:
   version "6.0.1"

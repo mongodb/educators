@@ -1,6 +1,8 @@
 import Airtable, { FieldSet } from 'airtable';
 import { Registration } from 'lib/registration';
 
+import logger from './logger';
+
 // Using field IDs as recommended by the Airtable API docs in case of changes to field names.
 interface AirtableRegistration extends FieldSet {
   fldYmXYcslTbizpfS: string; // First Name
@@ -34,7 +36,7 @@ const getAirtableRegistration = (reg: Registration): AirtableRegistration => ({
 
 export const uploadToAirtable = async (body: Registration): Promise<void> => {
   if (!process.env['IS_PROD']) {
-    console.log('Bypassed Airtable upload in non-production environment.');
+    logger.info('Bypassed Airtable upload in non-production environment.');
     return;
   }
 
@@ -52,9 +54,9 @@ export const uploadToAirtable = async (body: Registration): Promise<void> => {
   const base = new Airtable({ apiKey: key }).base(baseId);
   base('DevHub Registrations').create(payload, (err, record) => {
     if (err) {
-      console.error(err); // Would be nice to have some alert for this scenario.
+      logger.error(err); // Would be nice to have some alert for this scenario.
       return;
     }
-    console.log(`Successfully uploaded to Airtable, record ${record?.getId()}`);
+    logger.info(`Successfully uploaded to Airtable, record ${record?.getId()}`);
   });
 };
