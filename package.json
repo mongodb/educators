@@ -1,39 +1,57 @@
 {
-	"name": "educator-portal",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev -p 3001",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint",
-		"test": "jest --watch",
-		"pretty:write": "prettier --write .",
-		"pretty:check": "prettier --check ."
-	},
-	"dependencies": {
-		"@emotion/css": "^11.9.0",
-		"@emotion/react": "^11.9.3",
-		"@mdb/consistent-nav": "^1.2.17",
-		"@mdb/flora": "^0.22.4",
-		"@mdx-js/react": "1.6.22",
-		"next": "12.2.0",
-		"react": "18.2.0",
-		"react-dom": "18.2.0",
-		"theme-ui": "0.14.5"
-	},
-	"devDependencies": {
-		"@testing-library/jest-dom": "^5.16.4",
-		"@testing-library/react": "^13.3.0",
-		"@types/node": "18.0.3",
-		"@types/react": "18.0.15",
-		"@types/react-dom": "18.0.6",
-		"eslint": "8.19.0",
-		"eslint-config-next": "12.2.0",
-		"eslint-config-prettier": "^8.5.0",
-		"jest": "^28.1.2",
-		"jest-environment-jsdom": "^28.1.2",
-		"prettier": "^2.7.1",
-		"typescript": "4.7.4"
-	}
+  "name": "educator-portal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test:watch": "jest --watch",
+    "test:all": "jest",
+    "pretty:write": "prettier --write .",
+    "pretty:check": "prettier --check ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@emotion/css": "^11.9.0",
+    "@emotion/react": "^11.9.3",
+    "@mdb/consistent-nav": "^1.2.17",
+    "@mdb/flora": "^0.22.4",
+    "@mdx-js/react": "1.6.22",
+    "airtable": "0.11.4",
+    "axios": "0.27.2",
+    "lru-cache": "7.13.1",
+    "next": "12.2.0",
+    "pino": "8.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-markdown": "8.0.3",
+    "react-select-country-list": "^2.2.3",
+    "remark-directive": "2.0.1",
+    "theme-ui": "0.14.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@types/node": "18.0.3",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "@types/react-select-country-list": "^2.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "8.19.0",
+    "eslint-config-next": "12.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "4.3.8",
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
+    "lint-staged": "11.1.1",
+    "prettier": "^2.7.1",
+    "typescript": "4.7.4"
+  }
 }

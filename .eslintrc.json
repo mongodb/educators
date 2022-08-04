@@ -1,9 +1,31 @@
 {
-	"extends": ["next/core-web-vitals", "eslint:recommended", "prettier"],
-	"globals": {
-		"it": true,
-		"JSX": true,
-		"expect": true,
-		"describe": true
-	}
+  "env": {
+    "jest": true
+  },
+  "globals": {
+    "it": true,
+    "JSX": true,
+    "expect": true,
+    "describe": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.spec.tsx", "*.spec.ts"],
+      "rules": {
+        "@typescript-eslint/no-empty-function": "off"
+      }
+    }
+  ]
 }

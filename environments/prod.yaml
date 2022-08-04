@@ -2,9 +2,19 @@ service:
   type: ClusterIP
   targetPort: 3000
 
+env:
+  IS_PROD: true
+
 envSecrets:
   NPM_EMAIL: educators-secrets
   NPM_AUTH: educators-secrets
+  CMS_URL: educators-secrets
+  CMS_API_KEY: educators-secrets
+  REVALIDATE_TOKEN: educators-secrets
+  AIRTABLE_BASE_ID: educators-secrets
+  AIRTABLE_API_KEY: educators-secrets
+  REGISTRATION_API_URL: educators-secrets
+  REGISTRATION_API_KEY: educators-secrets
 
 autoscaling:
   minReplicas: 2
@@ -38,4 +48,4 @@ resources:
 ingress:
   enabled: true
   path: /academia
-  hosts: ["educators.devrel.prod.corp.mongodb.com"]
+  hosts: ['educators.devrel.prod.corp.mongodb.com']

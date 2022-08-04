@@ -1,5 +1,5 @@
-export interface HeroProps {
-	title?: string;
-	description?: string;
-	cta?: JSX.Element;
+export default interface HeroProps {
+  title: string;
+  subtitle: string;
+  cta?: JSX.Element;
 }

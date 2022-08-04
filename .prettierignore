@@ -1,0 +1,12 @@
+environments/
+yarn.lock
+next-env.d.ts
+README.md
+.babelrc
+.vscode
+.next
+Dockerfile
+.drone.yml
+.*ignore
+coverage/
+public/

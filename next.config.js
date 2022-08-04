@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-	reactStrictMode: true,
-	basePath: '/academia',
-};
 
-module.exports = nextConfig;
+module.exports = {
+  reactStrictMode: true,
+  basePath: '/academia',
+  async redirects() {
+    return [
+      {
+        source: '/academia/courses',
+        destination: '/academia',
+        permanent: false,
+        basePath: false,
+      },
+    ];
+  },
+};

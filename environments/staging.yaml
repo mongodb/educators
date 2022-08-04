@@ -5,6 +5,9 @@ service:
 envSecrets:
   NPM_EMAIL: educators-secrets
   NPM_AUTH: educators-secrets
+  CMS_URL: educators-secrets
+  CMS_API_KEY: educators-secrets
+  REVALIDATE_TOKEN: educators-secrets
 
 autoscaling:
   minReplicas: 1
@@ -38,4 +41,4 @@ resources:
 ingress:
   enabled: true
   path: /academia
-  hosts: ["educators.devrel.staging.corp.mongodb.com"]
+  hosts: ['educators.devrel.staging.corp.mongodb.com']
