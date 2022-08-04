@@ -52,7 +52,7 @@ ingress:
 
 prometheusRules:
   - alert: PodContainerNotReady
-    expr: kube_pod_container_status_ready{namespace="devrel", container="educators"} == 0
+    expr: (sum(kube_pod_container_status_ready{container="educators",namespace="devrel"}) or vector(0)) == 0
     for: 1m
     labels:
       email_to: devhubplatform@mongodb.com
