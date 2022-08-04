@@ -42,3 +42,14 @@ ingress:
   enabled: true
   path: /academia
   hosts: ['educators.devrel.staging.corp.mongodb.com']
+
+prometheusRules:
+  - alert: PodContainerNotReady
+    expr: kube_pod_container_status_ready{namespace="devrel", container="educators"} == 0
+    for: 1m
+    labels:
+      email_to: devhubplatform@mongodb.com
+      severity: critical
+    annotations:
+      summary: "Container readiness check failed"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} container has not been ready for 1 minute"
