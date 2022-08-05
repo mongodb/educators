@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import type { NextApiResponse } from 'next';
 import { logRequest } from './logger';
 
@@ -6,8 +7,19 @@ export const responseWrapper = (
   endpoint: string,
   statusCode: number,
   method: string | undefined,
-  json: object = {}
+  json: { [key: string]: any } = {}
 ): void => {
-  logRequest(endpoint, statusCode, method, json);
+  const report = async () => {
+    logRequest(endpoint, statusCode, method, json);
+    if (statusCode >= 400) {
+      Sentry.captureException(
+        new Error(`${method} ${endpoint}: ${statusCode}`),
+        {
+          extra: json,
+        }
+      );
+    }
+  };
+  report(); // Do this async so we definitely return even if the reporting errors.
   return res.status(statusCode).json(json);
 };
