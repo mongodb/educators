@@ -23,6 +23,7 @@
     "@mdb/consistent-nav": "^1.2.17",
     "@mdb/flora": "^0.22.4",
     "@mdx-js/react": "1.6.22",
+    "@sentry/nextjs": "7.9.0",
     "airtable": "0.11.4",
     "axios": "0.27.2",
     "lru-cache": "7.13.1",

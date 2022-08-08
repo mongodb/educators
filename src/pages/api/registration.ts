@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { withSentry } from '@sentry/nextjs';
 
 import { Registration, validateRegistrationBody } from 'lib/registration';
 import { uploadToAirtable } from 'lib/airtable';
@@ -47,4 +48,4 @@ const registrationHandler = async (
   return responseWrapper(res, endpoint, 200, method, { message });
 };
 
-export default registrationHandler;
+export default withSentry(registrationHandler);

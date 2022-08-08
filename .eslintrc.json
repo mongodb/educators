@@ -26,6 +26,12 @@
       "rules": {
         "@typescript-eslint/no-empty-function": "off"
       }
+    },
+    {
+      "files": ["next.config.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ]
 }

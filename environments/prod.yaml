@@ -3,7 +3,7 @@ service:
   targetPort: 3000
 
 env:
-  IS_PROD: true
+  APP_ENV: production
 
 envSecrets:
   NPM_EMAIL: educators-secrets
@@ -15,6 +15,7 @@ envSecrets:
   AIRTABLE_API_KEY: educators-secrets
   REGISTRATION_API_URL: educators-secrets
   REGISTRATION_API_KEY: educators-secrets
+  NEXT_PUBLIC_SENTRY_DSN: educators-secrets
 
 autoscaling:
   minReplicas: 2
