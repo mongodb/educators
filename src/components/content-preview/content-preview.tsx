@@ -64,7 +64,7 @@ function getCardActions({
     ),
     pdf: (
       <div sx={styles.ContentPreviewCardSingleAction}>
-        {getLinkComponent(fileDownload, 'download', 'Download PDF')}
+        {getLinkComponent(fileDownload, 'download', 'Download PDF', '_blank')}
       </div>
     ),
     'case study': (

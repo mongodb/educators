@@ -1,11 +1,8 @@
-import { ThemeUICSSObject } from 'theme-ui';
+/*
+  TODO: leaving empty export for now,
+  if no styles needed after full integration I will remove the file
+*/
 
-const CourseBodyWrapper: ThemeUICSSObject = {
-  gridColumn: ['span 12', null, null, 'span 7'],
-};
-
-const styles = {
-  CourseBodyWrapper,
-};
+const styles = {};
 
 export default styles;

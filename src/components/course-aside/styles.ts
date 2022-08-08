@@ -8,11 +8,6 @@ const TEXT_OVERLAY: {
   zIndex: 2,
 };
 
-const CourseAsideWrapper: ThemeUICSSObject = {
-  gridColumnStart: ['span 12', null, null, '9'],
-  gridColumnEnd: ['span 12', null, null, '13'],
-};
-
 const CourseAsideSection: ThemeUICSSObject = {
   display: 'flex',
   flexDirection: ['column', 'row', null, 'column'],
@@ -25,6 +20,9 @@ const CourseAsideSection: ThemeUICSSObject = {
 const CourseAsideWidget: ThemeUICSSObject = {
   width: ['100%', '50%', null, '100%'],
   marginBottom: ['inc40', 0, null, 'inc60'],
+  '&:first-of-type': {
+    paddingRight: [null, 'inc40', 0],
+  },
 };
 
 const CourseAsideLabel: ThemeUICSSObject = {
@@ -35,14 +33,6 @@ const CourseAsideDetail: ThemeUICSSObject = {
   fontSize: 'inc50',
   fontWeight: 500,
   color: theme.colors.green60,
-};
-
-const CourseAsideReqList: ThemeUICSSObject = {
-  color: theme.colors.black60,
-  marginLeft: 'inc30', // lines up bullet points from <ul /> with label
-  '> li': {
-    fontSize: 'inc30',
-  },
 };
 
 const CourseAsidePrompt: ThemeUICSSObject = {
@@ -82,9 +72,7 @@ const styles = {
   CourseAsideWidget,
   CourseAsideDetail,
   CourseAsidePrompt,
-  CourseAsideReqList,
   CourseAsideSection,
-  CourseAsideWrapper,
   CourseAsidePromptBG,
   CourseAsidePromptLink,
   CourseAsidePromptBody,
