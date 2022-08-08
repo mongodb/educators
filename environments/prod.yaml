@@ -16,6 +16,7 @@ envSecrets:
   REGISTRATION_API_URL: educators-secrets
   REGISTRATION_API_KEY: educators-secrets
   NEXT_PUBLIC_SENTRY_DSN: educators-secrets
+  SENTRY_AUTH_TOKEN: educators-secrets
 
 autoscaling:
   minReplicas: 2

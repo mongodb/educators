@@ -111,6 +111,8 @@ steps:
         from_secret: CMS_URL_STAGING # This should be changed when we get the CMS API on Kanpoy.
       CMS_API_KEY:
         from_secret: CMS_API_KEY
+      SENTRY_AUTH_TOKEN:
+        from_secret: SENTRY_AUTH_TOKEN
       APP_ENV: production
     settings:
       create_repository: true
