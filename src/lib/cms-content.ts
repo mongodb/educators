@@ -3,6 +3,7 @@ import axios from 'axios';
 export type ContentType = 'Case Study' | 'Course' | 'Lab' | 'PDF';
 
 export interface Lesson {
+  id: string;
   title: string;
   link: string;
 }
@@ -20,38 +21,38 @@ export interface ContentItem {
   lessons?: Lesson[];
   fileDownload?: string;
 }
-// TODO: will come back and solidify all types after full data integration
+
 const itemMap = ({
-  id = null,
-  title = null,
-  contentType = null,
-  slug = null,
-  shortDescription = null,
-  longDescription = null,
-  externalLink = null,
-  level = null,
-  durationHours = null,
+  id = '',
+  title = '',
+  contentType = '',
+  slug = '',
+  shortDescription = '',
+  longDescription = '',
+  externalLink = '',
+  level = '',
+  durationHours = 0,
   lessons = [],
-  fileDownload = null,
-}: any): ContentItem => {
-  return {
+  fileDownload = { url: '' },
+}: any): ContentItem => ({
+  // eslint-disable-line
+  id,
+  title,
+  contentType: contentType === 'CaseStudy' ? 'Case Study' : contentType,
+  slug,
+  shortDescription,
+  longDescription,
+  externalLink,
+  level,
+  durationHours,
+  // The below properties actually have many more fields in the CMS, so we filter them out here.
+  lessons: lessons.map(({ id, link, title }: Lesson) => ({
     id,
     title,
-    contentType: contentType === 'CaseStudy' ? 'Case Study' : contentType,
-    slug,
-    shortDescription,
-    longDescription,
-    externalLink,
-    level,
-    durationHours,
-    // The below properties actually have many more fields in the CMS, so we filter them out here.
-    lessons: lessons.map((lesson: Lesson) => ({
-      title: lesson.title,
-      link: lesson.link,
-    })),
-    fileDownload: fileDownload?.url || null,
-  };
-};
+    link,
+  })),
+  fileDownload: fileDownload?.url || '',
+});
 
 const getHeaders = (): { 'strapi-token': string } => {
   const API_KEY = process.env['CMS_API_KEY'];

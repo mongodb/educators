@@ -25,7 +25,6 @@ const CourseHeaderBreadcrumb: ThemeUICSSObject = {
 const CourseHeaderTitle: ThemeUICSSObject = {
   gridColumn: ['span 12', null, null, 'span 7'],
   marginBottom: ['inc40', null, null, 0],
-  maxWidth: '680px',
 };
 
 const CourseHeaderActions: ThemeUICSSObject = {
@@ -35,10 +34,11 @@ const CourseHeaderActions: ThemeUICSSObject = {
   alignSelf: 'flex-end',
   gridColumnStart: ['span 12', null, null, '9'],
   gridColumnEnd: ['span 12', null, null, '12'],
-  '> button': {
-    marginTop: ['inc50', null, 0, 'inc50'],
-    marginLeft: [0, 'inc30', null, 0],
-  },
+};
+
+const CourseHeaderDownload: ThemeUICSSObject = {
+  marginTop: ['inc50', null, 0, 'inc50'],
+  marginLeft: [0, 'inc30', null, 0],
 };
 
 const styles = {
@@ -46,6 +46,7 @@ const styles = {
   CourseHeaderTitle,
   CourseHeaderWrapper,
   CourseHeaderActions,
+  CourseHeaderDownload,
   CourseHeaderBreadcrumb,
 };
 
