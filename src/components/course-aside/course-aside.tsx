@@ -42,7 +42,7 @@ export default function CourseAside({
         <div sx={styles.CourseAsideWidget}>
           <h3 sx={styles.CourseAsideLabel}>Length</h3>
           <span sx={styles.CourseAsideDetail}>
-            {duration} Hour-long lectures
+            {duration} {duration === 1 ? 'hour' : 'hours'}
           </span>
         </div>
         <div sx={styles.CourseAsideWidget}>
