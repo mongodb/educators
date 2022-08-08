@@ -23,6 +23,8 @@ steps:
         from_secret: CMS_API_KEY
       SENTRY_AUTH_TOKEN:
         from_secret: SENTRY_AUTH_TOKEN
+      NEXT_PUBLIC_SENTRY_DSN:
+        from_secret: NEXT_PUBLIC_SENTRY_DSN
       APP_ENV: staging
     settings:
       create_repository: true
@@ -35,6 +37,8 @@ steps:
         - CMS_URL
         - CMS_API_KEY
         - APP_ENV
+        - SENTRY_AUTH_TOKEN
+        - NEXT_PUBLIC_SENTRY_DSN
       tags:
         - educators-staging-build-${DRONE_BUILD_NUMBER}
         - latest-staging
@@ -115,6 +119,8 @@ steps:
         from_secret: CMS_API_KEY
       SENTRY_AUTH_TOKEN:
         from_secret: SENTRY_AUTH_TOKEN
+      NEXT_PUBLIC_SENTRY_DSN:
+        from_secret: NEXT_PUBLIC_SENTRY_DSN
       APP_ENV: production
     settings:
       create_repository: true
@@ -127,6 +133,8 @@ steps:
         - CMS_URL
         - CMS_API_KEY
         - APP_ENV
+        - SENTRY_AUTH_TOKEN
+        - NEXT_PUBLIC_SENTRY_DSN
       tags:
         - educators-prod-build-${DRONE_BUILD_NUMBER}
         - latest-prod
