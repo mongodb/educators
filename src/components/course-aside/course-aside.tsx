@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link, TypographyScale } from '@mdb/flora';
 
 import Image from 'components/image';
@@ -6,25 +7,43 @@ import CourseAsideProps from './types';
 
 import styles from './styles';
 
+function generateSocialSharingURLs(
+  socialUrl: string,
+  paramConfig: { [k: string]: string | boolean }
+) {
+  const keys = Object.keys(paramConfig);
+  const params = keys.reduce(
+    (acc, val, idx) =>
+      `${acc}${val}=${encodeURIComponent(paramConfig[val])}${
+        idx !== keys.length ? '&' : ''
+      }`,
+    '?'
+  );
+  return `${socialUrl}${params}`;
+}
+
 export default function CourseAside({
   level,
-  length,
+  title,
+  duration,
   openForm,
-  wrapperStyles,
-  prerequisites,
+  wrapperStyles = {},
 }: CourseAsideProps): JSX.Element {
+  const [currentPageUrl, setCurrentPageUrl] = useState<string>('');
+
+  // because of SSR, we need to assure the component mounts before trying to access window obj
+  useEffect(() => {
+    setCurrentPageUrl(window.location.href);
+  }, []);
+
   return (
-    <aside
-      sx={{
-        ...styles.CourseAsideWrapper,
-        ...wrapperStyles,
-      }}
-      data-testid="course-aside"
-    >
+    <aside sx={{ ...wrapperStyles }} data-testid="course-aside">
       <section sx={styles.CourseAsideSection}>
         <div sx={styles.CourseAsideWidget}>
           <h3 sx={styles.CourseAsideLabel}>Length</h3>
-          <span sx={styles.CourseAsideDetail}>{length}</span>
+          <span sx={styles.CourseAsideDetail}>
+            {duration} {duration === 1 ? 'hour' : 'hours'}
+          </span>
         </div>
         <div sx={styles.CourseAsideWidget}>
           <h3 sx={styles.CourseAsideLabel}>Level</h3>
@@ -40,27 +59,34 @@ export default function CourseAside({
         >
           <h3 sx={styles.CourseAsideLabel}>Share</h3>
           <SocialShare
-            linkUrl="http://www.mongodb.com"
-            facebookUrl="http://www.mongodb.com"
-            twitterUrl="http://www.mongodb.com"
-            linkedInUrl="http://wwww.mongodb.com"
+            linkUrl={currentPageUrl}
+            facebookUrl={generateSocialSharingURLs(
+              'http://www.facebook.com/sharer.php',
+              {
+                u: currentPageUrl,
+              }
+            )}
+            twitterUrl={generateSocialSharingURLs(
+              'https://twitter.com/intent/tweet',
+              {
+                url: currentPageUrl,
+                text: title,
+              }
+            )}
+            linkedInUrl={generateSocialSharingURLs(
+              'https://www.linkedin.com/shareArticle',
+              {
+                url: currentPageUrl,
+                mini: true,
+                title,
+                summary: title,
+                source: 'MongoDB',
+              }
+            )}
             wrapperStyles={{
               marginTop: '6px',
             }}
           />
-        </div>
-        <div
-          sx={{
-            ...styles.CourseAsideWidget,
-            order: [1, 2, null, null],
-          }}
-        >
-          <h3 sx={styles.CourseAsideLabel}>Pre-requisites</h3>
-          <ul sx={styles.CourseAsideReqList}>
-            {prerequisites.map(req => (
-              <li key={req}>{req}</li>
-            ))}
-          </ul>
         </div>
       </section>
       <div sx={styles.CourseAsidePrompt}>

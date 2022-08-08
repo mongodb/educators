@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { withSentry } from '@sentry/nextjs';
 
 import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
 import { responseWrapper } from 'lib/utils';
@@ -58,9 +59,9 @@ const revalidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const message = `There was an error revalidating ${slug}`;
     return responseWrapper(res, endpoint, 500, method, { message });
   }
-  const statusCode = 200;
+
   const message = `Revalidated both homepage and ${slug}`;
   return responseWrapper(res, endpoint, 200, method, { message });
 };
 
-export default revalidateHandler;
+export default withSentry(revalidateHandler);

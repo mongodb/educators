@@ -1,0 +1,13 @@
+README.md
+environments
+jest.config.js
+jest.setup.js
+.drone.yml
+.git
+.github
+.gitignore
+.lintstagedrc.js
+.prettierignore
+.prettierrc.json
+**/*.spec.*
+Dockerfile

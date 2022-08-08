@@ -2,12 +2,17 @@ service:
   type: ClusterIP
   targetPort: 3000
 
+env:
+  APP_ENV: staging
+
 envSecrets:
   NPM_EMAIL: educators-secrets
   NPM_AUTH: educators-secrets
   CMS_URL: educators-secrets
   CMS_API_KEY: educators-secrets
   REVALIDATE_TOKEN: educators-secrets
+  NEXT_PUBLIC_SENTRY_DSN: educators-secrets
+  SENTRY_AUTH_TOKEN: educators-secrets
 
 autoscaling:
   minReplicas: 1
@@ -42,3 +47,14 @@ ingress:
   enabled: true
   path: /academia
   hosts: ['educators.devrel.staging.corp.mongodb.com']
+
+prometheusRules:
+  - alert: PodContainerNotReady
+    expr: (sum(kube_pod_container_status_ready{container="educators",namespace="devrel"}) or vector(0)) == 0
+    for: 1m
+    labels:
+      email_to: devhubplatform@mongodb.com
+      severity: critical
+    annotations:
+      summary: "Container readiness check failed"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} container has not been ready for 1 minute"

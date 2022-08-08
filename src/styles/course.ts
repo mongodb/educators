@@ -10,28 +10,26 @@ const CoursePageMain: ThemeUICSSObject = {
   paddingRight: ['inc50', null, null, 'inc110'],
 };
 
+const CoursePageContent: ThemeUICSSObject = {
+  gridColumn: ['span 12', null, null, 'span 7'],
+  order: [2, null, null, 1],
+};
+
 const CoursePageGrid: ThemeUICSSObject = {
   rowGap: 0,
 };
 
-const CoursePageBody: ThemeUICSSObject = {
-  order: [2, null, null, 1],
-};
-
 const CoursePageAside: ThemeUICSSObject = {
+  gridColumnStart: ['span 12', null, null, '9'],
+  gridColumnEnd: ['span 12', null, null, '13'],
   order: [1, null, null, 2],
-};
-
-const CoursePageList: ThemeUICSSObject = {
-  order: 3,
 };
 
 const styles = {
   CoursePageMain,
-  CoursePageBody,
   CoursePageGrid,
-  CoursePageList,
   CoursePageAside,
+  CoursePageContent,
 };
 
 export default styles;

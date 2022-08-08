@@ -36,7 +36,7 @@ const getAppServicesRegistration = (
 export const uploadToAppServices = async (
   body: Registration
 ): Promise<void> => {
-  if (!process.env['IS_PROD']) {
+  if (process.env['APP_ENV'] !== 'production') {
     logger.info('Bypassed App Services upload in non-production environment.');
     return;
   }

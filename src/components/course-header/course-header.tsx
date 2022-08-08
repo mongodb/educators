@@ -3,7 +3,9 @@ import CourseHeaderProps from './types';
 import styles from './styles';
 
 export default function CourseHeader({
+  link,
   title,
+  fileDownload,
 }: CourseHeaderProps): JSX.Element {
   return (
     <header sx={styles.CourseHeaderWrapper}>
@@ -28,11 +30,15 @@ export default function CourseHeader({
           {title}
         </TypographyScale>
         <div sx={styles.CourseHeaderActions}>
-          <Button>Open in Google Drive</Button>
+          <Button href={link} target="_blank">
+            Open in Google Drive
+          </Button>
           <Link
             inverse
             // @ts-ignore
             linkIcon="download"
+            href={fileDownload}
+            sx={styles.CourseHeaderDownload}
           >
             Download
           </Link>

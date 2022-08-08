@@ -4,7 +4,7 @@ import styles from './styles';
 
 export default function CourseList({
   lessons,
-  wrapperStyles,
+  wrapperStyles = {},
 }: CourseListProps): JSX.Element {
   return (
     <section
@@ -15,11 +15,13 @@ export default function CourseList({
     >
       <h2>Lesson Slides</h2>
       <ol data-testid="lesson-list">
-        {lessons.map(lesson => (
-          <li key={lesson.title}>
+        {lessons.map(({ id, link, title }) => (
+          <li key={id}>
             <h3>
               {/* @ts-ignore */}
-              <Link sx={styles.CourseListLinks}>{lesson.title}</Link>
+              <Link href={link} target="_blank" sx={styles.CourseListLinks}>
+                {title}
+              </Link>
             </h3>
           </li>
         ))}

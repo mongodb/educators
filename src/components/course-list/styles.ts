@@ -2,7 +2,6 @@ import { ThemeUICSSObject } from 'theme-ui';
 import theme from '@mdb/flora/theme';
 
 const CourseListWrapper: ThemeUICSSObject = {
-  gridColumn: ['span 12', null, null, 'span 7'],
   ol: {
     marginLeft: 'inc40',
     marginBottom: 'inc60',
