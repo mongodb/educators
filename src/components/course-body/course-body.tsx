@@ -1,6 +1,5 @@
 import Markdown from 'components/markdown';
 import CourseBodyProps from './types';
-import styles from './styles';
 
 /*
   TODO: Youtube Markdown Component Integration
@@ -14,7 +13,6 @@ export default function CourseBody({
   return (
     <section
       sx={{
-        ...styles.CourseBodyWrapper,
         ...wrapperStyles,
       }}
     >
