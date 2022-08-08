@@ -59,7 +59,7 @@ const revalidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const message = `There was an error revalidating ${slug}`;
     return responseWrapper(res, endpoint, 500, method, { message });
   }
-  const statusCode = 200;
+
   const message = `Revalidated both homepage and ${slug}`;
   return responseWrapper(res, endpoint, 200, method, { message });
 };
