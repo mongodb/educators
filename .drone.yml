@@ -21,6 +21,8 @@ steps:
         from_secret: CMS_URL_STAGING
       CMS_API_KEY:
         from_secret: CMS_API_KEY
+      SENTRY_AUTH_TOKEN:
+        from_secret: SENTRY_AUTH_TOKEN
       APP_ENV: staging
     settings:
       create_repository: true
