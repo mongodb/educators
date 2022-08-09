@@ -32,7 +32,7 @@ export default function Card({
             color="secondary"
             sx={styles.CardLessonCount}
           >
-            {count} Lessons
+            {count} {count === 1 ? 'Lesson' : 'Lessons'}
           </TypographyScale>
         )}
       </div>
