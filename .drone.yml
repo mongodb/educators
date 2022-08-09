@@ -114,7 +114,7 @@ steps:
       NPM_EMAIL:
         from_secret: NPM_EMAIL
       CMS_URL:
-        from_secret: CMS_URL_STAGING # This should be changed when we get the CMS API on Kanpoy.
+        from_secret: CMS_URL_PROD
       CMS_API_KEY:
         from_secret: CMS_API_KEY
       SENTRY_AUTH_TOKEN:
