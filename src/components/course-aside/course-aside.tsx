@@ -7,7 +7,7 @@ import CourseAsideProps from './types';
 
 import styles from './styles';
 
-function generateSocialSharingURLs(
+export function generateSocialSharingURLs(
   socialUrl: string,
   paramConfig: { [k: string]: string | boolean }
 ) {
@@ -15,7 +15,7 @@ function generateSocialSharingURLs(
   const params = keys.reduce(
     (acc, val, idx) =>
       `${acc}${val}=${encodeURIComponent(paramConfig[val])}${
-        idx !== keys.length ? '&' : ''
+        idx !== keys.length - 1 ? '&' : ''
       }`,
     '?'
   );
