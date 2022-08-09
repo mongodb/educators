@@ -8,7 +8,7 @@ export const A = ({
 }: {
   href: string;
   children: JSX.Element;
-}): JSX.Element => (
+}) => (
   <a href={href} target="_blank" rel="noreferrer" sx={styles.AStyles}>
     {children}
   </a>
