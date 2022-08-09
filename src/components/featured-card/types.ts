@@ -1,10 +1,10 @@
 export default interface FeaturedCardProps {
   title: string;
-  imgSrc?: string;
+  imgSrc: string;
   subtitle: string;
   noBorder?: boolean;
   fullWidth?: boolean;
-  cta?: {
+  cta: {
     type: 'button' | 'link';
     text: string;
     href: string;
