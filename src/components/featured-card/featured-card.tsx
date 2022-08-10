@@ -7,14 +7,10 @@ export default function FeaturedCard({
   title,
   subtitle,
   imgSizes,
-  imgSrc = '',
+  imgSrc,
   noBorder = false,
   fullWidth = false,
-  cta = {
-    href: '',
-    type: 'link',
-    text: 'Learn More',
-  },
+  cta,
 }: FeaturedCardProps): JSX.Element {
   return (
     <div

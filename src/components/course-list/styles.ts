@@ -11,6 +11,9 @@ const CourseListWrapper: ThemeUICSSObject = {
   li: {
     marginTop: 'inc30',
   },
+  h3: {
+    display: 'inline-block',
+  },
 };
 
 const CourseListLinks: ThemeUICSSObject = {

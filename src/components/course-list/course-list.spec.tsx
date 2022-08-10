@@ -5,7 +5,10 @@ describe('[component] Course Body', () => {
   it('renders the component', () => {
     render(
       <CourseList
-        lessons={[{ title: 'Lorem Ipsum' }, { title: 'Dolor Sit Amet' }]}
+        lessons={[
+          { id: 1, title: 'Lorem Ipsum' },
+          { id: 2, title: 'Dolor Sit Amet' },
+        ]}
       />
     );
 

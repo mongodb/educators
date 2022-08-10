@@ -38,7 +38,7 @@ export default function StudentResources({
           subtitle="Access free Certification and $50 in Atlas Credits with the Github Student Pack"
           cta={{
             type: 'button',
-            text: 'Learn More',
+            text: mainCard.cta,
             href: mainCard.href,
           }}
           imgSrc={mainCard.imgSrc}
@@ -55,7 +55,7 @@ export default function StudentResources({
               subtitle={card.subtitle}
               cta={{
                 type: 'link',
-                text: card.cta || '',
+                text: card.cta,
                 href: card.href,
               }}
               imgSrc={card.imgSrc}

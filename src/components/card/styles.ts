@@ -18,6 +18,9 @@ const CardWrapper: ThemeUICSSObject = {
 
 const CardContent: ThemeUICSSObject = {
   flex: '1 1 auto',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
 };
 
 const CardPill: ThemeUICSSObject = {
@@ -30,8 +33,8 @@ const CardTitle: ThemeUICSSObject = {
 };
 
 const CardLessonCount: ThemeUICSSObject = {
-  display: 'block',
-  marginTop: 'inc10',
+  marginTop: 'auto',
+  paddingTop: 'inc10',
 };
 
 const CardDivider: ThemeUICSSObject = {

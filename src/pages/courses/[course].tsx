@@ -96,5 +96,6 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
 
   return {
     props: { content },
+    revalidate: 120,
   };
 };

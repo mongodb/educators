@@ -12,13 +12,18 @@ describe('[component] Featured Card', () => {
           width: ['119px', null, '168px', '179px'],
           height: ['129px', null, '182px', '194px'],
         }}
+        cta={{
+          type: 'button',
+          text: 'Learn More',
+          href: 'https://www.mongodb.com',
+        }}
       />
     );
 
     const title = screen.getByText('My Test Title');
     expect(title).toBeInTheDocument();
 
-    // renders CTA button with default props
+    // renders CTA button
     const cta = screen.getByText('Learn More');
     expect(cta).toBeInTheDocument();
   });
