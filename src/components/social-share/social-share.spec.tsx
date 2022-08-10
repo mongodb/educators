@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import SocialShare from '.';
 
+// declare global navigator obj to be able to reference it in tests
 Object.assign(navigator, {
   clipboard: {
     writeText: () => {},
@@ -57,6 +58,7 @@ describe('[component] Social Share', () => {
     expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
 
+    // let setTimeout run and assert tooltip should no longer be showing
     act(() => {
       jest.runAllTimers();
     });

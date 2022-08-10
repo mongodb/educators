@@ -5,8 +5,8 @@ import Form, { isRequired, emailPattern } from '.';
 jest.mock('axios');
 
 // Because of validators on form fields, we need to populate all of the "required" fields in order to test submitting the form
+// eslint-disable-next-line
 function populateRequiredFormFields(inputs: any, selects: any) {
-  // eslint-disable-line
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].type === 'email') {
       fireEvent.change(inputs[i], { target: { value: 'firstlast@mail.com' } });
