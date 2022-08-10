@@ -82,5 +82,6 @@ export const getStaticProps: GetStaticProps<{
 
   return {
     props: { content },
+    revalidate: 120,
   };
 };
