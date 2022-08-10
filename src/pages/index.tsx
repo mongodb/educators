@@ -80,19 +80,20 @@ export const getStaticProps: GetStaticProps<{
       : content.resources.push(item)
   );
 
-  // Temp solution for lecture sort order based on requirements doc - [DEVHUB-1439]
-  const lectureSortOrder = [
-    'MongoDB 101 : Non-Relational Databases for Beginners',
-    'Introduction to Modern Databases',
-    'Querying in Non-Relational Databases',
-    'The MongoDB Aggregation Framework',
-    'MongoDB: A Developer Data Platform',
+  // Temp solution for lecture sort order based on requirements doc: [DEVHUB-1439]
+  // Sorts list to desired order by {id} field provided in Strapi
+  const lectureSortOrderById = [
+    '62ebd5b29f052e001d7c54c1',
+    '62b37f0e13e171001ca58f00',
+    '62f14a019f052e001d7c54d1',
+    '62ebd69d63c19c001c1ec82e',
+    '62ebda7d9f052e001d7c54c7',
   ];
 
   content.lectures.sort(
     (prev, next) =>
-      lectureSortOrder.indexOf(prev.title) -
-      lectureSortOrder.indexOf(next.title)
+      lectureSortOrderById.indexOf(prev.id) -
+      lectureSortOrderById.indexOf(next.id)
   );
 
   return {
