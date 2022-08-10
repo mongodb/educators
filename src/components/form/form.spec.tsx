@@ -20,6 +20,7 @@ describe('[component] Form', () => {
   });
 
   it('validates if email input matches an email address pattern', () => {
+    expect(emailPattern()('')).toEqual(''); // passes if no value provided
     expect(emailPattern()('firstlast@gmail')).toEqual(
       'Please enter a valid email address'
     );
