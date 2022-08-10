@@ -80,6 +80,21 @@ export const getStaticProps: GetStaticProps<{
       : content.resources.push(item)
   );
 
+  // Temp solution for lecture sort order based on requirements doc - [DEVHUB-1439]
+  const lectureSortOrder = [
+    'MongoDB 101 : Non-Relational Databases for Beginners',
+    'Introduction to Modern Databases',
+    'Querying in Non-Relational Databases',
+    'The MongoDB Aggregation Framework',
+    'MongoDB: A Developer Data Platform',
+  ];
+
+  content.lectures.sort(
+    (prev, next) =>
+      lectureSortOrder.indexOf(prev.title) -
+      lectureSortOrder.indexOf(next.title)
+  );
+
   return {
     props: { content },
   };
