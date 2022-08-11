@@ -59,10 +59,8 @@ export default function CoursePage({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const content = await getAllContent();
-  const paths = content
-    .filter(({ contentType }) => contentType === 'Course')
-    .map(({ slug }) => ({ params: { course: slug } }));
+  const { lectures } = await getAllContent();
+  const paths = lectures.map(({ slug }) => ({ params: { course: slug } }));
 
   return {
     paths,
