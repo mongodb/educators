@@ -5,6 +5,7 @@ import {
   SystemIcon,
   TypographyScale,
   TargetType,
+  ESystemIconNames,
 } from '@mdb/flora';
 
 import Card from 'components/card';
@@ -22,7 +23,7 @@ function getCardActions({
 }): JSX.Element {
   const getLinkComponent = (
     href: string,
-    linkIcon: string,
+    linkIcon: ESystemIconNames | 'chevron',
     text: string,
     target: TargetType = '_self'
   ) => (
@@ -30,7 +31,6 @@ function getCardActions({
     <Link
       href={href}
       target={target}
-      // @ts-ignore
       linkIcon={linkIcon}
       linkIconSize="medium"
       sx={styles.ContentPreviewCardLinkBtn}
@@ -44,12 +44,15 @@ function getCardActions({
       <div sx={styles.ContentPreviewCardMultiActions}>
         <a target="_blank" rel="noreferrer" href={externalLink}>
           <SystemIcon
-            // @ts-ignore
-            name="external"
+            name={ESystemIconNames.EXTERNAL}
             sx={styles.ContentPreviewCardExternalBtn}
           />
         </a>
-        {getLinkComponent(`academia/courses/${slug}`, 'chevron', 'Learn More')}
+        {getLinkComponent(
+          `academia/courses/${slug}`,
+          'chevron',
+          'View Lecture Details'
+        )}
       </div>
     ),
     lab: (
@@ -64,7 +67,12 @@ function getCardActions({
     ),
     pdf: (
       <div sx={styles.ContentPreviewCardSingleAction}>
-        {getLinkComponent(fileDownload, 'download', 'Download PDF', '_blank')}
+        {getLinkComponent(
+          fileDownload,
+          ESystemIconNames.DOWNLOAD,
+          'Download PDF',
+          '_blank'
+        )}
       </div>
     ),
     'case study': (

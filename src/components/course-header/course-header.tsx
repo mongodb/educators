@@ -1,4 +1,10 @@
-import { Button, Link, GridLayout, TypographyScale } from '@mdb/flora';
+import {
+  Button,
+  Link,
+  GridLayout,
+  TypographyScale,
+  ESystemIconNames,
+} from '@mdb/flora';
 import CourseHeaderProps from './types';
 import styles from './styles';
 
@@ -33,11 +39,11 @@ export default function CourseHeader({
           <Button href={link} target="_blank">
             Open in Google Drive
           </Button>
+          {/* @ts-ignore */}
           <Link
             inverse
-            // @ts-ignore
-            linkIcon="download"
             href={fileDownload}
+            linkIcon={ESystemIconNames.DOWNLOAD}
             sx={styles.CourseHeaderDownload}
           >
             Download
