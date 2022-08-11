@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import CourseList from '.';
 
-describe('[component] Course Body', () => {
+describe('[component] Course List', () => {
   it('renders the component', () => {
     render(
       <CourseList
