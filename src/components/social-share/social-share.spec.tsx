@@ -46,7 +46,7 @@ describe('[component] Social Share', () => {
     render(<SocialShare linkUrl={linkUrl} />);
 
     act(() => {
-      fireEvent.click(screen.getByTitle('Copy Link'));
+      fireEvent.click(screen.getByTitle('Copy course link'));
     });
 
     const tooltip = screen.getByText('Link Copied!');

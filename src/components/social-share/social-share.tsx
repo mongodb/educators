@@ -12,7 +12,7 @@ export default function SocialShare({
 }: SocialShareProps): JSX.Element {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
-  function handleOnLinkClick(): void {
+  function onLinkClick(): void {
     navigator.clipboard.writeText(linkUrl);
     setShowTooltip(true);
     setTimeout(() => setShowTooltip(false), 2000);
@@ -33,7 +33,7 @@ export default function SocialShare({
             ...styles.SocialShareIcon,
           }}
         >
-          <button type="button" title="Copy Link" onClick={handleOnLinkClick}>
+          <button type="button" title="Copy course link" onClick={onLinkClick}>
             <Image alt="mongoDB link icon" src="/academia/link.svg" />
           </button>
           {showTooltip && (
@@ -49,7 +49,7 @@ export default function SocialShare({
           href={facebookUrl}
           target="_blank"
           rel="noreferrer"
-          title="mongoDB related facebook link"
+          title="Share course on Facebook"
           sx={styles.SocialShareIcon}
         >
           <Image alt="mongoDB facebook icon" src="/academia/facebook.svg" />
@@ -60,7 +60,7 @@ export default function SocialShare({
           href={twitterUrl}
           target="_blank"
           rel="noreferrer"
-          title="mongoDB related twitter link"
+          title="Share course on Twitter"
           sx={styles.SocialShareIcon}
         >
           <Image src="/academia/twitter.svg" alt="mongoDB twitter icon" />
@@ -71,7 +71,7 @@ export default function SocialShare({
           href={linkedInUrl}
           target="_blank"
           rel="noreferrer"
-          title="mongoDB related linkedin link"
+          title="Share course on LinkedIn"
           sx={styles.SocialShareIcon}
         >
           <Image src="/academia/linkedin.svg" alt="mongoDB linkedin icon" />
