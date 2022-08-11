@@ -115,23 +115,21 @@ export default function ContentPreview({
               fileDownload,
               shortDescription,
               title: cardTitle,
-            }) => {
-              return (
-                <Card
-                  key={id}
-                  title={cardTitle}
-                  tag={contentType}
-                  count={lessons?.length}
-                  description={shortDescription}
-                  actions={getCardActions({
-                    slug,
-                    contentType,
-                    externalLink,
-                    fileDownload,
-                  })}
-                />
-              );
-            }
+            }) => (
+              <Card
+                key={id}
+                title={cardTitle}
+                tag={contentType}
+                count={lessons?.length}
+                description={shortDescription}
+                actions={getCardActions({
+                  slug,
+                  contentType,
+                  externalLink,
+                  fileDownload,
+                })}
+              />
+            )
           )}
         </Grid>
       </GridLayout>
