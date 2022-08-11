@@ -6,6 +6,7 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleDirectories: ['node_modules', '<rootDir>/', 'src'],
   testEnvironment: 'jest-environment-jsdom',
+  coverageReporters: ['json', 'html'],
   moduleNameMapper: {
     lib$: '<rootDir>/src/lib/$1',
     'pages/(.*)$': '<rootDir>/src/pages/$1',

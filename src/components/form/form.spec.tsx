@@ -1,5 +1,29 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import axios from 'axios';
+import { act, render, screen, fireEvent } from '@testing-library/react';
 import Form, { isRequired, emailPattern } from '.';
+
+jest.mock('axios');
+
+// Because of validators on form fields, we need to populate all of the "required" fields in order to test submitting the form
+// eslint-disable-next-line
+function populateRequiredFormFields(inputs: any, selects: any) {
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].type === 'email') {
+      fireEvent.change(inputs[i], { target: { value: 'firstlast@mail.com' } });
+    } else if (inputs[i].type === 'checkbox') {
+      fireEvent.click(inputs[i]);
+    } else {
+      fireEvent.change(inputs[i], { target: { value: 'lorem' } });
+    }
+  }
+
+  for (let j = 0; j < selects.length; j++) {
+    const el = selects[j].nextElementSibling;
+    if (el) {
+      fireEvent.click(el, { target: { innerText: 'ipsum' } });
+    }
+  }
+}
 
 describe('[component] Form', () => {
   it('renders the component', () => {
@@ -20,6 +44,7 @@ describe('[component] Form', () => {
   });
 
   it('validates if email input matches an email address pattern', () => {
+    expect(emailPattern()('')).toEqual(''); // passes if no value provided
     expect(emailPattern()('firstlast@gmail')).toEqual(
       'Please enter a valid email address'
     );
@@ -61,5 +86,48 @@ describe('[component] Form', () => {
     fireEvent.click(closeBtn);
 
     expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('should display post submission message if submit POST is successful', async () => {
+    const { container } = render(<Form isOpen closeForm={() => {}} />);
+
+    const inputs = container.getElementsByTagName('input');
+    const selects = screen.getAllByRole('select');
+
+    populateRequiredFormFields(inputs, selects);
+
+    await act(async () => {
+      fireEvent.click(screen.getByText('Submit'));
+    });
+
+    expect(
+      screen.getByText('Thanks for joining the MongoDB Educator Community!')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'You have been added to our mailing list and will receive updates regarding new curriculum and relevant opportunities moving forward.'
+      )
+    ).toBeInTheDocument();
+  });
+
+  it('should display error message if submit POST fails', async () => {
+    jest.spyOn(axios, 'post').mockRejectedValue(Promise.resolve(new Error()));
+
+    const { container } = render(<Form isOpen closeForm={() => {}} />);
+
+    const inputs = container.getElementsByTagName('input');
+    const selects = screen.getAllByRole('select');
+
+    populateRequiredFormFields(inputs, selects);
+
+    await act(async () => {
+      fireEvent.click(screen.getByText('Submit'));
+    });
+
+    expect(
+      screen.getByText(
+        'There was an error submitting your request. Please try again.'
+      )
+    ).toBeInTheDocument();
   });
 });
