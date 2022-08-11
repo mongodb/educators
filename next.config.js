@@ -5,6 +5,27 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const config = {
   reactStrictMode: true,
   basePath: '/academia',
+  async headers() {
+    return [
+      {
+        source: '/(.*)', // all pages
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'max-age=3600',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
