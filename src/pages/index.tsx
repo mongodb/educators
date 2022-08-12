@@ -5,7 +5,7 @@ import heroData from 'data/hero.json';
 import statisticsData from 'data/statistics.json';
 import studentResourcesData from 'data/student-resources.json';
 
-import { ContentItem, getAllContent } from 'lib/cms-content';
+import { ContentData, getAllContent } from 'lib/cms-content';
 
 import Hero from 'components/hero';
 import Statistic from 'components/statistic';
@@ -13,11 +13,6 @@ import ContentPreview from 'components/content-preview';
 import StudentResources from 'components/student-resources';
 
 import styles from 'styles/home';
-
-interface ContentData {
-  lectures: ContentItem[];
-  resources: ContentItem[];
-}
 
 interface HomePageProps {
   openForm: () => void;
@@ -69,32 +64,7 @@ export default function Home({
 export const getStaticProps: GetStaticProps<{
   content: ContentData;
 }> = async () => {
-  const content: ContentData = {
-    lectures: [],
-    resources: [],
-  };
-
-  (await getAllContent()).forEach(item =>
-    item.contentType === 'Course'
-      ? content.lectures.push(item)
-      : content.resources.push(item)
-  );
-
-  // Temp solution for lecture sort order based on requirements doc: [DEVHUB-1439]
-  // Sorts list to desired order by {id} field provided in Strapi
-  const lectureSortOrderById = [
-    '62ebd5b29f052e001d7c54c1',
-    '62b37f0e13e171001ca58f00',
-    '62f14a019f052e001d7c54d1',
-    '62ebd69d63c19c001c1ec82e',
-    '62ebda7d9f052e001d7c54c7',
-  ];
-
-  content.lectures.sort(
-    (prev, next) =>
-      lectureSortOrderById.indexOf(prev.id) -
-      lectureSortOrderById.indexOf(next.id)
-  );
+  const content = await getAllContent();
 
   return {
     props: { content },

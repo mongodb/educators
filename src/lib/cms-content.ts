@@ -1,11 +1,16 @@
 import axios from 'axios';
 
-export type ContentType = 'Case Study' | 'Course' | 'Lab' | 'PDF';
+type ContentType = 'Case Study' | 'Course' | 'Lab' | 'PDF' | string;
 
 export interface Lesson {
   id: string;
   title: string;
   link: string;
+}
+
+export interface ContentData {
+  lectures: ContentItem[];
+  resources: ContentItem[];
 }
 
 export interface ContentItem {
@@ -22,6 +27,25 @@ export interface ContentItem {
   fileDownload?: string;
 }
 
+interface StrapiItem {
+  id: string;
+  title: string;
+  contentType: ContentType;
+  slug: string;
+  shortDescription: string;
+  longDescription: string;
+  externalLink: string;
+  level: string;
+  durationHours: number;
+  lessons: Array<Lesson>;
+  fileDownload: { url: string };
+}
+
+interface StrapiData {
+  curriculumResources: Array<StrapiItem>;
+  additionalEducatorResources: Array<StrapiItem>;
+}
+
 const itemMap = ({
   id = '',
   title = '',
@@ -34,8 +58,7 @@ const itemMap = ({
   durationHours = 0,
   lessons = [],
   fileDownload = { url: '' },
-}: any): ContentItem => ({
-  // eslint-disable-line
+}: StrapiItem): ContentItem => ({
   id,
   title,
   contentType: contentType === 'CaseStudy' ? 'Case Study' : contentType,
@@ -51,7 +74,7 @@ const itemMap = ({
     title,
     link,
   })),
-  fileDownload: fileDownload?.url || '',
+  fileDownload: fileDownload.url,
 });
 
 const getHeaders = (): { 'strapi-token': string } => {
@@ -66,16 +89,22 @@ const getHeaders = (): { 'strapi-token': string } => {
 
 export const getAllContent = async () => {
   const headers = getHeaders();
-  const { data } = await axios.get<any[]>(
-    `${process.env['CMS_URL']}/public/academia`,
+  const {
+    data: { curriculumResources, additionalEducatorResources },
+  } = await axios.get<StrapiData>(
+    `${process.env['CMS_URL']}/public/academia-homepage`,
     { headers }
   );
-  return data.map(itemMap);
+
+  return {
+    lectures: curriculumResources.map(itemMap),
+    resources: additionalEducatorResources.map(itemMap),
+  } as ContentData;
 };
 
 export const getContentBySlug = async (slug: string) => {
   const headers = getHeaders();
-  const { data } = await axios.get<any>(
+  const { data } = await axios.get<StrapiItem>(
     `${process.env['CMS_URL']}/public/academia/${slug}`,
     { headers }
   );
