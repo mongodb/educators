@@ -8,7 +8,7 @@ export const jobFunctions = [
 
 export const teachingStatuses = [
   'Currently Teaching MongoDB',
-  'Interested In Teaching MongoDB',
+  'Interested in Teaching MongoDB',
   'Just Curious',
 ];
 
