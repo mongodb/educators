@@ -34,8 +34,8 @@ export default function StudentResources({
         <FeaturedCard
           noBorder
           fullWidth
-          title="Get $200 of Benefits with the MongoDB Student Pack"
-          subtitle="Access free Certification and $50 in Atlas Credits with the Github Student Pack"
+          title={mainCard.title}
+          subtitle={mainCard.subtitle}
           cta={{
             type: 'button',
             text: mainCard.cta,
