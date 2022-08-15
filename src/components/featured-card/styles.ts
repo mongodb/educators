@@ -5,9 +5,7 @@ import theme from '@mdb/flora/theme';
 const FeaturedCardWrapper: ThemeUICSSObject = {
   width: '100%',
   display: 'flex',
-  flexWrap: 'nowrap',
-  flexDirection: ['column', 'row', null, 'column'],
-  alignItems: 'center',
+  flexDirection: 'column',
   paddingTop: ['inc50', 'inc70', null, 'inc80'],
   paddingBottom: ['inc70', null, null, 'inc80'],
   paddingLeft: ['inc70', null, null, 'inc100'],
@@ -26,18 +24,16 @@ const FeaturedCardWrapper: ThemeUICSSObject = {
 
 const FeaturedCardContent: ThemeUICSSObject = {
   height: '100%',
-  width: [null, '50%', null, '100%'],
-  order: [2, 1, null, 2],
   display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  alignItems: ['start', null, null, 'center'],
+  flexDirection: ['column', 'row', null, 'column'],
+  alignItems: ['center', null, null, 'center'],
 };
 
 const FeaturedCardText: ThemeUICSSObject = {
   display: 'flex',
   flexDirection: 'column',
-  alignItems: ['start', null, null, 'center'],
+  order: [2, 1, null, 2],
+  width: [null, '50%', null, '100%'],
 };
 
 const FeaturedCardTitle: ThemeUICSSObject = {
@@ -58,7 +54,7 @@ const FeaturedCardImageWrapper: ThemeUICSSObject = {
   width: [null, '50%', null, '100%'],
   display: [null, 'flex'],
   justifyContent: [null, 'center'],
-  marginBottom: ['inc40', 0, null, 'inc40'],
+  marginBottom: ['inc40', '-inc40', '-inc60', 'inc40'],
 };
 
 const FeaturedCardImage: ThemeUICSSObject = {
@@ -66,11 +62,14 @@ const FeaturedCardImage: ThemeUICSSObject = {
   width: '100%',
 };
 
+const FeaturedCardCTA: ThemeUICSSObject = {
+  margin: [null, null, null, '0 auto'],
+};
+
 /* --- fullWidth PROP CARD STYLES --- */
 const FeaturedCardWrapper_FullWidth: ThemeUICSSObject = {
-  flexDirection: ['column', 'row'],
-  paddingTop: '0 !important',
-  paddingBottom: '0 !important',
+  paddingTop: '0',
+  paddingBottom: '0',
   paddingLeft: ['0', null, null, 'inc100'],
   paddingRight: ['0', null, null, 'inc100'],
   marginTop: ['inc80', null, null, 'inc130'],
@@ -79,10 +78,14 @@ const FeaturedCardWrapper_FullWidth: ThemeUICSSObject = {
 };
 
 const FeaturedCardContent_FullWidth: ThemeUICSSObject = {
-  order: [2, 1],
-  alignItems: 'start',
-  marginRight: [null, 'inc20', 0, 0],
+  flexDirection: ['column', 'row'],
+};
+
+const FeaturedCardText_FullWidth: ThemeUICSSObject = {
   width: ['100%', '50%', null, '45%'],
+  marginRight: [null, 'inc20', 0],
+  alignItems: 'start',
+  order: [2, 1],
 };
 
 const FeaturedCardTitle_FullWidth: ThemeUICSSObject = {
@@ -101,13 +104,13 @@ const FeaturedCardSubtitle_FullWidth: ThemeUICSSObject = {
 const FeaturedCardImageWrapper_FullWidth: ThemeUICSSObject = {
   order: [1, 2],
   width: [null, '50%'],
-  marginBottom: ['inc70', 0],
+  marginBottom: ['inc80', 0],
 };
 
 const FeaturedCardImage_FullWidth: ThemeUICSSObject = {
   // negative margins negates whitespace in SVG adding whitespace height
-  marginTop: ['-inc30', '-inc40', null, '-inc70'],
-  marginBottom: ['-inc30', '-inc40', null, '-inc70'],
+  marginTop: ['-inc30', '-inc50', null, '-inc70'],
+  marginBottom: ['-inc30', '-inc50', null, '-inc70'],
   marginRight: [null, null, '-inc40', '-inc100'],
 };
 
@@ -120,6 +123,7 @@ const FeaturedCardWrapper_NoBorder: ThemeUICSSObject = {
 };
 
 const styles = {
+  FeaturedCardCTA,
   FeaturedCardText,
   FeaturedCardImage,
   FeaturedCardTitle,
@@ -127,6 +131,7 @@ const styles = {
   FeaturedCardWrapper,
   FeaturedCardSubtitle,
   FeaturedCardImageWrapper,
+  FeaturedCardText_FullWidth,
   FeaturedCardImage_FullWidth,
   FeaturedCardTitle_FullWidth,
   FeaturedCardWrapper_NoBorder,
