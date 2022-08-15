@@ -1,3 +1,4 @@
+import { ThemeUICSSObject } from 'theme-ui';
 import { Link, Button, TypographyScale } from '@mdb/flora';
 import Image from 'components/image';
 import FeaturedCardProps from './types';
@@ -12,6 +13,18 @@ export default function FeaturedCard({
   fullWidth = false,
   cta,
 }: FeaturedCardProps): JSX.Element {
+  const renderCTA = (ctaStyles: ThemeUICSSObject = {}) =>
+    cta.type === 'button' ? (
+      <Button href={cta.href} target="_blank">
+        {cta.text}
+      </Button>
+    ) : (
+      // @ts-ignore
+      <Link href={cta.href} target="_blank" linkIcon="arrow" sx={ctaStyles}>
+        {cta.text}
+      </Link>
+    );
+
   return (
     <div
       sx={{
@@ -26,7 +39,12 @@ export default function FeaturedCard({
           ...(fullWidth && { ...styles.FeaturedCardContent_FullWidth }),
         }}
       >
-        <div sx={styles.FeaturedCardText}>
+        <div
+          sx={{
+            ...styles.FeaturedCardText,
+            ...(fullWidth && { ...styles.FeaturedCardText_FullWidth }),
+          }}
+        >
           {/* @ts-ignore */}
           <TypographyScale
             variant="heading5"
@@ -48,37 +66,29 @@ export default function FeaturedCard({
           >
             {subtitle}
           </TypographyScale>
+          {fullWidth && renderCTA()}
         </div>
-        {cta.type === 'button' ? (
-          <Button target="_blank" href={cta.href}>
-            {cta.text}
-          </Button>
-        ) : (
-          // @ts-ignore
-          <Link href={cta.href} target="_blank" linkIcon="arrow">
-            {cta.text}
-          </Link>
-        )}
-      </div>
-      <div
-        sx={{
-          ...styles.FeaturedCardImageWrapper,
-          ...(fullWidth && { ...styles.FeaturedCardImageWrapper_FullWidth }),
-        }}
-      >
         <div
           sx={{
-            ...(imgSizes && { ...imgSizes }),
-            ...(fullWidth && { ...styles.FeaturedCardImage_FullWidth }),
+            ...styles.FeaturedCardImageWrapper,
+            ...(fullWidth && { ...styles.FeaturedCardImageWrapper_FullWidth }),
           }}
         >
-          <Image
-            alt="mongoDB icon"
-            src={imgSrc}
-            styles={styles.FeaturedCardImage}
-          />
+          <div
+            sx={{
+              ...(imgSizes && { ...imgSizes }),
+              ...(fullWidth && { ...styles.FeaturedCardImage_FullWidth }),
+            }}
+          >
+            <Image
+              src={imgSrc}
+              alt="mongoDB icon"
+              styles={styles.FeaturedCardImage}
+            />
+          </div>
         </div>
       </div>
+      {!fullWidth && renderCTA(styles.FeaturedCardCTA)}
     </div>
   );
 }
