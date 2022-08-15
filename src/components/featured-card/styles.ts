@@ -25,8 +25,8 @@ const FeaturedCardWrapper: ThemeUICSSObject = {
 const FeaturedCardContent: ThemeUICSSObject = {
   height: '100%',
   display: 'flex',
+  alignItems: 'center',
   flexDirection: ['column', 'row', null, 'column'],
-  alignItems: ['center', null, null, 'center'],
 };
 
 const FeaturedCardText: ThemeUICSSObject = {
