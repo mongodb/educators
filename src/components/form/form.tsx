@@ -132,8 +132,6 @@ export default function Form({
 
     const body = form as unknown as Registration; // converts required formValues arg type to required Registration type for POST
 
-    body.courseSyllabus = body.courseSyllabus || ''; // unrequired textarea value can be undefined. If so we convert it to a blank string.
-
     try {
       await axios.post('/academia/api/registration', body);
       setFormSuccess(true);

@@ -48,6 +48,7 @@ const registrationFieldsToTypes: { [key: string]: string } = {
 };
 
 export const validateRegistrationBody = (body: { [key: string]: string }) => {
+  body.courseSyllabus = body.courseSyllabus || ''; // unrequired textarea value can be undefined. If so we convert it to a blank string.
   const bodyKeys = Object.keys(body);
   for (const key in registrationFieldsToTypes) {
     if (!bodyKeys.includes(key)) {
