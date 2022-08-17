@@ -3,11 +3,11 @@ import CourseList from '.';
 
 describe('[component] Course List', () => {
   it('renders the component', () => {
-    render(
+    const { container } = render(
       <CourseList
         lessons={[
-          { id: 1, title: 'Lorem Ipsum' },
-          { id: 2, title: 'Dolor Sit Amet' },
+          { id: '1', title: 'Lorem Ipsum', link: 'http://loremipsum.com' },
+          { id: '2', title: 'Dolor Sit Amet', link: 'http://loremipsum.com' },
         ]}
       />
     );
@@ -15,8 +15,8 @@ describe('[component] Course List', () => {
     const title = screen.getByText('Lesson Slides');
     expect(title).toBeInTheDocument();
 
-    const list = screen.getByTestId('lesson-list');
-    expect(list.childNodes.length).toEqual(2);
-    expect(list.childNodes[0]).toContainHTML('</li>');
+    const ol = container.getElementsByTagName('ol')[0];
+    expect(ol.childNodes.length).toEqual(2);
+    expect(ol.childNodes[0]).toContainHTML('</li>');
   });
 });

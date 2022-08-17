@@ -1,6 +1,5 @@
-import { ThemeUICSSObject } from 'theme-ui';
+import { Lesson } from 'lib/cms-content';
 
 export default interface CourseListProps {
-  lessons: Array<any>; // eslint-disable-line
-  wrapperStyles?: ThemeUICSSObject;
+  lessons: Array<Lesson>;
 }

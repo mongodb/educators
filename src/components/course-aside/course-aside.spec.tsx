@@ -10,9 +10,9 @@ describe('[component] Course Aside', () => {
   };
 
   it('renders the component', () => {
-    render(<CourseAside {...baseProps} />);
+    const { container } = render(<CourseAside {...baseProps} />);
 
-    const parentEl = screen.getByTestId('course-aside');
+    const parentEl = container.getElementsByTagName('aside')[0];
     expect(parentEl).toBeInTheDocument();
     expect(parentEl).toContainHTML('</aside>');
   });

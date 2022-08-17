@@ -17,14 +17,14 @@ export interface ContentItem {
   id: string;
   title: string;
   contentType: ContentType;
-  longDescription?: string;
+  longDescription: string;
   slug: string;
-  externalLink?: string;
-  level?: string;
-  durationHours?: number;
+  externalLink: string;
+  level: string;
+  durationHours: number;
   shortDescription: string;
-  lessons?: Lesson[];
-  fileDownload?: string;
+  lessons: Lesson[];
+  fileDownload: string;
 }
 
 interface StrapiItem {

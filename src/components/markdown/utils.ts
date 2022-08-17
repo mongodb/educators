@@ -1,6 +1,7 @@
 import { visit } from 'unist-util-visit';
 
 export const customDirective = () => {
+  // eslint-disable-next-line
   return (tree: any) => {
     visit(
       tree,
