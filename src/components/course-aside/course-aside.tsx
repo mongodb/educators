@@ -37,7 +37,7 @@ export default function CourseAside({
   }, []);
 
   return (
-    <aside sx={{ ...wrapperStyles }} data-testid="course-aside">
+    <aside sx={{ ...wrapperStyles }}>
       <section sx={styles.CourseAsideSection}>
         <div sx={styles.CourseAsideWidget}>
           <h3 sx={styles.CourseAsideLabel}>Length</h3>

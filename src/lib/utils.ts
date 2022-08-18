@@ -7,7 +7,7 @@ export const responseWrapper = (
   endpoint: string,
   statusCode: number,
   method: string | undefined,
-  json: { [key: string]: any } = {}
+  json: { [key: string]: unknown } = {}
 ): void => {
   const report = async () => {
     logRequest(endpoint, statusCode, method, json);

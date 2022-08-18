@@ -1,8 +1,8 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { GridLayout } from '@mdb/flora';
 
+import Markdown from 'components/markdown';
 import CourseHeader from 'components/course-header';
-import CourseBody from 'components/course-body';
 import CourseAside from 'components/course-aside';
 import CourseList from 'components/course-list';
 
@@ -42,7 +42,7 @@ export default function CoursePage({
         {/* @ts-ignore */}
         <GridLayout sx={styles.CoursePageGrid}>
           <section sx={styles.CoursePageContent}>
-            <CourseBody text={longDescription} />
+            <Markdown text={longDescription} />
             <CourseList lessons={lessons} />
           </section>
           <CourseAside

@@ -2,19 +2,11 @@ import { Link } from '@mdb/flora';
 import CourseListProps from './types';
 import styles from './styles';
 
-export default function CourseList({
-  lessons,
-  wrapperStyles = {},
-}: CourseListProps): JSX.Element {
+export default function CourseList({ lessons }: CourseListProps): JSX.Element {
   return (
-    <section
-      sx={{
-        ...styles.CourseListWrapper,
-        ...wrapperStyles,
-      }}
-    >
+    <>
       <h2>Lesson Slides</h2>
-      <ol data-testid="lesson-list">
+      <ol sx={styles.CourseList}>
         {lessons.map(({ id, link, title }) => (
           <li key={id}>
             <h3>
@@ -41,6 +33,6 @@ export default function CourseList({
         </a>
         .
       </p>
-    </section>
+    </>
   );
 }
