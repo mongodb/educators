@@ -27,7 +27,7 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
         <meta property="og:url" content="https://www.mongodb.com/academia" />
         <meta
           property="og:image"
-          content="https://www.mongodb.com/academia/desk.svg"
+          content="https://www.mongodb.com/academia/open-graph.png"
         />
         <meta property="og:image:alt" content="MongoDB Educator Center" />
         <meta property="og:image:width" content="1280" />
@@ -42,7 +42,7 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
         />
         <meta
           property="twitter:image"
-          content="https://www.mongodb.com/academia/desk.svg"
+          content="https://www.mongodb.com/academia/open-graph.png"
         />
         <meta property="twitter:site" content="@MongoDB" />
       </Head>
