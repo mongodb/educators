@@ -16,6 +16,7 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
       <Head>
         <title>MongoDB Educator Center</title>
         <link rel="icon" href="/academia/favicon.ico" />
+
         {/* Open Graph Default Metadata (Used by Facebook, LinkedIn) */}
         <meta property="og:title" content="MongoDB Educator Center" />
         <meta
@@ -26,17 +27,22 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
         <meta property="og:url" content="https://www.mongodb.com/academia" />
         <meta
           property="og:image"
-          content="https://www.mongodb.com/academia/desk.svg"
+          content="https://www.mongodb.com/academia/social-header.png"
         />
         <meta property="og:image:alt" content="MongoDB Educator Center" />
         <meta property="og:image:width" content="1280" />
         <meta property="og:image:height" content="640" />
 
         {/* Open Graph Default Metadata For Twitter */}
-        <meta property="twitter:card" content="MongoDB Educator Center" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="MongoDB Educator Center" />
+        <meta
+          property="twitter:description"
+          content="Explore free resources for educators crafted by MongoDB experts to prepare learners with in-demand database skills and knowledge."
+        />
         <meta
           property="twitter:image"
-          content="https://www.mongodb.com/academia/desk.svg"
+          content="https://www.mongodb.com/academia/social-header.png"
         />
         <meta property="twitter:site" content="@MongoDB" />
       </Head>
