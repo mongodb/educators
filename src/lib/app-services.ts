@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import { Registration } from 'lib/registration';
 import axios from 'axios';
 
@@ -53,13 +54,21 @@ export const uploadToAppServices = async (
 
   const headers = { 'Content-Type': 'application/json', 'api-key': key };
   const payload = getAppServicesRegistration(body);
+
+  const extra = { extra: { body: payload } };
   try {
     await axios.post(url, payload, { headers });
   } catch (err) {
-    logger.error(
-      `Failed to upload registration to App Services: ${(err as Error).message}`
-    );
+    const message = `Failed to upload registration to App Services: ${
+      (err as Error).message
+    }`;
+    Sentry.captureException(new Error(message), extra);
+    logger.error(message);
     return;
   }
+  Sentry.captureMessage(
+    'Successfully uploaded registration to App Services',
+    extra
+  );
   logger.info('Successfully uploaded registration to App Services.');
 };
