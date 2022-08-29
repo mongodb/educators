@@ -25,7 +25,17 @@ export default function Layout({
           `}
         `}
       />
-      <UnifiedNav position="sticky" />
+      {/* Fix for the sticky nav having lower z-index than some elements and showing over nav when scrolling */}
+      <div
+        sx={{
+          position: 'sticky',
+          top: '0',
+          zIndex: '3',
+          width: '100%',
+        }}
+      >
+        <UnifiedNav position="sticky" />
+      </div>
       {children}
       <UnifiedFooter hideLocale />
     </>
