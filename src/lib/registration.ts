@@ -47,7 +47,9 @@ const registrationFieldsToTypes: { [key: string]: string } = {
   teachingStatus: 'string',
 };
 
-export const validateRegistrationBody = (body: { [key: string]: string }) => {
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+export const validateRegistrationBody = (body: any) => {
+  /* eslint-enable  @typescript-eslint/no-explicit-any */
   body.courseSyllabus = body.courseSyllabus || ''; // unrequired textarea value can be undefined. If so we convert it to a blank string.
   const bodyKeys = Object.keys(body);
   for (const key in registrationFieldsToTypes) {
