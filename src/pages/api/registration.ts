@@ -3,7 +3,7 @@ import { withSentry } from '@sentry/nextjs';
 
 import { Registration, validateRegistrationBody } from 'lib/registration';
 import { uploadToAirtable } from 'lib/airtable';
-import { uploadToAppServices } from 'lib/app-services';
+import { uploadToDB } from 'lib/db';
 
 import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
 import { responseWrapper } from 'lib/utils';
@@ -43,7 +43,7 @@ const registrationHandler = async (
 
   // Don't need to await these since they can fail gracefully.
   uploadToAirtable(req.body as Registration);
-  uploadToAppServices(req.body as Registration);
+  uploadToDB(req.body as Registration);
   const message = 'Success';
   return responseWrapper(res, endpoint, 200, method, { message });
 };
