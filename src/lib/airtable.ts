@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import Airtable, { FieldSet } from 'airtable';
 import { Registration } from 'lib/registration';
 
@@ -52,11 +53,18 @@ export const uploadToAirtable = async (body: Registration): Promise<void> => {
 
   const payload = getAirtableRegistration(body);
   const base = new Airtable({ apiKey: key }).base(baseId);
+
+  const extra = { extra: { body: payload } };
   base('DevHub Registrations').create(payload, (err, record) => {
     if (err) {
-      logger.error(err); // Would be nice to have some alert for this scenario.
+      const message = `Failed to upload registration to Airtable: ${
+        (err as Error).message
+      }`;
+      Sentry.captureException(new Error(message), extra);
+      logger.error(err);
       return;
     }
+    Sentry.captureMessage(`Successfully uploaded to Airtable`, extra);
     logger.info(`Successfully uploaded to Airtable, record ${record?.getId()}`);
   });
 };
