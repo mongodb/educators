@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/nextjs';
 import Airtable, { FieldSet } from 'airtable';
-import { Registration } from 'lib/registration';
+import { DBRegistration } from './db';
 
 import logger from './logger';
 
@@ -20,35 +20,34 @@ interface AirtableRegistration extends FieldSet {
   fld5o6nNVtTkyOKNM: string; // Teaching Status
 }
 
-const getAirtableRegistration = (reg: Registration): AirtableRegistration => ({
-  fldYmXYcslTbizpfS: reg.firstName,
-  fldIONH4fC6lue54Y: reg.lastName,
-  fldSmiHwvKFiPNtKn: reg.institutionName,
-  fldEdsAy7JOR4WqOj: reg.institutionType,
+const getAirtableRegistration = (
+  reg: DBRegistration
+): AirtableRegistration => ({
+  fldYmXYcslTbizpfS: reg.first_name,
+  fldIONH4fC6lue54Y: reg.last_name,
+  fldSmiHwvKFiPNtKn: reg.institution_name,
+  fldEdsAy7JOR4WqOj: reg.institution_type,
   fldRCWRElfBvOrIH8: reg.email,
-  flddAXoswHGxn7NzY: reg.agreedToEmails,
-  fld16FhTciYWYb3pp: new Date().toISOString().split('T')[0],
-  fldTARrXnDThWtF8w: reg.location,
-  fldzkKlcSXWSIKLS6: reg.courseName,
-  fldHcAvfcjxozmQlG: reg.courseSyllabus,
-  fldZ3KwWPX16ZXwTl: reg.jobFunction,
-  fld5o6nNVtTkyOKNM: reg.teachingStatus,
+  flddAXoswHGxn7NzY: reg.agree_to_email,
+  fld16FhTciYWYb3pp: new Date(reg.submit_date).toISOString().split('T')[0],
+  fldTARrXnDThWtF8w: reg.country,
+  fldzkKlcSXWSIKLS6: reg.course_name,
+  fldHcAvfcjxozmQlG: reg.course_syllabus,
+  fldZ3KwWPX16ZXwTl: reg.instructor_type,
+  fld5o6nNVtTkyOKNM: reg.instructor_interests,
 });
 
-export const uploadToAirtable = async (body: Registration): Promise<void> => {
-  if (process.env['APP_ENV'] !== 'production') {
-    logger.info('Bypassed Airtable upload in non-production environment.');
-    return;
-  }
-
+export const uploadToAirtable = async (body: DBRegistration): Promise<void> => {
   const baseId = process.env['AIRTABLE_BASE_ID'];
   if (!baseId) {
-    throw Error('AIRTABLE_BASE_ID is not defined');
+    Sentry.captureException(new Error('AIRTABLE_BASE_ID is not defined'));
+    return;
   }
 
   const key = process.env['AIRTABLE_API_KEY'];
   if (!key) {
-    throw Error('AIRTABLE_API_KEY is not defined');
+    Sentry.captureException(new Error('AIRTABLE_API_KEY is not defined'));
+    return;
   }
 
   const payload = getAirtableRegistration(body);

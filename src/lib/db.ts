@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 
 import logger from './logger';
 
-interface DBRegistration {
+export interface DBRegistration {
   first_name: string;
   last_name: string;
   email: string;
@@ -16,9 +16,10 @@ interface DBRegistration {
   country: string;
   course_name: string;
   course_syllabus: string;
+  submit_date: string;
 }
 
-const getDBRegistration = (reg: Registration): DBRegistration => ({
+export const getDBRegistration = (reg: Registration): DBRegistration => ({
   first_name: reg.firstName,
   last_name: reg.lastName,
   institution_name: reg.institutionName,
@@ -30,26 +31,22 @@ const getDBRegistration = (reg: Registration): DBRegistration => ({
   course_syllabus: reg.courseSyllabus,
   instructor_type: reg.jobFunction,
   instructor_interests: reg.teachingStatus,
+  submit_date: Date(),
 });
 
-export const uploadToDB = async (body: Registration): Promise<void> => {
-  if (process.env['APP_ENV'] !== 'production') {
-    logger.info('Bypassed DB upload in non-production environment.');
+export const uploadToDB = async (body: DBRegistration): Promise<void> => {
+  const url = process.env['MONGODB_URL'];
+  if (!url) {
+    Sentry.captureException(new Error('MONGODB_URL is not defined'));
     return;
   }
 
-  const url = process.env['MONGODB_URL'];
-  if (!url) {
-    throw Error('MONGODB_URL is not defined');
-  }
-
-  const document = getDBRegistration(body);
-  const extra = { extra: { body: document } };
+  const extra = { extra: { body } };
 
   try {
     const client = new MongoClient(url);
     const collection = client.db('devhub').collection('academia');
-    await collection.insertOne(document);
+    await collection.insertOne(body);
   } catch (err) {
     const message = `Failed to upload registration to DB: ${
       (err as Error).message
