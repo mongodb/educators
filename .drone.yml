@@ -79,7 +79,7 @@ steps:
       chart_version: 4.12.0
       add_repos: [mongodb=https://10gen.github.io/helm-charts]
       namespace: devrel
-      release: educators-DEVHUB-1509
+      release: educators-devhub-1509
       values: image.tag=educators-DEVHUB-1509,image.pullPolicy=Always,image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/devrel/${DRONE_REPO_NAME}
       api_server: https://api.staging.corp.mongodb.com
       kubernetes_token:
