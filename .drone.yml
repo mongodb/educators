@@ -40,7 +40,7 @@ steps:
         - SENTRY_AUTH_TOKEN
         - NEXT_PUBLIC_SENTRY_DSN
       tags:
-        - educators-DEVHUB-1509
+        - educators-devhub-1509
         # - latest-staging
       access_key:
         from_secret: ecr_access_key
@@ -80,7 +80,7 @@ steps:
       add_repos: [mongodb=https://10gen.github.io/helm-charts]
       namespace: devrel
       release: educators-devhub-1509
-      values: image.tag=educators-DEVHUB-1509,image.pullPolicy=Always,image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/devrel/${DRONE_REPO_NAME}
+      values: image.tag=educators-devhub-1509,image.pullPolicy=Always,image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/devrel/${DRONE_REPO_NAME}
       api_server: https://api.staging.corp.mongodb.com
       kubernetes_token:
         from_secret: staging_kubernetes_token

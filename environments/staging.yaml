@@ -46,7 +46,7 @@ resources:
 ingress:
   enabled: true
   path: /academia
-  hosts: ['educators-DEVHUB-1509.devrel.staging.corp.mongodb.com']
+  hosts: ['educators-devhub-1509.devrel.staging.corp.mongodb.com']
 
 # prometheusRules:
 #   - alert: PodContainerNotReady
