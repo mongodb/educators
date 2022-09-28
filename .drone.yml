@@ -40,17 +40,18 @@ steps:
         - SENTRY_AUTH_TOKEN
         - NEXT_PUBLIC_SENTRY_DSN
       tags:
-        - educators-devhub-1509
-        # - latest-staging
+        - educators-staging-build-${DRONE_BUILD_NUMBER}
+        - latest-staging
       access_key:
         from_secret: ecr_access_key
       secret_key:
         from_secret: ecr_secret_key
+      values_files: ['environments/staging.yaml']
 
   - name: deploy-staging
     image: drone/cli:1.4.0-alpine
     commands:
-      - drone build promote mongodb/educators ${DRONE_BUILD_NUMBER} preview
+      - drone build promote mongodb/educators ${DRONE_BUILD_NUMBER} staging
     environment:
       DRONE_SERVER: ${DRONE_SYSTEM_PROTO}://${DRONE_SYSTEM_HOST}
       DRONE_TOKEN:
@@ -58,7 +59,7 @@ steps:
 
 trigger:
   branch:
-    - DEVHUB-1509
+    - main
   event:
     - push
   action:
@@ -79,8 +80,8 @@ steps:
       chart_version: 4.12.0
       add_repos: [mongodb=https://10gen.github.io/helm-charts]
       namespace: devrel
-      release: educators-devhub-1509
-      values: image.tag=educators-devhub-1509,image.pullPolicy=Always,image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/devrel/${DRONE_REPO_NAME}
+      release: educators
+      values: image.tag=educators-staging-build-${DRONE_BUILD_PARENT},image.pullPolicy=Always,image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/devrel/${DRONE_REPO_NAME}
       api_server: https://api.staging.corp.mongodb.com
       kubernetes_token:
         from_secret: staging_kubernetes_token
@@ -91,7 +92,7 @@ trigger:
     - promote
     - rollback
   target:
-    - preview
+    - staging
 
 ---
 depends_on: null

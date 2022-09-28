@@ -46,15 +46,15 @@ resources:
 ingress:
   enabled: true
   path: /academia
-  hosts: ['educators-devhub-1509.devrel.staging.corp.mongodb.com']
+  hosts: ['educators.devrel.staging.corp.mongodb.com']
 
-# prometheusRules:
-#   - alert: PodContainerNotReady
-#     expr: (sum(kube_pod_container_status_ready{container="educators",namespace="devrel"}) or vector(0)) == 0
-#     for: 1m
-#     labels:
-#       email_to: devhubplatform@mongodb.com
-#       severity: critical
-#     annotations:
-#       summary: "Container readiness check failed"
-#       description: "{{ $labels.instance }} of job {{ $labels.job }} container has not been ready for 1 minute"
+prometheusRules:
+  - alert: PodContainerNotReady
+    expr: (sum(kube_pod_container_status_ready{container="educators",namespace="devrel"}) or vector(0)) == 0
+    for: 1m
+    labels:
+      email_to: devhubplatform@mongodb.com
+      severity: critical
+    annotations:
+      summary: "Container readiness check failed"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} container has not been ready for 1 minute"
