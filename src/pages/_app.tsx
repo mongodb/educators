@@ -49,7 +49,7 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
       </Head>
       {/* Google Tag Manager - Global base code */}
       <Script
-        id="gtag-base"
+        id="ga-base"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
