@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import Script from 'next/script';
 import theme from '@mdb/flora/theme';
 import { ThemeProvider } from '@theme-ui/core';
 
@@ -47,23 +46,6 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
         />
         <meta property="twitter:site" content="@MongoDB" />
       </Head>
-      {/* Google Tag Manager - Global base code */}
-      <Script
-        id="ga-base"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-                  !function(e,n){var t=document.createElement("script"),o=null,x="pathway";t.async=!0,t.src='https://'+x+'.mongodb.com/'+(e?x+'-debug.js':''),
-                  document.head.append(t),t.addEventListener("load",function(){o=window.pathway.default,(n&&o.configure(n)),o.createProfile("mongodbcom").load(),
-                  window.segment=o})}${
-                    process.env['APP_ENV'] === 'production'
-                      ? '()'
-                      : '(!0,{debugMode:!0})'
-                  };
-                `,
-        }}
-        async
-      />
       <ThemeProvider theme={theme}>
         <Layout isFormOpen={isFormOpen}>
           <Form isOpen={isFormOpen} closeForm={() => setIsFormOpen(false)} />
