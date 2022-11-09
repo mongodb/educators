@@ -90,11 +90,9 @@ export default function CourseAside({
         </div>
       </section>
       <div sx={styles.CourseAsidePrompt}>
-        {/* @ts-ignore */}
         <TypographyScale inverse variant="body1">
           Join the Educator{"'"}s Community!
         </TypographyScale>
-        {/* @ts-ignore */}
         <TypographyScale
           inverse
           variant="body3"
@@ -103,7 +101,6 @@ export default function CourseAside({
           Engage with a community of passionate educators and MongoDB
           professionals!
         </TypographyScale>
-        {/* @ts-ignore */}
         <Link
           inverse
           linkIcon="arrow"

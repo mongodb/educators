@@ -19,7 +19,6 @@ export default function FeaturedCard({
         {cta.text}
       </Button>
     ) : (
-      // @ts-ignore
       <Link href={cta.href} target="_blank" linkIcon="arrow" sx={ctaStyles}>
         {cta.text}
       </Link>
@@ -45,7 +44,6 @@ export default function FeaturedCard({
             ...(fullWidth && { ...styles.FeaturedCardText_FullWidth }),
           }}
         >
-          {/* @ts-ignore */}
           <TypographyScale
             variant="heading5"
             customElement="h3"
@@ -56,7 +54,6 @@ export default function FeaturedCard({
           >
             {title}
           </TypographyScale>
-          {/* @ts-ignore */}
           <TypographyScale
             variant="body3"
             sx={{

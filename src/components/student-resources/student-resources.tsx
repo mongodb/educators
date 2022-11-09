@@ -11,7 +11,6 @@ export default function StudentResources({
   subCards,
 }: StudentResourcesProps): JSX.Element {
   return (
-    // @ts-ignore
     <GridLayout>
       <section sx={styles.StudentResourcesWrapper}>
         <Image
@@ -19,11 +18,9 @@ export default function StudentResources({
           alt="mongoDB brand icon"
           styles={styles.StudentResourcesBG}
         />
-        {/* @ts-ignore */}
         <TypographyScale variant="heading2" sx={styles.StudentResourcesTitle}>
           Student Resources
         </TypographyScale>
-        {/* @ts-ignore */}
         <TypographyScale
           color="secondary"
           sx={styles.StudentResourcesDescription}
