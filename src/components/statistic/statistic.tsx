@@ -8,7 +8,6 @@ export default function Statistic({
 }: StatisticProps): JSX.Element {
   return (
     <div sx={styles.StatisticWrapper}>
-      {/* @ts-ignore */}
       <TypographyScale
         variant="heading1"
         customElement="span"
