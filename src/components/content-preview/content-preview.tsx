@@ -27,7 +27,6 @@ function getCardActions({
     text: string,
     target: TargetType = '_self'
   ) => (
-    // @ts-ignore
     <Link
       href={href}
       target={target}
@@ -94,9 +93,7 @@ export default function ContentPreview({
 }: ContentPreviewProps): JSX.Element {
   return (
     <section sx={styles.ContentPreviewWrapper}>
-      {/* @ts-ignore */}
       <GridLayout>
-        {/* @ts-ignore */}
         <TypographyScale
           variant="heading5"
           customElement="h3"

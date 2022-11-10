@@ -10,7 +10,6 @@ export default function CourseList({ lessons }: CourseListProps): JSX.Element {
         {lessons.map(({ id, link, title }) => (
           <li key={id}>
             <h3>
-              {/* @ts-ignore */}
               <Link href={link} target="_blank" sx={styles.CourseListLinks}>
                 {title}
               </Link>

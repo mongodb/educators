@@ -1366,10 +1366,10 @@
   resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/@mdb/consistent-nav/-/@mdb/consistent-nav-1.2.17.tgz#3e0493b650ffc76707670a79edc308c0de41fcf4"
   integrity sha1-PgSTtlD/x2cHZwp57cMIwN5B/PQ=
 
-"@mdb/flora@1.0.0":
-  version "1.0.0"
-  resolved "https://artifactory.corp.mongodb.com/artifactory/api/npm/npm/@mdb/flora/-/@mdb/flora-1.0.0.tgz#9688ee9e6379a114817f742eb6418c16fc440934"
-  integrity sha512-1LQrjdlySWf9rzS2DVYT0v+PNCD25NmrPmldxwmVBTvS5RKOYIh+S5JHXGAH1zWha2lOvwfRb0TOiRj+2Ivugg==
+"@mdb/flora@1.1.1":
+  version "1.1.1"
+  resolved "https://artifactory.corp.mongodb.com/artifactory/api/npm/npm/@mdb/flora/-/@mdb/flora-1.1.1.tgz#c6f062af909071e3f10b9a4352abaf9193500ef9"
+  integrity sha512-6GeWpiC5j+PvN4E8rlOjDgl5cSeiaUz03rCrsksY2cHVKYAzimADlkJAMRwYnAa/VLcIHQjwDZFLEuHU0FeBRQ==
   dependencies:
     "@imgix/js-core" "^3.2.1"
     codemirror "^5.62.2"

@@ -15,9 +15,7 @@ export default function CourseHeader({
 }: CourseHeaderProps): JSX.Element {
   return (
     <header sx={styles.CourseHeaderWrapper}>
-      {/* @ts-ignore */}
       <GridLayout sx={styles.CourseHeaderGrid}>
-        {/* @ts-ignore */}
         <Link
           inverse
           href="/academia"
@@ -26,7 +24,6 @@ export default function CourseHeader({
         >
           Back to MongoDB for Educators Home
         </Link>
-        {/* @ts-ignore */}
         <TypographyScale
           inverse
           variant="heading2"
@@ -39,7 +36,6 @@ export default function CourseHeader({
           <Button href={link} target="_blank">
             Open in Google Drive
           </Button>
-          {/* @ts-ignore */}
           <Link
             inverse
             href={fileDownload}

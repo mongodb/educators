@@ -149,7 +149,6 @@ export default function Form({
   return isOpen ? (
     <div data-testid="form-modal" sx={styles.FormModalWrapper}>
       <div sx={styles.FormModal}>
-        {/* @ts-ignore */}
         <FormPanel
           onClose={onClose}
           title="Join the MongoDB Educator Community"
