@@ -39,7 +39,6 @@ export default function CoursePage({
         fileDownload={fileDownload}
       />
       <main sx={styles.CoursePageMain}>
-        {/* @ts-ignore */}
         <GridLayout sx={styles.CoursePageGrid}>
           <section sx={styles.CoursePageContent}>
             <Markdown text={longDescription} />

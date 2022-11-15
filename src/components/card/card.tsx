@@ -13,7 +13,6 @@ export default function Card({
     <div sx={styles.CardWrapper}>
       <div sx={styles.CardContent}>
         <Pill text={tag} variant="identifier" sx={styles.CardPill} />
-        {/* @ts-ignore */}
         <TypographyScale
           customElement="h4"
           variant="heading6"
@@ -21,12 +20,10 @@ export default function Card({
         >
           {title}
         </TypographyScale>
-        {/* @ts-ignore */}
         <TypographyScale variant="body3" color="secondary">
           {description}
         </TypographyScale>
         {!!count && (
-          /* @ts-ignore */
           <TypographyScale
             variant="body3"
             color="secondary"
