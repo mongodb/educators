@@ -20,7 +20,7 @@ function populateRequiredFormFields(
   }
 
   for (let j = 0; j < selects.length; j++) {
-    const el = selects[j].nextElementSibling;
+    const el = selects[j].nextElementSibling?.firstChild?.firstChild;
     if (el) {
       fireEvent.click(el, { target: { innerText: 'ipsum' } });
     }
