@@ -1361,10 +1361,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mdb/consistent-nav@^1.2.17":
-  version "1.2.17"
-  resolved "http://artifactory.corp.mongodb.com/artifactory/api/npm/npm/@mdb/consistent-nav/-/@mdb/consistent-nav-1.2.17.tgz#3e0493b650ffc76707670a79edc308c0de41fcf4"
-  integrity sha1-PgSTtlD/x2cHZwp57cMIwN5B/PQ=
+"@mdb/consistent-nav@1.2.27":
+  version "1.2.27"
+  resolved "https://artifactory.corp.mongodb.com/artifactory/api/npm/npm/@mdb/consistent-nav/-/@mdb/consistent-nav-1.2.27.tgz#818e421ee4952501e57a2e42bbca8394626407a9"
+  integrity sha512-SnhdhN62UEf7cRB6W9BFAF0vzJpt80LnpgbW89n+Z7ywusmeJ/iYt511mWgBWoRGcXZaNtzcifRe9yocRkXBcA==
 
 "@mdb/flora@1.2.0-rc.1":
   version "1.2.0-rc.1"
