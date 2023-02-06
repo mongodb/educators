@@ -1,7 +1,8 @@
 import { GetStaticProps } from 'next';
-import { Button } from '@mdb/flora';
+import { Button, TypographyScale } from '@mdb/flora';
 
 import heroData from 'data/hero.json';
+import faqData from 'data/FAQs/config';
 import statisticsData from 'data/statistics.json';
 import studentResourcesData from 'data/student-resources.json';
 
@@ -9,6 +10,7 @@ import { ContentData, getAllContent } from 'lib/cms-content';
 
 import Hero from 'components/hero';
 import Statistic from 'components/statistic';
+import Accordion from 'components/accordion';
 import ContentPreview from 'components/content-preview';
 import StudentResources from 'components/student-resources';
 
@@ -56,6 +58,12 @@ export default function Home({
           mainCard={studentResourcesData.mainCard}
           subCards={studentResourcesData.subCards}
         />
+        <TypographyScale variant="heading4" sx={styles.HomePageFAQTitle}>
+          Educator Program FAQs
+        </TypographyScale>
+        {faqData.map(({ title, body }) => (
+          <Accordion key={title} title={title} body={body} />
+        ))}
       </main>
     </>
   );
