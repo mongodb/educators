@@ -1,8 +1,5 @@
 import theme from '@mdb/flora/theme';
 
-const AccordionWrapper = {};
-
-// TODO: add slide transition?
 const AccordionHeader = {
   display: 'flex',
   alignItems: 'center',
@@ -34,7 +31,6 @@ const AccordionBody = {
 };
 
 const styles = {
-  AccordionWrapper,
   AccordionHeader,
   AccordionBody,
 };

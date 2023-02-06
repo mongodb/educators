@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { ESystemIconNames, SystemIcon, TypographyScale } from '@mdb/flora';
-
 import Markdown from 'components/markdown';
-
 import { AccordionProps } from './types';
-
 import styles from './styles';
 
 export default function Accordion({ title, body }: AccordionProps) {
