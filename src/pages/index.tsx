@@ -10,6 +10,7 @@ import { ContentData, getAllContent } from 'lib/cms-content';
 import Hero from 'components/hero';
 import Statistic from 'components/statistic';
 import ContentPreview from 'components/content-preview';
+import ProgramBenefits from 'components/program-benefits';
 import StudentResources from 'components/student-resources';
 
 import styles from 'styles/home';
@@ -35,6 +36,7 @@ export default function Home({
         }
       />
       <main sx={styles.HomePageMainStyles}>
+        <ProgramBenefits />
         <section sx={styles.HomePageStatsSection}>
           {statisticsData.map(stat => (
             <Statistic
