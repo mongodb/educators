@@ -12,7 +12,7 @@ export default function Accordion({ title, body }: AccordionProps) {
   }
 
   return (
-    <div sx={styles.AccordionWrapper}>
+    <div>
       <button onClick={onToggle} sx={styles.AccordionHeader}>
         <TypographyScale variant="heading6">{title}</TypographyScale>
         <SystemIcon
