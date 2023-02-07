@@ -26,7 +26,12 @@ const HomePageFAQTitle: ThemeUICSSObject = {
   marginBottom: ['inc50', null, null, 'inc80'],
 };
 
+const HomePageFAQs: ThemeUICSSObject = {
+  gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
+};
+
 const styles = {
+  HomePageFAQs,
   HomePageFAQTitle,
   HomePageMainStyles,
   HomePageHeroButton,
