@@ -14,15 +14,12 @@ export default function ProgramBenefits() {
   }
 
   return (
-    <section>
-      <GridLayout>
+    <section sx={styles.ProgramBenefitsWrapper}>
+      <GridLayout sx={{ rowGap: 0 }}>
         <TypographyScale variant="heading3" sx={styles.ProgramBenefitsTitle}>
           MongoDB for Educators Program Benefits
         </TypographyScale>
-        <Grid
-          columns={[1, null, null, 3]}
-          sx={styles.ProgramBenefitsWidgetsWrapper}
-        >
+        <Grid columns={[1, null, 3]} sx={styles.ProgramBenefitsWidgetsWrapper}>
           <div sx={styles.ProgramBenefitsWidget}>
             <Image
               src="/academia/atlas-credits.svg"
@@ -79,7 +76,11 @@ export default function ProgramBenefits() {
           </div>
         </Grid>
       </GridLayout>
-      <Link linkIcon="arrow" onClick={onCTAClick}>
+      <Link
+        sx={styles.ProgramBenefitsCTA}
+        linkIcon="arrow"
+        onClick={onCTAClick}
+      >
         Educators Program FAQs
       </Link>
     </section>
