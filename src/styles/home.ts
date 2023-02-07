@@ -20,7 +20,14 @@ const HomePageStatsSection: ThemeUICSSObject = {
   marginBottom: ['inc70', null, null, 'inc90'],
 };
 
+const HomePageFAQTitle: ThemeUICSSObject = {
+  textAlign: 'center',
+  marginTop: ['inc80', null, null, 'inc130'],
+  marginBottom: ['inc50', null, null, 'inc80'],
+};
+
 const styles = {
+  HomePageFAQTitle,
   HomePageMainStyles,
   HomePageHeroButton,
   HomePageStatsSection,
