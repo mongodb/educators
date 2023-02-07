@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { Button, TypographyScale } from '@mdb/flora';
+import { Button, GridLayout, TypographyScale } from '@mdb/flora';
 
 import heroData from 'data/hero.json';
 import faqData from 'data/FAQs/config';
@@ -64,9 +64,16 @@ export default function Home({
           <TypographyScale variant="heading4" sx={styles.HomePageFAQTitle}>
             Educator Program FAQs
           </TypographyScale>
-          {faqData.map(({ title, body }) => (
-            <Accordion key={title} title={title} body={body} />
-          ))}
+          <GridLayout sx={{ gridGap: 0 }}>
+            {faqData.map(({ title, body }) => (
+              <Accordion
+                key={title}
+                title={title}
+                body={body}
+                wrapperStyles={styles.HomePageFAQs}
+              />
+            ))}
+          </GridLayout>
         </section>
       </main>
     </>

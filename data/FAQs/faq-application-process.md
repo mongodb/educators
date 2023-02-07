@@ -1,4 +1,4 @@
-**Educators at traditional, accredited institutions _within_ the US, India or Ireland** will be quickly verified through our verification service, SheerID. They will be asked to provide the following information:
+**Educators at traditional, accredited institutions <u>within</u> the US, India or Ireland** will be quickly verified through our verification service, SheerID. They will be asked to provide the following information:
 
 - First and Last Name as it appears on school records
 - School email address
@@ -12,7 +12,7 @@ Educators successfully verified through SheerID will receive their Atlas Promoti
 
 &nbsp;
 
-**Educators at traditional, accredited institutions _outside_ of the US, India or Ireland** will be manually reviewed by the MongoDB team and will receive their Atlas Promotional Code in an email after successful verification. They will be asked to provide the following information:
+**Educators at traditional, accredited institutions <u>outside</u> of the US, India or Ireland** will be manually reviewed by the MongoDB team and will receive their Atlas Promotional Code in an email after successful verification. They will be asked to provide the following information:
 
 - First and Last Name
 - School or Institutional email address
@@ -24,7 +24,7 @@ Educators successfully verified through SheerID will receive their Atlas Promoti
 - Course Name
 - Syllabus
 
-**Coding/technical bootcamp instructors _in any country_** will be manually reviewed by the MongoDB team and will receive their Atlas Promotional Code in an email after successful verification. They will be asked to provide the following information:
+**Coding/technical bootcamp instructors <u>in any country</u>** will be manually reviewed by the MongoDB team and will receive their Atlas Promotional Code in an email after successful verification. They will be asked to provide the following information:
 
 - First and Last Name
 - School or Institutional email address

@@ -1,1 +1,1 @@
-Students are eligible for $50 of Atlas credits and free certification after completion of a Alearning path. To qualify for these benefits, students must apply for the [GitHub Student Developer Pack](https://www.mongodb.com/students).
+Students are eligible for $50 of Atlas credits and free certification after completion of a learning path. To qualify for these benefits, students must apply for the [GitHub Student Developer Pack](https://www.mongodb.com/students).
