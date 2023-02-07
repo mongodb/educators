@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown';
+import ReyhpeRaw from 'rehype-raw';
 import remarkDirective from 'remark-directive';
 import { customDirective } from './utils';
 import componentMappings from './component-mappings';
@@ -9,8 +10,9 @@ interface MarkdownProps {
 
 const Markdown = ({ text }: MarkdownProps) => (
   <ReactMarkdown
-    remarkPlugins={[remarkDirective, customDirective]}
     components={componentMappings}
+    rehypePlugins={[ReyhpeRaw]}
+    remarkPlugins={[remarkDirective, customDirective]}
   >
     {text}
   </ReactMarkdown>

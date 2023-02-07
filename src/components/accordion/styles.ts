@@ -1,4 +1,5 @@
 import theme from '@mdb/flora/theme';
+import { ThemeUICSSObject } from 'theme-ui';
 
 const AccordionHeader = {
   display: 'flex',
@@ -9,10 +10,18 @@ const AccordionHeader = {
   backgroundColor: 'inherit',
   border: 'none',
   borderTop: `1px solid ${theme.colors.black30}`,
-
+  svg: {
+    minHeight: 24,
+    minWidth: 24,
+  },
   '&:hover': {
     cursor: 'pointer',
   },
+};
+
+const AccordionHeaderText: ThemeUICSSObject = {
+  textAlign: 'left',
+  paddingRight: 'inc30',
 };
 
 const AccordionBody = {
@@ -31,8 +40,9 @@ const AccordionBody = {
 };
 
 const styles = {
-  AccordionHeader,
   AccordionBody,
+  AccordionHeader,
+  AccordionHeaderText,
 };
 
 export default styles;
