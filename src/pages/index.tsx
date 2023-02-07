@@ -12,6 +12,7 @@ import Hero from 'components/hero';
 import Statistic from 'components/statistic';
 import Accordion from 'components/accordion';
 import ContentPreview from 'components/content-preview';
+import ProgramBenefits from 'components/program-benefits';
 import StudentResources from 'components/student-resources';
 
 import styles from 'styles/home';
@@ -37,6 +38,7 @@ export default function Home({
         }
       />
       <main sx={styles.HomePageMainStyles}>
+        <ProgramBenefits />
         <section sx={styles.HomePageStatsSection}>
           {statisticsData.map(stat => (
             <Statistic
@@ -58,19 +60,21 @@ export default function Home({
           mainCard={studentResourcesData.mainCard}
           subCards={studentResourcesData.subCards}
         />
-        <TypographyScale variant="heading4" sx={styles.HomePageFAQTitle}>
-          Educator Program FAQs
-        </TypographyScale>
-        <GridLayout sx={{ gridGap: 0 }}>
-          {faqData.map(({ title, body }) => (
-            <Accordion
-              key={title}
-              title={title}
-              body={body}
-              wrapperStyles={styles.HomePageFAQs}
-            />
-          ))}
-        </GridLayout>
+        <section id="faq-section">
+          <TypographyScale variant="heading4" sx={styles.HomePageFAQTitle}>
+            Educator Program FAQs
+          </TypographyScale>
+          <GridLayout sx={{ gridGap: 0 }}>
+            {faqData.map(({ title, body }) => (
+              <Accordion
+                key={title}
+                title={title}
+                body={body}
+                wrapperStyles={styles.HomePageFAQs}
+              />
+            ))}
+          </GridLayout>
+        </section>
       </main>
     </>
   );
