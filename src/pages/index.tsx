@@ -60,12 +60,14 @@ export default function Home({
           mainCard={studentResourcesData.mainCard}
           subCards={studentResourcesData.subCards}
         />
-        <TypographyScale variant="heading4" sx={styles.HomePageFAQTitle}>
-          Educator Program FAQs
-        </TypographyScale>
-        {faqData.map(({ title, body }) => (
-          <Accordion key={title} title={title} body={body} />
-        ))}
+        <section id="faq-section">
+          <TypographyScale variant="heading4" sx={styles.HomePageFAQTitle}>
+            Educator Program FAQs
+          </TypographyScale>
+          {faqData.map(({ title, body }) => (
+            <Accordion key={title} title={title} body={body} />
+          ))}
+        </section>
       </main>
     </>
   );

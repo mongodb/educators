@@ -5,10 +5,12 @@ import styles from './styles';
 
 export default function ProgramBenefits() {
   function onCTAClick() {
-    window.scrollTo({
-      top: 800, // TODO: add anchor to FAQ section once that gets merged
-      behavior: 'smooth',
-    });
+    // Yes, querying the DOM is frowned upon in React, but its way less cumbersome than wrapping this component in forwardRef for one small interaction
+    const faqSection = document.getElementById('faq-section');
+
+    if (faqSection) {
+      faqSection.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   return (
