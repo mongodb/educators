@@ -2,10 +2,12 @@ import { useState } from 'react';
 import Head from 'next/head';
 import theme from '@mdb/flora/theme';
 import { ThemeProvider } from '@theme-ui/core';
-
 import type { AppProps } from 'next/app';
 
+import { ModalProvider } from 'contexts/modal';
+
 import Form from 'components/form';
+import Modal from 'components/modal';
 import Layout from 'components/layout';
 
 export default function EducatorPortal({ Component, pageProps }: AppProps) {
@@ -47,10 +49,14 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
         <meta property="twitter:site" content="@MongoDB" />
       </Head>
       <ThemeProvider theme={theme}>
-        <Layout isFormOpen={isFormOpen}>
-          <Form isOpen={isFormOpen} closeForm={() => setIsFormOpen(false)} />
-          <Component {...pageProps} openForm={() => setIsFormOpen(true)} />
-        </Layout>
+        <ModalProvider>
+          {/* TODO: add overflow no scroll here */}
+          <Layout isFormOpen={isFormOpen}>
+            <Modal />
+            <Form isOpen={isFormOpen} closeForm={() => setIsFormOpen(false)} />
+            <Component {...pageProps} openForm={() => setIsFormOpen(true)} />
+          </Layout>
+        </ModalProvider>
       </ThemeProvider>
     </>
   );
