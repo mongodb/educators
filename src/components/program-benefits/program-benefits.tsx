@@ -36,7 +36,7 @@ export default function ProgramBenefits() {
               sx={styles.ProgramBenefitsWidgetSubtitle}
             >
               Explore our multi-cloud developer platform with $500 of MongoDB
-              Atlas credit.
+              Atlas credits.
             </TypographyScale>
           </div>
           <div sx={styles.ProgramBenefitsWidget}>
