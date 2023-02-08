@@ -11,9 +11,12 @@ const ProgramBenefitsTitle: ThemeUICSSObject = {
   gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
 };
 
-const ProgramBenefitsWidgetsWrapper = {
-  mx: ['-inc30', '-inc50', null, '-inc70'], // offset home page container's padding so background color can span full width
+const ProgramBenefitsWidgetWrapper = {
   backgroundColor: theme.colors.purple10,
+  mx: ['-inc30', '-inc50', null, '-inc70'], // offset home page container's padding so background color can span full width
+};
+
+const ProgramBenefitsGrid = {
   py: ['inc30', null, 'inc50'],
   gridGap: 0,
   gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
@@ -49,11 +52,12 @@ const ProgramBenefitsCTA: ThemeUICSSObject = {
 
 const styles = {
   ProgramBenefitsCTA,
+  ProgramBenefitsGrid,
   ProgramBenefitsTitle,
   ProgramBenefitsWidget,
   ProgramBenefitsWrapper,
   ProgramBenefitsWidgetTitle,
-  ProgramBenefitsWidgetsWrapper,
+  ProgramBenefitsWidgetWrapper,
   ProgramBenefitsWidgetSubtitle,
 };
 
