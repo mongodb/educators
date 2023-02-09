@@ -23,7 +23,6 @@ const ModalWrapper: ThemeUICSSObject = {
 };
 
 const ModalBody: ThemeUICSSObject = {
-  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: theme.colors.black00,
@@ -31,7 +30,7 @@ const ModalBody: ThemeUICSSObject = {
   borderRadius: 'inc70',
   padding: ['inc40', null, null, 'inc50'],
   height: 'fit-content',
-  maxHeight: ['100%', null, null, '95vh'], // TODO: check?
+  maxHeight: ['100%', null, null, '95vh'],
 };
 
 const ModalCloseBtn: ThemeUICSSObject = {

@@ -9,7 +9,7 @@ const EduVerificationWrapper = {
 
 const EduVerficationTitle: ThemeUICSSObject = {
   textAlign: 'center',
-  marginBottom: ['inc50', null, null, 'inc50'],
+  marginBottom: ['inc30', null, null, 'inc50'],
 };
 
 const EduVerificationRadioGroupLabel = {

@@ -4,7 +4,6 @@ import { TypographyScale, RadioGroup, Radio, Button } from '@mdb/flora';
 import { useModalContext } from 'contexts/modal';
 
 import SheerIdContainer from './sheer-id-container';
-
 import {
   RADIO_GROUPS,
   LOCATION_RADIO_VALUES,
@@ -12,7 +11,6 @@ import {
   LOCATION_RADIO_GROUP_CONFIG,
   INSTITUTION_RADIO_GROUP_CONFIG,
 } from './utils';
-
 import styles from './styles';
 
 export default function EducatorVerification({
