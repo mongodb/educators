@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Global, css } from '@emotion/react';
 import { UnifiedNav, UnifiedFooter } from '@mdb/consistent-nav';
 import { GlobalStyles } from 'styles/globals';
+import { useModalContext } from 'contexts/modal';
 
 interface LayoutProps {
   children: ReactNode;
@@ -12,12 +13,16 @@ export default function Layout({
   children,
   isFormOpen,
 }: LayoutProps): JSX.Element {
+  const { component } = useModalContext();
+
+  const hideOverflow = isFormOpen || !!component;
+
   return (
     <>
       <Global
         styles={css`
           ${GlobalStyles}
-          ${isFormOpen &&
+          ${hideOverflow &&
           `
             html {
               overflow: hidden;

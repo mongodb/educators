@@ -39,3 +39,8 @@ export const LOCATION_RADIO_GROUP_CONFIG = [
     title: 'Other',
   },
 ];
+
+export const RADIO_GROUPS = {
+  INSTITUTION: 'institution-radio-group',
+  LOCATION: 'location-radio-group',
+};

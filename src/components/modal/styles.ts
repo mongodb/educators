@@ -24,23 +24,25 @@ const ModalWrapper: ThemeUICSSObject = {
 
 const ModalBody: ThemeUICSSObject = {
   position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
   backgroundColor: theme.colors.black00,
   zIndex: 10000,
   borderRadius: 'inc70',
-  padding: ['inc20', null, null, 'inc140'],
+  padding: ['inc40', null, null, 'inc50'],
+  height: 'fit-content',
+  maxHeight: ['100%', null, null, '95vh'], // TODO: check?
 };
 
 const ModalCloseBtn: ThemeUICSSObject = {
-  position: 'absolute',
-  top: 32,
-  right: 32,
-  backgroundColor: 'transparent',
+  alignSelf: 'flex-end',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: 'transparent',
   border: `1px solid ${theme.colors.blue80}`,
-  height: '32px',
-  width: '32px',
+  minHeight: ['24px', null, null, '32px'],
+  width: ['24px', null, null, '32px'],
   borderRadius: '50px',
 
   svg: {
@@ -52,9 +54,14 @@ const ModalCloseBtn: ThemeUICSSObject = {
   },
 };
 
+const ModalContent: ThemeUICSSObject = {
+  overflowY: 'scroll',
+};
+
 const styles = {
   ModalWrapper,
   ModalBody,
+  ModalContent,
   ModalCloseBtn,
 };
 

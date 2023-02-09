@@ -7,9 +7,10 @@
       "data": ["data/*"],
       "lib/*": ["src/lib/*"],
       "pages/*": ["src/pages/*"],
+      "hooks/*": ["src/hooks/*"],
       "styles/*": ["src/styles/*"],
-      "components/*": ["src/components/*"],
-      "contexts/*": ["src/contexts/*"]
+      "contexts/*": ["src/contexts/*"],
+      "components/*": ["src/components/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

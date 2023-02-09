@@ -30,6 +30,10 @@ export default class MyDocument extends Document {
             }}
             async
           />
+          <Script
+            src="https://cdn.jsdelivr.net/npm/@sheerid/jslib@1/sheerid.js"
+            strategy="afterInteractive"
+          />
         </Head>
         <body>
           <Main />

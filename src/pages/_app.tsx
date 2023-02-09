@@ -7,8 +7,8 @@ import type { AppProps } from 'next/app';
 import { ModalProvider } from 'contexts/modal';
 
 import Form from 'components/form';
-import Modal from 'components/modal';
 import Layout from 'components/layout';
+import ModalRoot from 'components/modal';
 
 export default function EducatorPortal({ Component, pageProps }: AppProps) {
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
@@ -50,9 +50,8 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <ModalProvider>
-          {/* TODO: add overflow no scroll here */}
           <Layout isFormOpen={isFormOpen}>
-            <Modal />
+            <ModalRoot />
             <Form isOpen={isFormOpen} closeForm={() => setIsFormOpen(false)} />
             <Component {...pageProps} openForm={() => setIsFormOpen(true)} />
           </Layout>
