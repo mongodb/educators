@@ -98,7 +98,6 @@ const fields: Array<FieldInterface> = [
     component: 'text-input',
     validators: [isRequired()],
   },
-  // TODO: add new field and needs to be included in the post body and uploaded to airtable
   {
     name: 'institutionType',
     label: 'Institution Type',
