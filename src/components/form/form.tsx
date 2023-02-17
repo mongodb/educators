@@ -84,7 +84,12 @@ const fields: Array<FieldInterface> = [
     label: 'Teaching Status',
     component: 'select',
     options: teachingStatuses,
-    validators: [isRequired()],
+    validators: [isRequired()], // TODO: confirm if its mandatory?
+  },
+  {
+    name: 'facultyProfile',
+    label: 'Faculty profile/Google scholar profile URL',
+    component: 'text-input',
   },
   {
     name: 'institutionName',

@@ -11,6 +11,7 @@ interface AirtableRegistration extends FieldSet {
   fldSmiHwvKFiPNtKn: string; // Insitution Name
   fldEdsAy7JOR4WqOj: string; // Institution Type
   fldRCWRElfBvOrIH8: string; // Email
+  fld43QElxh5HlXOqA: string; // Faculuty Profile URL
   flddAXoswHGxn7NzY: boolean; // Agreed to receive emails
   fld16FhTciYWYb3pp: string; // Date registration (CEST)
   fldTARrXnDThWtF8w: string; // Location
@@ -27,6 +28,7 @@ const getAirtableRegistration = (
   fldSmiHwvKFiPNtKn: reg.institution_name,
   fldEdsAy7JOR4WqOj: reg.institution_type,
   fldRCWRElfBvOrIH8: reg.email,
+  fld43QElxh5HlXOqA: reg.faculty_profile,
   flddAXoswHGxn7NzY: reg.agree_to_email,
   fld16FhTciYWYb3pp: new Date(reg.submit_date).toISOString().split('T')[0],
   fldTARrXnDThWtF8w: reg.country,

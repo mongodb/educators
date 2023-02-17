@@ -17,6 +17,7 @@ export interface Registration {
   institutionName: string;
   institutionType: string;
   email: string;
+  facultyProfile: string;
   agreedToEmails: boolean;
   location: string;
   courseName: string;
@@ -30,6 +31,7 @@ const registrationFieldsToTypes: { [key: string]: string } = {
   institutionName: 'string',
   institutionType: 'string',
   email: 'string',
+  facultyProfile: 'string',
   agreedToEmails: 'boolean',
   location: 'string',
   courseName: 'string',
@@ -37,10 +39,12 @@ const registrationFieldsToTypes: { [key: string]: string } = {
   teachingStatus: 'string',
 };
 
-/* eslint-disable  @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export const validateRegistrationBody = (body: any) => {
-  /* eslint-enable  @typescript-eslint/no-explicit-any */
-  body.courseSyllabus = body.courseSyllabus || ''; // unrequired textarea value can be undefined. If so we convert it to a blank string.
+  // TODO: better way to check for all keys that are not required?
+  // unrequired field values can be undefined. If so we convert it to a blank string.
+  body.courseSyllabus = body.courseSyllabus || '';
+  body.facultyProfile = body.facultyProfile || '';
   const bodyKeys = Object.keys(body);
   for (const key in registrationFieldsToTypes) {
     if (!bodyKeys.includes(key)) {
