@@ -11,7 +11,6 @@ export interface DBRegistration {
   institution_name: string;
   institution_type: string;
   agree_to_email: boolean;
-  instructor_type: string;
   instructor_interests: string;
   country: string;
   course_name: string;
@@ -29,7 +28,6 @@ export const getDBRegistration = (reg: Registration): DBRegistration => ({
   country: reg.location,
   course_name: reg.courseName,
   course_syllabus: reg.courseSyllabus,
-  instructor_type: reg.jobFunction,
   instructor_interests: reg.teachingStatus,
   submit_date: Date(),
 });

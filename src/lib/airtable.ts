@@ -16,7 +16,6 @@ interface AirtableRegistration extends FieldSet {
   fldTARrXnDThWtF8w: string; // Location
   fldzkKlcSXWSIKLS6: string; // Course Name
   fldHcAvfcjxozmQlG: string; // Course Syllabus
-  fldZ3KwWPX16ZXwTl: string; // Job Function
   fld5o6nNVtTkyOKNM: string; // Teaching Status
 }
 
@@ -33,7 +32,6 @@ const getAirtableRegistration = (
   fldTARrXnDThWtF8w: reg.country,
   fldzkKlcSXWSIKLS6: reg.course_name,
   fldHcAvfcjxozmQlG: reg.course_syllabus,
-  fldZ3KwWPX16ZXwTl: reg.instructor_type,
   fld5o6nNVtTkyOKNM: reg.instructor_interests,
 });
 

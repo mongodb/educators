@@ -1,11 +1,4 @@
 // These are just arrays to be used by the form.
-export const jobFunctions = [
-  'Professor',
-  'Teaching Assistant',
-  'Bootcamp Instructor',
-  'Other',
-];
-
 export const teachingStatuses = [
   'Currently Teaching MongoDB',
   'Interested in Teaching MongoDB',
@@ -14,7 +7,6 @@ export const teachingStatuses = [
 
 export const institutionTypes = [
   'Bootcamp',
-  'Online Course',
   'High School',
   'University / College',
 ];
@@ -29,7 +21,6 @@ export interface Registration {
   location: string;
   courseName: string;
   courseSyllabus: string;
-  jobFunction: string;
   teachingStatus: string;
 }
 
@@ -43,7 +34,6 @@ const registrationFieldsToTypes: { [key: string]: string } = {
   location: 'string',
   courseName: 'string',
   courseSyllabus: 'string',
-  jobFunction: 'string',
   teachingStatus: 'string',
 };
 

@@ -12,7 +12,6 @@ describe('Registration', () => {
       location: 'string',
       courseName: 'string',
       courseSyllabus: 'string',
-      jobFunction: 'Professor',
       teachingStatus: 'Just Curious',
     };
     expect(() => validateRegistrationBody(body)).not.toThrow();
@@ -28,7 +27,6 @@ describe('Registration', () => {
       location: 'string',
       courseName: 'string',
       courseSyllabus: 'string',
-      jobFunction: 'Professor',
       teachingStatus: 'Just Curious',
     };
     expect(() => validateRegistrationBody(body)).toThrowError(
@@ -45,7 +43,6 @@ describe('Registration', () => {
       location: 'string',
       courseName: 'string',
       courseSyllabus: 'string',
-      jobFunction: 'Professor',
       teachingStatus: 'Just Curious',
     };
     expect(() => validateRegistrationBody(body)).toThrowError(
@@ -63,7 +60,6 @@ describe('Registration', () => {
       location: 'string',
       courseName: 'string',
       courseSyllabus: 'string',
-      jobFunction: 'Professor',
       teachingStatus: 'Just Curious',
     };
     expect(() => validateRegistrationBody(body)).toThrowError(
