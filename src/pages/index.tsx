@@ -8,12 +8,15 @@ import studentResourcesData from 'data/student-resources.json';
 
 import { ContentData, getAllContent } from 'lib/cms-content';
 
+import { useModalContext } from 'contexts/modal';
+
 import Hero from 'components/hero';
 import Statistic from 'components/statistic';
 import Accordion from 'components/accordion';
 import ContentPreview from 'components/content-preview';
 import ProgramBenefits from 'components/program-benefits';
 import StudentResources from 'components/student-resources';
+import EducatorVerification from 'components/modal/educator-verification';
 
 import styles from 'styles/home';
 
@@ -26,13 +29,19 @@ export default function Home({
   openForm,
   content,
 }: HomePageProps): JSX.Element {
+  const { openModal } = useModalContext();
+
+  function onHeroButtonClick() {
+    openModal(<EducatorVerification openForm={openForm} />);
+  }
+
   return (
     <>
       <Hero
         title={heroData.title}
         subtitle={heroData.subtitle}
         cta={
-          <Button onClick={openForm} sx={styles.HomePageHeroButton}>
+          <Button onClick={onHeroButtonClick} sx={styles.HomePageHeroButton}>
             {heroData.buttonText}
           </Button>
         }

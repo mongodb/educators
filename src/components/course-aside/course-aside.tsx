@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, TypographyScale } from '@mdb/flora';
 
+import { useModalContext } from 'contexts/modal';
 import Image from 'components/image';
 import SocialShare from 'components/social-share';
+import EducatorVerification from 'components/modal/educator-verification';
 import CourseAsideProps from './types';
 
 import styles from './styles';
@@ -29,7 +31,12 @@ export default function CourseAside({
   openForm,
   wrapperStyles = {},
 }: CourseAsideProps): JSX.Element {
+  const { openModal } = useModalContext();
   const [currentPageUrl, setCurrentPageUrl] = useState<string>('');
+
+  function onPromptClick() {
+    openModal(<EducatorVerification openForm={openForm} />);
+  }
 
   // because of SSR, we need to assure the component mounts before trying to access window obj
   useEffect(() => {
@@ -104,7 +111,7 @@ export default function CourseAside({
         <Link
           inverse
           linkIcon="arrow"
-          onClick={openForm}
+          onClick={onPromptClick}
           sx={styles.CourseAsidePromptLink}
         >
           Join Now
