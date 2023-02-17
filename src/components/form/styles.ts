@@ -24,7 +24,7 @@ const FormModal: ThemeUICSSObject = {
   },
   // id/className/customStyles props are only getting applied to checkbox and select <Field /> for whatever reason
   // so this is a lovely little hack in the meantime to fix [DEVHUB-1451]
-  '[aria-label="institutionName"]': {
+  '[aria-label="institutionName"], [aria-label="email"]': {
     textTransform: 'none',
   },
 };
