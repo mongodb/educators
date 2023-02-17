@@ -68,7 +68,7 @@ describe('[component] Form', () => {
 
     // Text inputs
     const inputs = container.getElementsByTagName('input');
-    expect(inputs.length).toEqual(6); // 5 text inputs and 1 checkbox input
+    expect(inputs.length).toEqual(7); // 6 text inputs and 1 checkbox input
 
     // Selects
     const selects = screen.getAllByRole('select'); // Flora Dropdowns are buttons with role="select", not native <select /> elements
