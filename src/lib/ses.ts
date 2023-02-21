@@ -39,7 +39,6 @@ export const sendEmail = async (body: DBRegistration) => {
             <p><strong>Email:</strong> ${body.email}</p>
             <p><strong>Institution Name:</strong> ${body.institution_name}</p>
             <p><strong>Institution Type:</strong> ${body.institution_type}</p>
-            <p><strong>I am a:</strong> ${body.instructor_type}</p>
             <p><strong>I am :</strong> ${body.instructor_interests}</p>
             <p><strong>Country</strong>${body.country}</p>
             <p><strong>Course Name</strong>${body.course_name}</p>
