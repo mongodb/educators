@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ESystemIconNames, SystemIcon, TypographyScale } from '@mdb/flora';
 import Markdown from 'components/markdown';
 import { AccordionProps } from './types';
@@ -10,6 +10,12 @@ export default function Accordion({
   wrapperStyles = {},
 }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState<string>('0px');
+
+  useEffect(() => {
+    setContentHeight(`${contentRef.current?.scrollHeight}px`);
+  }, [contentRef.current?.scrollHeight]);
 
   function onToggle() {
     setIsOpen(!isOpen);
@@ -27,11 +33,19 @@ export default function Accordion({
           name={isOpen ? ESystemIconNames.MINUS : ESystemIconNames.PLUS}
         />
       </button>
-      {isOpen && (
-        <div sx={styles.AccordionBody}>
-          <Markdown text={body} />
-        </div>
-      )}
+      <div
+        ref={contentRef}
+        sx={{
+          ...styles.AccordionBody,
+          ...(isOpen && {
+            height: '100%',
+            minHeight: contentHeight,
+            paddingBottom: 'inc50',
+          }),
+        }}
+      >
+        <Markdown text={body} />
+      </div>
     </div>
   );
 }

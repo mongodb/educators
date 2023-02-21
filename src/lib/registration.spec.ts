@@ -7,12 +7,12 @@ describe('Registration', () => {
       lastName: 'string',
       institutionName: 'string',
       institutionType: 'Bootcamp',
+      facultyProfile: 'string',
       email: 'string',
       agreedToEmails: false,
       location: 'string',
       courseName: 'string',
       courseSyllabus: 'string',
-      jobFunction: 'Professor',
       teachingStatus: 'Just Curious',
     };
     expect(() => validateRegistrationBody(body)).not.toThrow();
@@ -22,13 +22,13 @@ describe('Registration', () => {
       firstName: false,
       lastName: 'string',
       institutionName: 'string',
+      facultyProfile: 'string',
       institutionType: 'Bootcamp',
       email: 'string',
       agreedToEmails: false,
       location: 'string',
       courseName: 'string',
       courseSyllabus: 'string',
-      jobFunction: 'Professor',
       teachingStatus: 'Just Curious',
     };
     expect(() => validateRegistrationBody(body)).toThrowError(
@@ -39,13 +39,13 @@ describe('Registration', () => {
     const body = {
       lastName: 'string',
       institutionName: 'string',
+      facultyProfile: 'string',
       institutionType: 'Bootcamp',
       email: 'string',
       agreedToEmails: false,
       location: 'string',
       courseName: 'string',
       courseSyllabus: 'string',
-      jobFunction: 'Professor',
       teachingStatus: 'Just Curious',
     };
     expect(() => validateRegistrationBody(body)).toThrowError(
@@ -57,13 +57,13 @@ describe('Registration', () => {
       firstName: 'string',
       lastName: 'string',
       institutionName: 'string',
+      facultyProfile: 'string',
       institutionType: 'foo',
       email: 'string',
       agreedToEmails: false,
       location: 'string',
       courseName: 'string',
       courseSyllabus: 'string',
-      jobFunction: 'Professor',
       teachingStatus: 'Just Curious',
     };
     expect(() => validateRegistrationBody(body)).toThrowError(

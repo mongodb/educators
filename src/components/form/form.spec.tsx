@@ -56,7 +56,11 @@ describe('[component] Form', () => {
     expect(emailPattern()('firstlast@gmail.')).toEqual(
       'Please enter a valid email address'
     );
-    expect(emailPattern()('firstlast@gmail.com')).toEqual(''); // email matches intended pattern
+    expect(emailPattern()('firstlast@gmail.com')).toEqual(
+      'School or Institution email is required'
+    ); // email domain is in "excluded" (free) list
+
+    expect(emailPattern()('firstlast@myfakeschool.edu')).toEqual(''); // is valid email domain and not found in blacklisted free email domains
   });
 
   it('renders the expected components', () => {
@@ -64,11 +68,11 @@ describe('[component] Form', () => {
 
     // Text inputs
     const inputs = container.getElementsByTagName('input');
-    expect(inputs.length).toEqual(6); // 5 text inputs and 1 checkbox input
+    expect(inputs.length).toEqual(7); // 6 text inputs and 1 checkbox input
 
     // Selects
     const selects = screen.getAllByRole('select'); // Flora Dropdowns are buttons with role="select", not native <select /> elements
-    expect(selects.length).toEqual(4);
+    expect(selects.length).toEqual(3);
 
     // Text Area
     const textarea = container.getElementsByTagName('textarea');
@@ -99,7 +103,7 @@ describe('[component] Form', () => {
     populateRequiredFormFields(inputs, selects);
 
     await act(async () => {
-      fireEvent.click(screen.getByText('Submit'));
+      fireEvent.click(screen.getByText('Submit my Application'));
     });
 
     expect(
@@ -123,7 +127,7 @@ describe('[component] Form', () => {
     populateRequiredFormFields(inputs, selects);
 
     await act(async () => {
-      fireEvent.click(screen.getByText('Submit'));
+      fireEvent.click(screen.getByText('Submit my Application'));
     });
 
     expect(

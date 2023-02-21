@@ -4,7 +4,6 @@ import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
 import countryList from 'react-select-country-list';
 import {
   Registration,
-  jobFunctions,
   institutionTypes,
   teachingStatuses,
 } from 'lib/registration';
@@ -17,12 +16,30 @@ export function isRequired() {
   };
 }
 
-export function emailPattern() {
+const disallowedEmailDomains = [
+  'gmail.com',
+  'icloud.com',
+  'outlook.com',
+  'yahoo.com',
+  'yandex.ru',
+  'proton.me',
+  'zohomail.com',
+  'rocketmail.com',
+  'hotmail.com',
+];
+
+export function emailPattern(checkDomains = true) {
   return function (value: string): string {
     if (value) {
-      return value.match(/^\S+@\S+\.\S+$/)
-        ? ''
-        : 'Please enter a valid email address';
+      if (!value.match(/^\S+@\S+\.\S+$/)) {
+        return 'Please enter a valid email address';
+      } else if (
+        checkDomains &&
+        disallowedEmailDomains.find(domain => value.split('@')[1] === domain)
+      ) {
+        return 'School or Institution email is required';
+      }
+      return '';
     }
     return '';
   };
@@ -57,24 +74,22 @@ const fields: Array<FieldInterface> = [
   },
   {
     name: 'email',
-    label: 'Email',
+    label: 'Your School or Institution Email',
     type: 'email',
     component: 'text-input',
     validators: [isRequired(), emailPattern()],
-  },
-  {
-    name: 'jobFunction',
-    label: 'Your Job Function',
-    component: 'select',
-    options: jobFunctions,
-    validators: [isRequired()],
   },
   {
     name: 'teachingStatus',
     label: 'Teaching Status',
     component: 'select',
     options: teachingStatuses,
-    validators: [isRequired()],
+    validators: [isRequired()], // TODO: confirm if its mandatory?
+  },
+  {
+    name: 'facultyProfile',
+    label: 'Faculty profile/Google scholar profile URL',
+    component: 'text-input',
   },
   {
     name: 'institutionName',
@@ -151,7 +166,7 @@ export default function Form({
       <div sx={styles.FormModal}>
         <FormPanel
           onClose={onClose}
-          title="Join the MongoDB Educator Community"
+          title="MongoDB for Educators Program Application"
           postSubmissionState={formSuccess}
           postSubmissionTitle="Thanks for joining the MongoDB Educator Community!"
           postSubmissionDescription="You have been added to our mailing list and will receive updates regarding new curriculum and relevant opportunities moving forward."
@@ -192,7 +207,7 @@ export default function Form({
                 width: '100%',
               }}
             >
-              Submit
+              Submit my Application
             </Button>
           </FormGeneric>
         </FormPanel>
