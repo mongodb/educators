@@ -46,11 +46,14 @@ const registrationHandler = async (
 
   const message = 'Success';
 
-  if (process.env['APP_ENV'] === 'production') {
+  if (
+    process.env['APP_ENV'] === 'production' ||
+    process.env['APP_ENV'] === 'staging'
+  ) {
     // Don't need to await these since they can fail gracefully.
     uploadToAirtable(registrationToUpload);
     uploadToDB(registrationToUpload);
-    sendEmail(registrationToUpload);
+    // sendEmail(registrationToUpload);
   } else {
     logger.info(
       'Bypassed DB/Airtable upload and email in non-production environment.'
