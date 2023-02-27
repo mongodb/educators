@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
 import countryList from 'react-select-country-list';
 import { institutionTypes, teachingStatuses } from 'lib/registration';
-import CourseSyllabusField from './sub-components/CourseSyllabus';
+import CourseSyllabusField from './custom-fields/course-syllabus';
 import FormProps from './types';
 import styles from './styles';
 

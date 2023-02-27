@@ -42,6 +42,7 @@ const CourseSyllabusField = ({
             accept=".pdf, .doc, .docx"
             id="file-syllabus-upload"
             name="file-syllabus-upload"
+            data-testid="file-syllabus-upload"
             sx={styles.SyllabusFileUpload}
             onChange={({
               target: { files },
@@ -62,9 +63,10 @@ const CourseSyllabusField = ({
         >
           <input
             type="text"
+            placeholder="Enter Web URL"
             id="url-syllabus-upload"
             name="url-syllabus-upload"
-            placeholder="Enter Web URL"
+            data-testid="url-syllabus-upload"
             onFocus={() => setInputFocus(true)}
             onBlur={({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
               setInputFocus(false);
