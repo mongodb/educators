@@ -28,7 +28,7 @@ const SyllabusPromptText = {
 const SyllabusFileUpload = {
   display: 'block',
   color: theme.colors.black00,
-  marginTop: ['inc20', null, null, 'inc30'], // responsivess check
+  marginTop: 'inc30',
   fontFamily: theme.fonts['euclid-circular-a'],
 };
 
@@ -37,7 +37,7 @@ const SyllabusWebUrlInput = {
   borderTopLeftRadius: 'inc20',
   borderTopRightRadius: 'inc20',
   borderBottom: `4px solid ${theme.colors.black00}`,
-  marginTop: ['inc20', null, null, 'inc30'], // responsivess check
+  marginTop: 'inc30',
   input: {
     backgroundColor: 'transparent !important',
     border: 'none',
@@ -46,8 +46,8 @@ const SyllabusWebUrlInput = {
     fontSize: 'inc40',
     fontFamily: theme.fonts['euclid-circular-a'],
     color: theme.colors.black00,
-    py: ['inc20', null, null, 'inc40'],
-    px: ['inc20', null, null, 'inc40'], // check responsiveness
+    py: 'inc40',
+    px: 'inc40',
     '::placeholder': {
       color: theme.colors.black30,
     },

@@ -1,16 +1,13 @@
 import { ChangeEvent, useState } from 'react';
 import { TypographyScale } from '@mdb/flora';
-
 import styles from './styles';
-
-type FieldType = 'fileUpload' | 'webUrl' | '';
 
 const CourseSyllabusField = ({
   setValue,
 }: {
   setValue: (val: string | File) => void;
 }) => {
-  const [field, setField] = useState<FieldType>('');
+  const [field, setField] = useState<'fileUpload' | 'webUrl' | ''>('');
   const [inputFocus, setInputFocus] = useState(false);
 
   function onUploadDocClick() {

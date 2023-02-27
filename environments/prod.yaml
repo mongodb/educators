@@ -18,6 +18,9 @@ envSecrets:
   SES_USER_ACCESS_KEY_ID: educators-secrets
   SES_USER_SECRET_ACCESS_KEY: educators-secrets
   MONGODB_URL: educators-secrets
+  GOOGLE_DRIVE_FOLDER_ID: educators-secrets
+  GOOGLE_DRIVE_PRIVATE_KEY: educators-secrets
+  GOOGLE_DRIVE_CLIENT_EMAIL: educators-secrets
 
 autoscaling:
   minReplicas: 2
