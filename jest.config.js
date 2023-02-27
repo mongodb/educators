@@ -13,6 +13,7 @@ const customJestConfig = {
     'styles/(.*)$': '<rootDir>/src/styles/$1',
     'hooks/(.*)$': '<rootDir>/src/hooks/$1',
     'contexts/(.*)$': '<rootDir>/src/contexts/$1',
+    'services/(.*)$': '<rootDir>/src/services/$1',
     'components/(.*)$': '<rootDir>/src/components/$1',
     'react-markdown':
       '<rootDir>/node_modules/react-markdown/react-markdown.min.js',

@@ -5,12 +5,10 @@ import { Registration, validateRegistrationBody } from 'lib/registration';
 import { uploadToAirtable } from 'lib/airtable';
 import { getDBRegistration, uploadToDB } from 'lib/db';
 import { parseForm, FormidableField, FormidableFile } from 'lib/parse-form';
-
 import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
 import { responseWrapper } from 'lib/utils';
 import { sendEmail } from 'lib/ses';
 import logger from 'lib/logger';
-
 import googleDriveFileUpload from 'lib/google-drive-file-upload';
 
 const limiter = rateLimit({
