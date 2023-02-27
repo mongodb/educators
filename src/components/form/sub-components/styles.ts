@@ -1,9 +1,5 @@
 import theme from '@mdb/flora/theme';
 
-// const SyllabusOptionsWrapper = {
-//   marginBottom: ['inc20', null, null, 'inc30'] // TODO: responsivess
-// };
-
 const SyllabusTitle = {
   display: 'block',
   marginBottom: 'inc20',
@@ -33,11 +29,7 @@ const SyllabusFileUpload = {
   display: 'block',
   color: theme.colors.black00,
   marginTop: ['inc20', null, null, 'inc30'], // responsivess check
-  // fontSize: 'inc10', // 16
-  // lineHeight: '32px', // 32
-  // borderBottom: '2px solid transparent',
-  // fontWeight: 500,
-  // fontFamily: theme.fonts['euclid-circular-a'],
+  fontFamily: theme.fonts['euclid-circular-a'],
 };
 
 const SyllabusWebUrlInput = {
@@ -47,7 +39,7 @@ const SyllabusWebUrlInput = {
   borderBottom: `4px solid ${theme.colors.black00}`,
   marginTop: ['inc20', null, null, 'inc30'], // responsivess check
   input: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent !important',
     border: 'none',
     outline: 'none',
     width: '100%',
@@ -58,6 +50,10 @@ const SyllabusWebUrlInput = {
     px: ['inc20', null, null, 'inc40'], // check responsiveness
     '::placeholder': {
       color: theme.colors.black30,
+    },
+    '&:autofill': {
+      boxShadow: `0 0 0 100px ${theme.colors.black70} inset`,
+      textFillColor: theme.colors.black00,
     },
   },
 };

@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { TypographyScale } from '@mdb/flora';
 
 import styles from './styles';
 
 type FieldType = 'fileUpload' | 'webUrl' | '';
 
-export default function CourseSyllabusField() {
+const CourseSyllabusField = ({
+  setValue,
+}: {
+  setValue: (val: string | File) => void;
+}) => {
   const [field, setField] = useState<FieldType>('');
   const [inputFocus, setInputFocus] = useState(false);
 
@@ -15,10 +19,6 @@ export default function CourseSyllabusField() {
 
   function onEnterUrlClick() {
     setField('webUrl');
-  }
-
-  function handleOnChange(e) {
-    console.log('hello', e.target.files);
   }
 
   return (
@@ -36,13 +36,20 @@ export default function CourseSyllabusField() {
         Enter a Web URL
       </button>
       {field === 'fileUpload' && (
-        // TODO: need to add what types of files are allowed to be uploaded
-        <label htmlFor="syllabus-upload" sx={styles.SyllabusFileUpload}>
+        <label htmlFor="syllabus-upload">
           <input
-            id="syllabus-upload"
             type="file"
-            name="my-name-dux"
-            onChange={handleOnChange}
+            accept=".pdf, .doc, .docx"
+            id="file-syllabus-upload"
+            name="file-syllabus-upload"
+            sx={styles.SyllabusFileUpload}
+            onChange={({
+              target: { files },
+            }: ChangeEvent<HTMLInputElement>) => {
+              if (files) {
+                setValue(files[0]);
+              }
+            }}
           />
         </label>
       )}
@@ -55,14 +62,19 @@ export default function CourseSyllabusField() {
         >
           <input
             type="text"
-            name="my-name"
-            id="my-name"
+            id="url-syllabus-upload"
+            name="url-syllabus-upload"
             placeholder="Enter Web URL"
             onFocus={() => setInputFocus(true)}
-            onBlur={() => setInputFocus(false)}
+            onBlur={({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+              setInputFocus(false);
+              setValue(value);
+            }}
           />
         </div>
       )}
     </div>
   );
-}
+};
+
+export default CourseSyllabusField;

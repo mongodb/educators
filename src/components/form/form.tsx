@@ -2,11 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
 import countryList from 'react-select-country-list';
-import {
-  Registration,
-  institutionTypes,
-  teachingStatuses,
-} from 'lib/registration';
+import { institutionTypes, teachingStatuses } from 'lib/registration';
 import CourseSyllabusField from './sub-components/CourseSyllabus';
 import FormProps from './types';
 import styles from './styles';
@@ -139,24 +135,30 @@ export default function Form({
 }: FormProps): JSX.Element | null {
   const [formError, setFormError] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
+  const [courseSyllabusValue, setCourseSyllabusValue] = useState<string | File>(
+    ''
+  );
 
-  // TODO: form doesnt seem to pick up non Flora Field values
-  // Test to see if Field works in Syllabus or if we just need to add to body for POST
   async function onSubmit(form: FormValues): Promise<void> {
     // clear out existing error state if present
     if (formError) {
       setFormError(false);
     }
 
-    const body = form as unknown as Registration; // converts required formValues arg type to required Registration type for POST
+    const formData = new FormData();
 
-    console.log(body);
-    // try {
-    //   await axios.post('/academia/api/registration', body);
-    //   setFormSuccess(true);
-    // } catch (e) {
-    //   setFormError(true);
-    // }
+    Object.keys(form).forEach(key => formData.append(key, form[key] || ''));
+    // append file or text from CourseSyllabus component to formData since it doesn't come thru in form callback from Flora
+    formData.append('courseSyllabus', courseSyllabusValue || '');
+
+    try {
+      await axios.post('/academia/api/registration', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      setFormSuccess(true);
+    } catch (e) {
+      setFormError(true);
+    }
   }
 
   function onClose() {
@@ -185,7 +187,12 @@ export default function Form({
             {fields.map(
               ({ component, label, name, options, type, validators }) => {
                 if (name === 'courseSyllabus') {
-                  return <CourseSyllabusField key={name} />;
+                  return (
+                    <CourseSyllabusField
+                      key={name}
+                      setValue={setCourseSyllabusValue}
+                    />
+                  );
                 }
 
                 return (

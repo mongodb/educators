@@ -41,10 +41,6 @@ const registrationFieldsToTypes: { [key: string]: string } = {
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export const validateRegistrationBody = (body: any) => {
-  // TODO: better way to check for all keys that are not required?
-  // unrequired field values can be undefined. If so we convert it to a blank string.
-  body.courseSyllabus = body.courseSyllabus || '';
-  body.facultyProfile = body.facultyProfile || '';
   const bodyKeys = Object.keys(body);
   for (const key in registrationFieldsToTypes) {
     if (!bodyKeys.includes(key)) {
