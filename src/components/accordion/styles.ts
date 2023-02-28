@@ -28,11 +28,10 @@ const AccordionBody = {
   fontSize: 'inc30',
   lineHeight: 'inc30',
   color: theme.colors.black50,
-  transition: `min-height ${theme.motion.accordion} ease`,
+  transition: `height ${theme.motion.accordion} ease`,
   overflow: 'hidden',
   // default values that will get overriden with "isOpen" logic in component
   height: 0,
-  minHeight: 0,
   paddingBottom: 0,
 
   ul: {
