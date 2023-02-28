@@ -15,7 +15,7 @@ export default function Accordion({
 
   useEffect(() => {
     setContentHeight(`${contentRef.current?.scrollHeight}px`);
-  }, [contentRef.current?.scrollHeight]);
+  }, [isOpen]);
 
   function onToggle() {
     setIsOpen(!isOpen);
@@ -38,8 +38,7 @@ export default function Accordion({
         sx={{
           ...styles.AccordionBody,
           ...(isOpen && {
-            height: '100%',
-            minHeight: contentHeight,
+            height: contentHeight,
             paddingBottom: 'inc50',
           }),
         }}
