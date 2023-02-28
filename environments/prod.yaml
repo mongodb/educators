@@ -14,6 +14,7 @@ envSecrets:
   AIRTABLE_BASE_ID: educators-secrets
   AIRTABLE_API_KEY: educators-secrets
   NEXT_PUBLIC_SENTRY_DSN: educators-secrets
+  NEXT_PUBLIC_SHEER_ID_KEY: educators-secrets
   SENTRY_AUTH_TOKEN: educators-secrets
   SES_USER_ACCESS_KEY_ID: educators-secrets
   SES_USER_SECRET_ACCESS_KEY: educators-secrets
