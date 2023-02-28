@@ -15,7 +15,8 @@ export default function SheerIdContainer() {
       console.log('process', process.env);
       window?.sheerId.loadInlineIframe(
         document.getElementById('sheer-id-container'),
-        `https://services.sheerid.com/verify/${process.env['NEXT_PUBLIC_SHEER_ID_KEY']}/`
+        // TODO: this needs to be put into an .env var
+        'https://services.sheerid.com/verify/63cea347ea1fab6ff9fb2239/'
       );
       mounted.current = true;
     }
