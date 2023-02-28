@@ -12,9 +12,10 @@ export default function SheerIdContainer() {
   useEffect(() => {
     // force useEffect to only run once on component mount, without this it would display two iFrames
     if (!mounted.current) {
+      console.log('process', process.env);
       window?.sheerId.loadInlineIframe(
         document.getElementById('sheer-id-container'),
-        `https://services.sheerid.com/verify/${process.env.NEXT_PUBLIC_SHEER_ID_KEY}/`
+        `https://services.sheerid.com/verify/${process.env['NEXT_PUBLIC_SHEER_ID_KEY']}/`
       );
       mounted.current = true;
     }

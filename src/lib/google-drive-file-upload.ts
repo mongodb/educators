@@ -6,7 +6,7 @@ export default async function googleDriveFileUpload(
   fileName: string,
   mimeType: string
 ) {
-  const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+  const folderId = process.env['GOOGLE_DRIVE_FOLDER_ID'];
 
   if (folderId) {
     const drive = getDriveService();
