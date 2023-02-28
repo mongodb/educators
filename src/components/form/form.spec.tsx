@@ -74,10 +74,6 @@ describe('[component] Form', () => {
     const selects = screen.getAllByRole('select'); // Flora Dropdowns are buttons with role="select", not native <select /> elements
     expect(selects.length).toEqual(3);
 
-    // Text Area
-    const textarea = container.getElementsByTagName('textarea');
-    expect(textarea.length).toEqual(1);
-
     // Submit Button
     const submitBtn = container.querySelectorAll('[type="submit"]');
     expect(submitBtn.length).toEqual(1);
@@ -135,5 +131,23 @@ describe('[component] Form', () => {
         'There was an error submitting your request. Please try again.'
       )
     ).toBeInTheDocument();
+  });
+
+  it('displays course syllabus field options', () => {
+    render(<Form isOpen closeForm={() => {}} />);
+
+    const uploadDocumentBtn = screen.getByText('Upload a document');
+    const enterWebUrlBtn = screen.getByText('Enter a Web URL');
+
+    expect(uploadDocumentBtn).toBeInTheDocument();
+    expect(enterWebUrlBtn).toBeInTheDocument();
+
+    fireEvent.click(enterWebUrlBtn);
+
+    expect(screen.getByPlaceholderText('Enter Web URL')).toBeInTheDocument();
+
+    fireEvent.click(uploadDocumentBtn);
+
+    expect(screen.getByTestId('file-syllabus-upload')).toBeInTheDocument();
   });
 });
