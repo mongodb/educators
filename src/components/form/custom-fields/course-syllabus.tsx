@@ -18,6 +18,21 @@ const CourseSyllabusField = ({
     setField('webUrl');
   }
 
+  function onFileInputChange({
+    target: { files },
+  }: ChangeEvent<HTMLInputElement>) {
+    if (files) {
+      setValue(files[0]);
+    }
+  }
+
+  function onTextInputBlur({
+    target: { value },
+  }: ChangeEvent<HTMLInputElement>) {
+    setInputFocus(false);
+    setValue(value);
+  }
+
   return (
     <div>
       <TypographyScale inverse sx={styles.SyllabusTitle}>
@@ -41,13 +56,7 @@ const CourseSyllabusField = ({
             name="file-syllabus-upload"
             data-testid="file-syllabus-upload"
             sx={styles.SyllabusFileUpload}
-            onChange={({
-              target: { files },
-            }: ChangeEvent<HTMLInputElement>) => {
-              if (files) {
-                setValue(files[0]);
-              }
-            }}
+            onChange={onFileInputChange}
           />
         </label>
       )}
@@ -65,10 +74,7 @@ const CourseSyllabusField = ({
             name="url-syllabus-upload"
             data-testid="url-syllabus-upload"
             onFocus={() => setInputFocus(true)}
-            onBlur={({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-              setInputFocus(false);
-              setValue(value);
-            }}
+            onBlur={onTextInputBlur}
           />
         </div>
       )}
