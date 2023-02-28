@@ -78,8 +78,8 @@ const registrationHandler = async (
 
   // TODO: should really have error handling if form doesnt submit at least to Airtable?
   if (
-    process.env.APP_ENV === 'staging' ||
-    process.env.APP_ENV === 'production'
+    process.env['APP_ENV'] === 'staging' ||
+    process.env['APP_ENV'] === 'production'
   ) {
     // Don't need to await these since they can fail gracefully.
     uploadToAirtable(registrationToUpload);
