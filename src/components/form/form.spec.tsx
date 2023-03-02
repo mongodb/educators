@@ -103,11 +103,11 @@ describe('[component] Form', () => {
     });
 
     expect(
-      screen.getByText('Thanks for joining the MongoDB Educator Community!')
+      screen.getByText('Thanks for applying to MongoDB for Educators!')
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        'You have been added to our mailing list and will receive updates regarding new curriculum and relevant opportunities moving forward.'
+        'We will review your application and email you within 5-7 business days.'
       )
     ).toBeInTheDocument();
   });
