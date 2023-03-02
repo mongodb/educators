@@ -10,5 +10,4 @@ The following do **not** qualify for the MongoDB for Educators Program:
 - Early stage startups. For startups, see [MongoDB for Startups](https://www.mongodb.com/startups).
 - Marketing departments at Educational institutions.
 - Educational programs affiliated with organizations whose primary purpose is not educational.
-
-Students are not eligible for the educator benefits. Students, see [MongoDB for Students](https://www.mongodb.com/students).
+- Students are not eligible for the educator benefits. Students, see [MongoDB for Students](https://www.mongodb.com/students).

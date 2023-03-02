@@ -13,7 +13,7 @@ const CONFIG = [
   },
   {
     title:
-      'Can educators outside of the United States apply for the MongoDB for Educator Program?',
+      'Can educators outside of the United States apply for the MongoDB for Educators Program?',
     body: 'Yes!',
   },
   {

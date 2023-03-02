@@ -58,11 +58,37 @@ export default function Home({
           ))}
         </section>
         <ContentPreview
-          title="Curriculum Resources"
+          title={
+            <TypographyScale
+              variant="heading3"
+              customElement="h3"
+              sx={styles.HomePageCurriculumTitle}
+            >
+              Curriculum Resources
+            </TypographyScale>
+          }
+          subtitle={
+            <TypographyScale
+              variant="body1"
+              color="secondary"
+              sx={styles.HomePageCurriculumSubtitle}
+            >
+              Explore free resources for educators crafted by MongoDB experts to
+              prepare learners with in-demand database skills and knowledge
+            </TypographyScale>
+          }
           content={content.lectures}
         />
         <ContentPreview
-          title="Additional Educator Resources"
+          title={
+            <TypographyScale
+              variant="heading5"
+              customElement="h3"
+              sx={styles.HomePageResourcesTitle}
+            >
+              Additional Educator Resources
+            </TypographyScale>
+          }
           content={content.resources}
         />
         <StudentResources
