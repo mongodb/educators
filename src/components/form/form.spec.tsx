@@ -27,6 +27,19 @@ function populateRequiredFormFields(
   }
 }
 
+function populateCourseSyllabusField() {
+  const enterWebUrlBtn = screen.getByText('Enter a Web URL');
+  expect(enterWebUrlBtn).toBeInTheDocument();
+
+  fireEvent.click(enterWebUrlBtn);
+
+  const webUrlInput = screen.getByTestId('url-syllabus-upload');
+
+  // populate the input and then call blur event since that is when value is set on the element
+  fireEvent.change(webUrlInput, { target: { value: 'http://www.test.com' } });
+  fireEvent.blur(webUrlInput);
+}
+
 describe('[component] Form', () => {
   it('renders the component', () => {
     render(<Form isOpen closeForm={() => {}} />);
@@ -97,6 +110,7 @@ describe('[component] Form', () => {
     const selects = screen.getAllByRole('select');
 
     populateRequiredFormFields(inputs, selects);
+    populateCourseSyllabusField();
 
     await act(async () => {
       fireEvent.click(screen.getByText('Submit my Application'));
@@ -121,6 +135,7 @@ describe('[component] Form', () => {
     const selects = screen.getAllByRole('select');
 
     populateRequiredFormFields(inputs, selects);
+    populateCourseSyllabusField();
 
     await act(async () => {
       fireEvent.click(screen.getByText('Submit my Application'));

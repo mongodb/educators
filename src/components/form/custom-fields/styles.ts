@@ -62,6 +62,12 @@ const SyllabusWebUrlInputFocus = {
   borderBottom: `4px solid ${theme.colors.blue40}`,
 };
 
+const SyllabusErrorMsg = {
+  display: 'block',
+  marginTop: 'inc20',
+  marginLeft: 'inc40',
+};
+
 const styles = {
   SyllabusBtn,
   SyllabusTitle,
@@ -69,6 +75,7 @@ const styles = {
   SyllabusFileUpload,
   SyllabusPromptText,
   SyllabusWebUrlInputFocus,
+  SyllabusErrorMsg,
 };
 
 export default styles;

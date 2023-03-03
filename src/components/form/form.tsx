@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
 import countryList from 'react-select-country-list';
 import { institutionTypes, teachingStatuses } from 'lib/registration';
-import CourseSyllabusField from './custom-fields/course-syllabus';
+import CourseSyllabus from './custom-fields/course-syllabus';
 import FormProps from './types';
 import styles from './styles';
 
@@ -135,21 +135,29 @@ export default function Form({
 }: FormProps): JSX.Element | null {
   const [formError, setFormError] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
-  const [courseSyllabusValue, setCourseSyllabusValue] = useState<string | File>(
-    ''
-  );
+  const [courseSyllabusField, setCourseSyllabusField] = useState<{
+    value: string | File;
+    error: boolean;
+  }>({
+    value: '',
+    error: false,
+  });
 
   async function onSubmit(form: FormValues): Promise<void> {
     // clear out existing error state if present
     if (formError) {
       setFormError(false);
     }
+    // we have to do a specific check for course syllabus since it's not a Flora field (those have their own validators)
+    if (!courseSyllabusField.value) {
+      return setCourseSyllabusField(prev => ({ ...prev, error: true }));
+    }
 
     const formData = new FormData();
 
     Object.keys(form).forEach(key => formData.append(key, form[key] || ''));
     // append file or text from CourseSyllabus component to formData since it doesn't come thru in form callback from Flora
-    formData.append('courseSyllabus', courseSyllabusValue || '');
+    formData.append('courseSyllabus', courseSyllabusField.value);
 
     try {
       await axios.post('/academia/api/registration', formData, {
@@ -188,9 +196,10 @@ export default function Form({
               ({ component, label, name, options, type, validators }) => {
                 if (name === 'courseSyllabus') {
                   return (
-                    <CourseSyllabusField
+                    <CourseSyllabus
                       key={name}
-                      setValue={setCourseSyllabusValue}
+                      hasError={courseSyllabusField.error}
+                      setValue={setCourseSyllabusField}
                     />
                   );
                 }
