@@ -1,28 +1,39 @@
 import { ChangeEvent, useState } from 'react';
 import { TypographyScale } from '@mdb/flora';
+import theme from '@mdb/flora/theme';
 import styles from './styles';
 
 const CourseSyllabusField = ({
+  hasError,
   setValue,
 }: {
-  setValue: (val: string | File) => void;
+  hasError: boolean;
+  setValue: ({
+    value,
+    error,
+  }: {
+    value: string | File;
+    error: boolean;
+  }) => void;
 }) => {
   const [field, setField] = useState<'fileUpload' | 'webUrl' | ''>('');
   const [inputFocus, setInputFocus] = useState(false);
 
   function onUploadDocClick() {
     setField('fileUpload');
+    setValue({ value: '', error: false });
   }
 
   function onEnterUrlClick() {
     setField('webUrl');
+    setValue({ value: '', error: false });
   }
 
   function onFileInputChange({
     target: { files },
   }: ChangeEvent<HTMLInputElement>) {
     if (files) {
-      setValue(files[0]);
+      setValue({ value: files[0], error: false });
     }
   }
 
@@ -30,7 +41,7 @@ const CourseSyllabusField = ({
     target: { value },
   }: ChangeEvent<HTMLInputElement>) {
     setInputFocus(false);
-    setValue(value);
+    setValue({ value, error: false });
   }
 
   return (
@@ -38,13 +49,27 @@ const CourseSyllabusField = ({
       <TypographyScale inverse sx={styles.SyllabusTitle}>
         Course Syllabus
       </TypographyScale>
-      <button type="button" onClick={onUploadDocClick} sx={styles.SyllabusBtn}>
+      <button
+        type="button"
+        onClick={onUploadDocClick}
+        sx={{
+          ...styles.SyllabusBtn,
+          ...(hasError && { color: theme.colors.red30 }),
+        }}
+      >
         Upload a document
       </button>
       <TypographyScale inverse variant="body3" sx={styles.SyllabusPromptText}>
         or
       </TypographyScale>
-      <button type="button" onClick={onEnterUrlClick} sx={styles.SyllabusBtn}>
+      <button
+        type="button"
+        onClick={onEnterUrlClick}
+        sx={{
+          ...styles.SyllabusBtn,
+          ...(hasError && { color: theme.colors.red30 }),
+        }}
+      >
         Enter a Web URL
       </button>
       {field === 'fileUpload' && (
@@ -77,6 +102,16 @@ const CourseSyllabusField = ({
             onBlur={onTextInputBlur}
           />
         </div>
+      )}
+      {hasError && (
+        <TypographyScale
+          inverse
+          color="secondary"
+          variant="body4"
+          sx={styles.SyllabusErrorMsg}
+        >
+          This field is required
+        </TypographyScale>
       )}
     </div>
   );
