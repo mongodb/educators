@@ -13,6 +13,25 @@ const HomePageHeroButton: ThemeUICSSObject = {
   width: ['78%', null, null, null],
 };
 
+const HomePageCurriculumTitle: ThemeUICSSObject = {
+  textAlign: 'center',
+  gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
+};
+
+const HomePageCurriculumSubtitle: ThemeUICSSObject = {
+  ...HomePageCurriculumTitle,
+  width: ['100%', '90%', '70%'],
+  margin: '0 auto',
+  paddingTop: 'inc30',
+  paddingBottom: 'inc40',
+};
+
+const HomePageResourcesTitle: ThemeUICSSObject = {
+  color: '#000000',
+  gridColumn: ['span 6', 'span 6', 'span 8', 'span 12'],
+  marginBottom: 'inc40',
+};
+
 const HomePageStatsSection: ThemeUICSSObject = {
   display: 'flex',
   flexDirection: ['column', null, 'row', null],
@@ -36,6 +55,9 @@ const styles = {
   HomePageMainStyles,
   HomePageHeroButton,
   HomePageStatsSection,
+  HomePageResourcesTitle,
+  HomePageCurriculumTitle,
+  HomePageCurriculumSubtitle,
 };
 
 export default styles;

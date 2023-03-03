@@ -101,7 +101,7 @@ export default function EducatorVerification({
             variant="body2"
             sx={styles.EduVerificationRadioGroupLabel}
           >
-            What is your institutional affiliation?
+            Where is your academic institution located?
           </TypographyScale>
           <RadioGroup
             name={RADIO_GROUPS.LOCATION}

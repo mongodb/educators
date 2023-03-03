@@ -20,7 +20,7 @@ Educators successfully verified through SheerID will receive their Atlas Promoti
 - Name of Institution
 - Institution Type
 - Country
-- Link to faculty or staff profile on institution website, Google scholar profile or other relevant link demonstrating your status as an educator
+- Link to faculty or staff profile on institution website, Google scholar profile, or other relevant link demonstrating their status as an educator
 - Course Name
 - Syllabus
 
@@ -32,7 +32,7 @@ Educators successfully verified through SheerID will receive their Atlas Promoti
 - Name of Institution
 - Institution Type
 - Country
-- Link to faculty or staff profile on institution website, Google scholar profile or other relevant link demonstrating your status as an educator
+- Link to faculty or staff profile on institution website, Google scholar profile, or other relevant link demonstrating their status as an educator
 - Course Name
 - Syllabus
 

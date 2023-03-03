@@ -174,8 +174,8 @@ export default function Form({
           onClose={onClose}
           title="MongoDB for Educators Program Application"
           postSubmissionState={formSuccess}
-          postSubmissionTitle="Thanks for joining the MongoDB Educator Community!"
-          postSubmissionDescription="You have been added to our mailing list and will receive updates regarding new curriculum and relevant opportunities moving forward."
+          postSubmissionTitle="Thanks for applying to MongoDB for Educators!"
+          postSubmissionDescription="We will review your application and email you within 5-7 business days."
         >
           <FormGeneric
             inverse

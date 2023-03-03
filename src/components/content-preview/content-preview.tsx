@@ -89,18 +89,14 @@ function getCardActions({
 
 export default function ContentPreview({
   title,
+  subtitle = <></>,
   content,
 }: ContentPreviewProps): JSX.Element {
   return (
     <section sx={styles.ContentPreviewWrapper}>
-      <GridLayout>
-        <TypographyScale
-          variant="heading5"
-          customElement="h3"
-          sx={styles.ContentPreviewTitle}
-        >
-          {title}
-        </TypographyScale>
+      <GridLayout sx={{ gap: 0 }}>
+        {title}
+        {subtitle}
         <Grid columns={[1, null, 2, 3]} sx={styles.ContentPreviewGrid}>
           {content.map(
             ({
