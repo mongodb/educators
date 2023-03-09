@@ -1,0 +1,1 @@
+Once you've received your Atlas Promotional Code, you can [apply the credits](https://www.mongodb.com/docs/atlas/billing/subscriptions/#std-label-activate-subscription) to your selected Atlas organization. Please note, promotional codes are redeemed at the organization level. Your promotional code can only be redeemed once to an organization of your choice.

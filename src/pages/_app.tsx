@@ -2,11 +2,13 @@ import { useState } from 'react';
 import Head from 'next/head';
 import theme from '@mdb/flora/theme';
 import { ThemeProvider } from '@theme-ui/core';
-
 import type { AppProps } from 'next/app';
+
+import { ModalProvider } from 'contexts/modal';
 
 import Form from 'components/form';
 import Layout from 'components/layout';
+import ModalRoot from 'components/modal';
 
 export default function EducatorPortal({ Component, pageProps }: AppProps) {
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
@@ -47,10 +49,13 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
         <meta property="twitter:site" content="@MongoDB" />
       </Head>
       <ThemeProvider theme={theme}>
-        <Layout isFormOpen={isFormOpen}>
-          <Form isOpen={isFormOpen} closeForm={() => setIsFormOpen(false)} />
-          <Component {...pageProps} openForm={() => setIsFormOpen(true)} />
-        </Layout>
+        <ModalProvider>
+          <Layout isFormOpen={isFormOpen}>
+            <ModalRoot />
+            <Form isOpen={isFormOpen} closeForm={() => setIsFormOpen(false)} />
+            <Component {...pageProps} openForm={() => setIsFormOpen(true)} />
+          </Layout>
+        </ModalProvider>
       </ThemeProvider>
     </>
   );

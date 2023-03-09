@@ -12,7 +12,14 @@ envSecrets:
   CMS_API_KEY: educators-secrets
   REVALIDATE_TOKEN: educators-secrets
   NEXT_PUBLIC_SENTRY_DSN: educators-secrets
+  NEXT_PUBLIC_SHEER_ID_KEY: educators-secrets
   SENTRY_AUTH_TOKEN: educators-secrets
+  MONGODB_URL: educators-secrets
+  AIRTABLE_BASE_ID: educators-secrets
+  AIRTABLE_API_KEY: educators-secrets
+  GOOGLE_DRIVE_FOLDER_ID: educators-secrets
+  GOOGLE_DRIVE_PRIVATE_KEY: educators-secrets
+  GOOGLE_DRIVE_CLIENT_EMAIL: educators-secrets
 
 autoscaling:
   minReplicas: 1

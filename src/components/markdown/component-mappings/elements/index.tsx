@@ -15,7 +15,7 @@ export const A = ({
 );
 
 export const P = ({ children }: { children: JSX.Element }) => (
-  <div sx={styles.PStyles}>{children}</div>
+  <p sx={styles.PStyles}>{children}</p>
 );
 
 // Heading Elements

@@ -27,6 +27,19 @@ function populateRequiredFormFields(
   }
 }
 
+function populateCourseSyllabusField() {
+  const enterWebUrlBtn = screen.getByText('Enter a Web URL');
+  expect(enterWebUrlBtn).toBeInTheDocument();
+
+  fireEvent.click(enterWebUrlBtn);
+
+  const webUrlInput = screen.getByTestId('url-syllabus-upload');
+
+  // populate the input and then call blur event since that is when value is set on the element
+  fireEvent.change(webUrlInput, { target: { value: 'http://www.test.com' } });
+  fireEvent.blur(webUrlInput);
+}
+
 describe('[component] Form', () => {
   it('renders the component', () => {
     render(<Form isOpen closeForm={() => {}} />);
@@ -56,7 +69,11 @@ describe('[component] Form', () => {
     expect(emailPattern()('firstlast@gmail.')).toEqual(
       'Please enter a valid email address'
     );
-    expect(emailPattern()('firstlast@gmail.com')).toEqual(''); // email matches intended pattern
+    expect(emailPattern()('firstlast@gmail.com')).toEqual(
+      'School or Institution email is required'
+    ); // email domain is in "excluded" (free) list
+
+    expect(emailPattern()('firstlast@myfakeschool.edu')).toEqual(''); // is valid email domain and not found in blacklisted free email domains
   });
 
   it('renders the expected components', () => {
@@ -64,15 +81,11 @@ describe('[component] Form', () => {
 
     // Text inputs
     const inputs = container.getElementsByTagName('input');
-    expect(inputs.length).toEqual(6); // 5 text inputs and 1 checkbox input
+    expect(inputs.length).toEqual(7); // 6 text inputs and 1 checkbox input
 
     // Selects
     const selects = screen.getAllByRole('select'); // Flora Dropdowns are buttons with role="select", not native <select /> elements
-    expect(selects.length).toEqual(4);
-
-    // Text Area
-    const textarea = container.getElementsByTagName('textarea');
-    expect(textarea.length).toEqual(1);
+    expect(selects.length).toEqual(3);
 
     // Submit Button
     const submitBtn = container.querySelectorAll('[type="submit"]');
@@ -97,17 +110,18 @@ describe('[component] Form', () => {
     const selects = screen.getAllByRole('select');
 
     populateRequiredFormFields(inputs, selects);
+    populateCourseSyllabusField();
 
     await act(async () => {
-      fireEvent.click(screen.getByText('Submit'));
+      fireEvent.click(screen.getByText('Submit my Application'));
     });
 
     expect(
-      screen.getByText('Thanks for joining the MongoDB Educator Community!')
+      screen.getByText('Thanks for applying to MongoDB for Educators!')
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        'You have been added to our mailing list and will receive updates regarding new curriculum and relevant opportunities moving forward.'
+        'We will review your application and email you within 5-7 business days.'
       )
     ).toBeInTheDocument();
   });
@@ -121,9 +135,10 @@ describe('[component] Form', () => {
     const selects = screen.getAllByRole('select');
 
     populateRequiredFormFields(inputs, selects);
+    populateCourseSyllabusField();
 
     await act(async () => {
-      fireEvent.click(screen.getByText('Submit'));
+      fireEvent.click(screen.getByText('Submit my Application'));
     });
 
     expect(
@@ -131,5 +146,23 @@ describe('[component] Form', () => {
         'There was an error submitting your request. Please try again.'
       )
     ).toBeInTheDocument();
+  });
+
+  it('displays course syllabus field options', () => {
+    render(<Form isOpen closeForm={() => {}} />);
+
+    const uploadDocumentBtn = screen.getByText('Upload a document');
+    const enterWebUrlBtn = screen.getByText('Enter a Web URL');
+
+    expect(uploadDocumentBtn).toBeInTheDocument();
+    expect(enterWebUrlBtn).toBeInTheDocument();
+
+    fireEvent.click(enterWebUrlBtn);
+
+    expect(screen.getByPlaceholderText('Enter Web URL')).toBeInTheDocument();
+
+    fireEvent.click(uploadDocumentBtn);
+
+    expect(screen.getByTestId('file-syllabus-upload')).toBeInTheDocument();
   });
 });

@@ -18,6 +18,13 @@ const headers = [
 const config = {
   reactStrictMode: true,
   basePath: '/academia',
+  webpack: config => {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    });
+    return config;
+  },
   async headers() {
     return [
       {

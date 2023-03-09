@@ -2,12 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
 import countryList from 'react-select-country-list';
-import {
-  Registration,
-  jobFunctions,
-  institutionTypes,
-  teachingStatuses,
-} from 'lib/registration';
+import { institutionTypes, teachingStatuses } from 'lib/registration';
+import CourseSyllabus from './custom-fields/course-syllabus';
 import FormProps from './types';
 import styles from './styles';
 
@@ -17,12 +13,30 @@ export function isRequired() {
   };
 }
 
-export function emailPattern() {
+const disallowedEmailDomains = [
+  'gmail.com',
+  'icloud.com',
+  'outlook.com',
+  'yahoo.com',
+  'yandex.ru',
+  'proton.me',
+  'zohomail.com',
+  'rocketmail.com',
+  'hotmail.com',
+];
+
+export function emailPattern(checkDomains = true) {
   return function (value: string): string {
     if (value) {
-      return value.match(/^\S+@\S+\.\S+$/)
-        ? ''
-        : 'Please enter a valid email address';
+      if (!value.match(/^\S+@\S+\.\S+$/)) {
+        return 'Please enter a valid email address';
+      } else if (
+        checkDomains &&
+        disallowedEmailDomains.find(domain => value.split('@')[1] === domain)
+      ) {
+        return 'School or Institution email is required';
+      }
+      return '';
     }
     return '';
   };
@@ -57,17 +71,10 @@ const fields: Array<FieldInterface> = [
   },
   {
     name: 'email',
-    label: 'Email',
+    label: 'Your School or Institution Email',
     type: 'email',
     component: 'text-input',
     validators: [isRequired(), emailPattern()],
-  },
-  {
-    name: 'jobFunction',
-    label: 'Your Job Function',
-    component: 'select',
-    options: jobFunctions,
-    validators: [isRequired()],
   },
   {
     name: 'teachingStatus',
@@ -75,6 +82,11 @@ const fields: Array<FieldInterface> = [
     component: 'select',
     options: teachingStatuses,
     validators: [isRequired()],
+  },
+  {
+    name: 'facultyProfile',
+    label: 'Faculty profile/Google scholar profile URL',
+    component: 'text-input',
   },
   {
     name: 'institutionName',
@@ -123,17 +135,34 @@ export default function Form({
 }: FormProps): JSX.Element | null {
   const [formError, setFormError] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
+  const [courseSyllabusField, setCourseSyllabusField] = useState<{
+    value: string | File;
+    error: boolean;
+  }>({
+    value: '',
+    error: false,
+  });
 
   async function onSubmit(form: FormValues): Promise<void> {
     // clear out existing error state if present
     if (formError) {
       setFormError(false);
     }
+    // we have to do a specific check for course syllabus since it's not a Flora field (those have their own validators)
+    if (!courseSyllabusField.value) {
+      return setCourseSyllabusField(prev => ({ ...prev, error: true }));
+    }
 
-    const body = form as unknown as Registration; // converts required formValues arg type to required Registration type for POST
+    const formData = new FormData();
+
+    Object.keys(form).forEach(key => formData.append(key, form[key] || ''));
+    // append file or text from CourseSyllabus component to formData since it doesn't come thru in form callback from Flora
+    formData.append('courseSyllabus', courseSyllabusField.value);
 
     try {
-      await axios.post('/academia/api/registration', body);
+      await axios.post('/academia/api/registration', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       setFormSuccess(true);
     } catch (e) {
       setFormError(true);
@@ -151,10 +180,10 @@ export default function Form({
       <div sx={styles.FormModal}>
         <FormPanel
           onClose={onClose}
-          title="Join the MongoDB Educator Community"
+          title="MongoDB for Educators Program Application"
           postSubmissionState={formSuccess}
-          postSubmissionTitle="Thanks for joining the MongoDB Educator Community!"
-          postSubmissionDescription="You have been added to our mailing list and will receive updates regarding new curriculum and relevant opportunities moving forward."
+          postSubmissionTitle="Thanks for applying to MongoDB for Educators!"
+          postSubmissionDescription="We will review your application and email you within 5-7 business days."
         >
           <FormGeneric
             inverse
@@ -164,17 +193,29 @@ export default function Form({
             }}
           >
             {fields.map(
-              ({ component, label, name, options, type, validators }) => (
-                <Field
-                  key={name}
-                  name={name}
-                  type={type}
-                  label={label}
-                  component={component}
-                  options={options || []}
-                  validators={validators || []}
-                />
-              )
+              ({ component, label, name, options, type, validators }) => {
+                if (name === 'courseSyllabus') {
+                  return (
+                    <CourseSyllabus
+                      key={name}
+                      hasError={courseSyllabusField.error}
+                      setValue={setCourseSyllabusField}
+                    />
+                  );
+                }
+
+                return (
+                  <Field
+                    key={name}
+                    name={name}
+                    type={type}
+                    label={label}
+                    component={component}
+                    options={options || []}
+                    validators={validators || []}
+                  />
+                );
+              }
             )}
             {formError && (
               <span sx={styles.FormErrorMessage}>
@@ -192,7 +233,7 @@ export default function Form({
                 width: '100%',
               }}
             >
-              Submit
+              Submit my Application
             </Button>
           </FormGeneric>
         </FormPanel>

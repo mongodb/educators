@@ -22,7 +22,7 @@ const StudentResourcesTitle: ThemeUICSSObject = {
 const StudentResourcesDescription: ThemeUICSSObject = {
   display: 'block',
   textAlign: 'center',
-  width: ['100%', '90%', '70%', '56%'],
+  width: ['100%', '90%', '70%', '50%'],
   margin: '0 auto',
 };
 

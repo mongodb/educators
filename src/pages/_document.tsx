@@ -13,6 +13,11 @@ export default class MyDocument extends Document {
             rel="dns-prefetch preconnect"
             href="https://www.google-analytics.com"
           />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@sheerid/jslib@1/sheerid.css"
+            type="text/css"
+          />
           <Script
             id="ga-base"
             strategy="afterInteractive"
@@ -24,6 +29,10 @@ export default class MyDocument extends Document {
                 `,
             }}
             async
+          />
+          <Script
+            src="https://cdn.jsdelivr.net/npm/@sheerid/jslib@1/sheerid.js"
+            strategy="afterInteractive"
           />
         </Head>
         <body>

@@ -25,8 +25,8 @@ export default function StudentResources({
           color="secondary"
           sx={styles.StudentResourcesDescription}
         >
-          MongoDB offers resources and opportunities to prepare and empower
-          students with in-demand skills and resume-worthy certifications.
+          MongoDB offers resources and opportunities to empower students to make
+          the most of MongoDB
         </TypographyScale>
         <FeaturedCard
           noBorder

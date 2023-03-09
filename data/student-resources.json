@@ -1,7 +1,7 @@
 {
   "mainCard": {
     "title": "Get $200 of Benefits with the MongoDB Student Pack",
-    "subtitle": "Access free certification ($150 value) and $50 of Atlas credits with the GitHub Student Pack!",
+    "subtitle": "Access free Certification and $50 in Atlas Credits with the GitHub Student Pack.",
     "imgSrc": "/academia/desk.svg",
     "href": "https://www.mongodb.com/students",
     "cta": "Learn More"
@@ -9,14 +9,14 @@
   "subCards": [
     {
       "title": "MongoDB Internships",
-      "subtitle": "Students gain valuable industry experience through projects that will be used by thousands of developers and organizations across the world. Share our internships today!",
+      "subtitle": "Work on teams and projects that will be used by thousands of developers and organizations across the world.",
       "imgSrc": "/academia/computer.svg",
       "href": "https://www.mongodb.com/careers/departments/campus",
       "cta": "View MongoDB Internship Opportunities"
     },
     {
       "title": "Student Demo Applications",
-      "subtitle": "Inspire learners with code examples from applications developed by students. Explore what students have created today!",
+      "subtitle": "Inspire your students with Demo Apps that students have created with the power of MongoDB.",
       "imgSrc": "/academia/directory.svg",
       "href": "https://www.mongodb.com/developer/search/?s=&contributedBy=Student",
       "cta": "View MongoDB Student Demo Apps"
