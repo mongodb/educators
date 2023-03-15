@@ -18,7 +18,11 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
       <Head>
         <title>MongoDB Educator Center</title>
         <link rel="icon" href="/academia/favicon.ico" />
-
+        <link rel="canonical" href="https://www.mongodb.com/academia" />
+        <meta
+          name="description"
+          content="Explore free resources for educators crafted by MongoDB experts to prepare learners with in-demand database skills and knowledge."
+        />
         {/* Open Graph Default Metadata (Used by Facebook, LinkedIn) */}
         <meta property="og:title" content="MongoDB Educator Center" />
         <meta
