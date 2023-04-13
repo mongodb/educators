@@ -22,7 +22,7 @@ export default function Accordion({
   }
 
   return (
-    <div sx={{ ...wrapperStyles }}>
+    <div sx={{ ...styles.Accordion, ...wrapperStyles}}>
       <button onClick={onToggle} sx={styles.AccordionHeader}>
         <TypographyScale variant="heading6" sx={styles.AccordionHeaderText}>
           {title}
