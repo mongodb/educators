@@ -3,7 +3,6 @@ import {
   GridLayout,
   Link,
   SystemIcon,
-  TypographyScale,
   TargetType,
   ESystemIconNames,
 } from '@mdb/flora';
