@@ -3,7 +3,8 @@ import questionsFAQ from './questions.md';
 
 const CONFIG = [
   {
-    title: 'Are MongoDB employees eligible to apply for the MongoDB PhD Fellowship?',
+    title:
+      'Are MongoDB employees eligible to apply for the MongoDB PhD Fellowship?',
     body: 'No, MongoDB employees are not eligible for the Fellowship.',
   },
   {
@@ -16,7 +17,7 @@ const CONFIG = [
   },
   {
     title: 'Who will review the applications?',
-    body: 'Applications will be reviewed by a panel of 5 Distinguished Engineers, most of whom have published research and taught computer science at the graduate level.'
+    body: 'Applications will be reviewed by a panel of 5 Distinguished Engineers, most of whom have published research and taught computer science at the graduate level.',
   },
   {
     title: 'If selected, when does the Fellowship start?',
@@ -24,10 +25,11 @@ const CONFIG = [
   },
   {
     title: 'Are there any tax implications if I receive the Fellowship?',
-    body: 'Awards are taxable based on tax laws where you are a resident. Fellows will need to submit necessary tax information accepting their award. MongoDB does not advise Fellows on how to file their taxes.'
+    body: 'Awards are taxable based on tax laws where you are a resident. Fellows will need to submit necessary tax information accepting their award. MongoDB does not advise Fellows on how to file their taxes.',
   },
   {
-    title: 'Are there any intellectual property implications if I receive the Fellowship?',
+    title:
+      'Are there any intellectual property implications if I receive the Fellowship?',
     body: 'All research conducted by Fellows belongs to Fellows in compliance with any university policies. Fellows are not subject to intellectual property restrictions unless they do an internship or consult seperately with MongoDB during the Fellowship.',
   },
   {
@@ -37,7 +39,7 @@ const CONFIG = [
   {
     title: 'If I have additional questions, who should I contact?',
     body: questionsFAQ as unknown as string,
-  }
+  },
 ];
 
 export default CONFIG;

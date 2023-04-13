@@ -37,7 +37,11 @@ export default function Home({
   return (
     <>
       <header sx={styles.HomePageHeroWrapper}>
-        <TypographyScale inverse variant="heading1" sx={styles.HomePageHeroTitle}>
+        <TypographyScale
+          inverse
+          variant="heading1"
+          sx={styles.HomePageHeroTitle}
+        >
           {heroData.title}
         </TypographyScale>
         <div sx={styles.HomePageHeroContent}>
