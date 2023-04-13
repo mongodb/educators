@@ -1,10 +1,10 @@
-import eligibilityFAQ from './faq-eligibility.md';
-import applicationProcessFAQ from './faq-application-process.md';
-import promotionalCodeFAQ from './faq-promotional-code.md';
-import creditsFAQ from './faq-credits.md';
-import studentBenefitsFAQ from './faq-student-benefits.md';
-import certficationFAQ from './faq-certfication.md';
-import contactFAQ from './faq-contact.md';
+import eligibilityFAQ from './eligibility.md';
+import applicationProcessFAQ from './application-process.md';
+import promotionalCodeFAQ from './promotional-code.md';
+import creditsFAQ from './credits.md';
+import studentBenefitsFAQ from './student-benefits.md';
+import certficationFAQ from './certfication.md';
+import contactFAQ from './contact.md';
 
 const CONFIG = [
   {
