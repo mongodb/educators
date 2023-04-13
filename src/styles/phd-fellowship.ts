@@ -29,9 +29,11 @@ const Section = {
 };
 
 const InfoSection = {
+  borderBottom: `1px solid ${theme.colors.black30}`,
   marginBottom: ['inc40', null, null, 'inc50'],
   '&:last-of-type': {
     marginBottom: 0,
+    borderBottom: 'none',
   },
 };
 
