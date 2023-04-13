@@ -1,6 +1,12 @@
 import theme from '@mdb/flora/theme';
 import { ThemeUICSSObject } from 'theme-ui';
 
+const Accordion = {
+  '&:last-of-type': {
+    borderBottom: `1px solid ${theme.colors.black30}`,
+  },
+};
+
 const AccordionHeader = {
   display: 'flex',
   alignItems: 'center',
@@ -44,6 +50,7 @@ const AccordionBody = {
 };
 
 const styles = {
+  Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionHeaderText,

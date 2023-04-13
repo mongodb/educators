@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import { Button, GridLayout, TypographyScale } from '@mdb/flora';
 
 import heroData from 'data/hero.json';
-import faqData from 'data/FAQs/config';
+import faqData from 'data/FAQs/educators-program';
 import statisticsData from 'data/statistics.json';
 import studentResourcesData from 'data/student-resources.json';
 
@@ -10,7 +10,6 @@ import { ContentData, getAllContent } from 'lib/cms-content';
 
 import { useModalContext } from 'contexts/modal';
 
-import Hero from 'components/hero';
 import Statistic from 'components/statistic';
 import Accordion from 'components/accordion';
 import ContentPreview from 'components/content-preview';
@@ -37,15 +36,23 @@ export default function Home({
 
   return (
     <>
-      <Hero
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        cta={
+      <header sx={styles.HomePageHeroWrapper}>
+        <TypographyScale
+          inverse
+          variant="heading1"
+          sx={styles.HomePageHeroTitle}
+        >
+          {heroData.title}
+        </TypographyScale>
+        <div sx={styles.HomePageHeroContent}>
+          <TypographyScale inverse variant="body1">
+            {heroData.subtitle}
+          </TypographyScale>
           <Button onClick={onHeroButtonClick} sx={styles.HomePageHeroButton}>
             {heroData.buttonText}
           </Button>
-        }
-      />
+        </div>
+      </header>
       <main sx={styles.HomePageMainStyles}>
         <ProgramBenefits />
         <section sx={styles.HomePageStatsSection}>
