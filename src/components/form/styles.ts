@@ -11,7 +11,7 @@ const FormModalWrapper: ThemeUICSSObject = {
   position: 'fixed',
   top: 0,
   width: '100%',
-  zIndex: 10,
+  zIndex: 1001,
 };
 
 const FormModal: ThemeUICSSObject = {

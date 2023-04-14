@@ -76,7 +76,7 @@ const FAQTitle: ThemeUICSSObject = {
 const FAQStyles = {
   ul: {
     marginTop: ['inc30', null, 'inc40'],
-    marginBottom: 0,
+    marginBottom: '0 !important',
   },
 };
 
