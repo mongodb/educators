@@ -15,23 +15,40 @@ import Accordion from 'components/accordion';
 import ContentPreview from 'components/content-preview';
 import ProgramBenefits from 'components/program-benefits';
 import StudentResources from 'components/student-resources';
+import {
+  EDUCATOR_PROGRAM_FORM_FIELDS,
+  EDUCATOR_PROGRAM_FORM_TEXTS,
+  submitEducatorProgramForm,
+} from 'components/form/utils';
 import EducatorVerification from 'components/modal/educator-verification';
 
 import styles from 'styles/home';
 
 interface HomePageProps {
-  openForm: () => void;
+  // openForm: () => void;
+  setFormState: (content: any) => null;
   content: ContentData;
 }
 
 export default function Home({
-  openForm,
+  setFormState,
   content,
 }: HomePageProps): JSX.Element {
   const { openModal } = useModalContext();
 
   function onHeroButtonClick() {
-    openModal(<EducatorVerification openForm={openForm} />);
+    openModal(
+      <EducatorVerification
+        openForm={() =>
+          setFormState({
+            isOpen: true,
+            fields: EDUCATOR_PROGRAM_FORM_FIELDS,
+            texts: EDUCATOR_PROGRAM_FORM_TEXTS,
+            submitForm: submitEducatorProgramForm,
+          })
+        }
+      />
+    );
   }
 
   return (

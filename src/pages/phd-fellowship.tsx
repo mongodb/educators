@@ -1,20 +1,37 @@
 import { Button, GridLayout, TypographyScale } from '@mdb/flora';
-import Accordion from 'components/accordion';
 
 import faqData from 'data/FAQs/phd-fellowship';
 
+import Accordion from 'components/accordion';
+import {
+  PHD_FELLOWSHIP_FIELDS,
+  submitPhdFellowshipForm,
+} from 'components/form/utils';
+
 import styles from 'styles/phd-fellowship';
 
-export default function PhdFellowship() {
+export default function PhdFellowship({ setFormState }) {
+  const renderForm = () =>
+    setFormState({
+      isOpen: true,
+      fields: PHD_FELLOWSHIP_FIELDS,
+      texts: {
+        title: 'MongoDB PhD Fellowship Program', // TODO: check for subtitle in form?
+        postSubmissionTitle: 'Application Submitted',
+        postSubmissionDescription:
+          'Thank you for submitting your application, we look forward to reviewing it',
+        button: 'Submit',
+      },
+      submitForm: submitPhdFellowshipForm,
+    });
+
   return (
     <>
       <header sx={styles.HeroWrapper}>
         <TypographyScale inverse variant="heading2">
           MongoDB PhD Fellowship Program
         </TypographyScale>
-        <Button onClick={() => alert('Form to be implemented')}>
-          Apply Now
-        </Button>
+        <Button onClick={renderForm}>Apply Now</Button>
       </header>
       <GridLayout>
         <main sx={styles.Main}>
@@ -55,7 +72,7 @@ export default function PhdFellowship() {
                   To apply, please complete this{' '}
                   <button
                     type="button"
-                    onClick={() => alert('Form to be implemented')}
+                    onClick={renderForm}
                     sx={styles.TextBtn}
                   >
                     form

@@ -1,21 +1,12 @@
+import theme from '@mdb/flora/theme';
 import { ChangeEvent, useState } from 'react';
 import { TypographyScale } from '@mdb/flora';
-import theme from '@mdb/flora/theme';
+
+import { Attachments } from '../types';
+
 import styles from './styles';
 
-const CourseSyllabusField = ({
-  hasError,
-  setValue,
-}: {
-  hasError: boolean;
-  setValue: ({
-    value,
-    error,
-  }: {
-    value: string | File;
-    error: boolean;
-  }) => void;
-}) => {
+const AttachmentsField = ({ label, hasError, setValue }: Attachments) => {
   const [field, setField] = useState<'fileUpload' | 'webUrl' | ''>('');
   const [inputFocus, setInputFocus] = useState(false);
 
@@ -46,27 +37,31 @@ const CourseSyllabusField = ({
 
   return (
     <div>
-      <TypographyScale inverse sx={styles.SyllabusTitle}>
-        Course Syllabus
+      <TypographyScale inverse sx={styles.AttachmentsTitle}>
+        {label}
       </TypographyScale>
       <button
         type="button"
         onClick={onUploadDocClick}
         sx={{
-          ...styles.SyllabusBtn,
+          ...styles.AttachmentsBtn,
           ...(hasError && { color: theme.colors.red30 }),
         }}
       >
         Upload a document
       </button>
-      <TypographyScale inverse variant="body3" sx={styles.SyllabusPromptText}>
+      <TypographyScale
+        inverse
+        variant="body3"
+        sx={styles.AttachmentsPromptText}
+      >
         or
       </TypographyScale>
       <button
         type="button"
         onClick={onEnterUrlClick}
         sx={{
-          ...styles.SyllabusBtn,
+          ...styles.AttachmentsBtn,
           ...(hasError && { color: theme.colors.red30 }),
         }}
       >
@@ -80,7 +75,7 @@ const CourseSyllabusField = ({
             id="file-syllabus-upload"
             name="file-syllabus-upload"
             data-testid="file-syllabus-upload"
-            sx={styles.SyllabusFileUpload}
+            sx={styles.AttachmentsFileUpload}
             onChange={onFileInputChange}
           />
         </label>
@@ -88,8 +83,8 @@ const CourseSyllabusField = ({
       {field === 'webUrl' && (
         <div
           sx={{
-            ...styles.SyllabusWebUrlInput,
-            ...(inputFocus && { ...styles.SyllabusWebUrlInputFocus }),
+            ...styles.AttachmentsWebUrlInput,
+            ...(inputFocus && { ...styles.AttachmentsWebUrlInputFocus }),
           }}
         >
           <input
@@ -108,7 +103,7 @@ const CourseSyllabusField = ({
           inverse
           color="secondary"
           variant="body4"
-          sx={styles.SyllabusErrorMsg}
+          sx={styles.AttachmentsErrorMsg}
         >
           This field is required
         </TypographyScale>
@@ -117,4 +112,4 @@ const CourseSyllabusField = ({
   );
 };
 
-export default CourseSyllabusField;
+export default AttachmentsField;

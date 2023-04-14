@@ -1,11 +1,11 @@
 import theme from '@mdb/flora/theme';
 
-const SyllabusTitle = {
+const AttachmentsTitle = {
   display: 'block',
   marginBottom: 'inc20',
 };
 
-const SyllabusBtn = {
+const AttachmentsBtn = {
   background: 'transparent',
   border: 'none',
   color: theme.colors.green40,
@@ -21,18 +21,18 @@ const SyllabusBtn = {
   },
 };
 
-const SyllabusPromptText = {
+const AttachmentsPromptText = {
   mx: 'inc20',
 };
 
-const SyllabusFileUpload = {
+const AttachmentsFileUpload = {
   display: 'block',
   color: theme.colors.black00,
   marginTop: 'inc30',
   fontFamily: theme.fonts['euclid-circular-a'],
 };
 
-const SyllabusWebUrlInput = {
+const AttachmentsWebUrlInput = {
   backgroundColor: theme.colors.black70,
   borderTopLeftRadius: 'inc20',
   borderTopRightRadius: 'inc20',
@@ -58,24 +58,24 @@ const SyllabusWebUrlInput = {
   },
 };
 
-const SyllabusWebUrlInputFocus = {
+const AttachmentsWebUrlInputFocus = {
   borderBottom: `4px solid ${theme.colors.blue40}`,
 };
 
-const SyllabusErrorMsg = {
+const AttachmentsErrorMsg = {
   display: 'block',
   marginTop: 'inc20',
   marginLeft: 'inc40',
 };
 
 const styles = {
-  SyllabusBtn,
-  SyllabusTitle,
-  SyllabusWebUrlInput,
-  SyllabusFileUpload,
-  SyllabusPromptText,
-  SyllabusWebUrlInputFocus,
-  SyllabusErrorMsg,
+  AttachmentsBtn,
+  AttachmentsTitle,
+  AttachmentsErrorMsg,
+  AttachmentsFileUpload,
+  AttachmentsPromptText,
+  AttachmentsWebUrlInput,
+  AttachmentsWebUrlInputFocus,
 };
 
 export default styles;
