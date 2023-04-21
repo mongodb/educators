@@ -6,6 +6,8 @@ import CourseHeader from 'components/course-header';
 import CourseAside from 'components/course-aside';
 import CourseList from 'components/course-list';
 
+import { FormState } from 'components/form/types';
+
 import { ContentItem, getAllContent, getContentBySlug } from 'lib/cms-content';
 
 import styles from 'styles/course';
@@ -15,12 +17,12 @@ interface PageProps {
 }
 
 interface CoursePageProps {
-  openForm: () => void;
   content: ContentItem;
+  setFormState: (form: FormState) => void;
 }
 
 export default function CoursePage({
-  openForm,
+  setFormState,
   content: {
     title = '',
     level = '',
@@ -47,8 +49,8 @@ export default function CoursePage({
           <CourseAside
             title={title}
             level={level}
-            openForm={openForm}
             duration={durationHours}
+            setFormState={setFormState}
             wrapperStyles={styles.CoursePageAside}
           />
         </GridLayout>

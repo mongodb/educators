@@ -1,168 +1,55 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
-import countryList from 'react-select-country-list';
-import { institutionTypes, teachingStatuses } from 'lib/registration';
-import CourseSyllabus from './custom-fields/course-syllabus';
-import FormProps from './types';
+
+import Attachments from './custom-fields/attachments';
+import { AttachmentsType, FormProps } from './types';
+
 import styles from './styles';
 
-export function isRequired() {
-  return function (value: string): string {
-    return !value || value === '' ? 'This field is required' : '';
-  };
-}
-
-const disallowedEmailDomains = [
-  'gmail.com',
-  'icloud.com',
-  'outlook.com',
-  'yahoo.com',
-  'yandex.ru',
-  'proton.me',
-  'zohomail.com',
-  'rocketmail.com',
-  'hotmail.com',
-];
-
-export function emailPattern(checkDomains = true) {
-  return function (value: string): string {
-    if (value) {
-      if (!value.match(/^\S+@\S+\.\S+$/)) {
-        return 'Please enter a valid email address';
-      } else if (
-        checkDomains &&
-        disallowedEmailDomains.find(domain => value.split('@')[1] === domain)
-      ) {
-        return 'School or Institution email is required';
-      }
-      return '';
-    }
-    return '';
-  };
-}
-
-interface FieldInterface {
-  name: string;
-  label: string;
-  options?: Array<string>;
-  type?: 'text' | 'email';
-  component: 'text-input' | 'select' | 'text-area' | 'checkbox';
-  validators?: Array<{
-    rule?: string;
-    (value: string): string;
-  }>;
-}
-
-const fields: Array<FieldInterface> = [
-  {
-    name: 'firstName',
-    label: 'First Name',
-    type: 'text',
-    component: 'text-input',
-    validators: [isRequired()],
-  },
-  {
-    name: 'lastName',
-    label: 'Last Name',
-    type: 'text',
-    component: 'text-input',
-    validators: [isRequired()],
-  },
-  {
-    name: 'email',
-    label: 'Your School or Institution Email',
-    type: 'email',
-    component: 'text-input',
-    validators: [isRequired(), emailPattern()],
-  },
-  {
-    name: 'teachingStatus',
-    label: 'Teaching Status',
-    component: 'select',
-    options: teachingStatuses,
-    validators: [isRequired()],
-  },
-  {
-    name: 'facultyProfile',
-    label: 'Faculty profile/Google scholar profile URL',
-    component: 'text-input',
-  },
-  {
-    name: 'institutionName',
-    label: 'Name of Institution',
-    type: 'text',
-    component: 'text-input',
-    validators: [isRequired()],
-  },
-  {
-    name: 'institutionType',
-    label: 'Institution Type',
-    component: 'select',
-    options: institutionTypes,
-    validators: [isRequired()],
-  },
-  {
-    name: 'location',
-    label: 'Country',
-    component: 'select',
-    options: countryList().getLabels() || [],
-    validators: [isRequired()],
-  },
-  {
-    name: 'courseName',
-    label: 'Course Name',
-    type: 'text',
-    component: 'text-input',
-    validators: [isRequired()],
-  },
-  {
-    name: 'courseSyllabus',
-    label: 'Course Syllabus',
-    component: 'text-area',
-  },
-  {
-    name: 'agreedToEmails',
-    label: 'I agree to receive emails from MongoDB, Inc.',
-    component: 'checkbox',
-    validators: [isRequired()],
-  },
-];
-
 export default function Form({
+  texts,
   isOpen,
+  fields,
   closeForm,
+  submitForm,
+  multiFileUpload = false,
 }: FormProps): JSX.Element | null {
   const [formError, setFormError] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
-  const [courseSyllabusField, setCourseSyllabusField] = useState<{
-    value: string | File;
-    error: boolean;
-  }>({
-    value: '',
+  const [attachments, setAttachments] = useState<AttachmentsType>({
+    docs: null,
+    urls: [],
     error: false,
   });
+
+  console.log('attachments', attachments);
 
   async function onSubmit(form: FormValues): Promise<void> {
     // clear out existing error state if present
     if (formError) {
       setFormError(false);
     }
-    // we have to do a specific check for course syllabus since it's not a Flora field (those have their own validators)
-    if (!courseSyllabusField.value) {
-      return setCourseSyllabusField(prev => ({ ...prev, error: true }));
+
+    // we have to do a specific check for attachments since it's not a Flora field (those have their own validators)
+    if (
+      multiFileUpload &&
+      !attachments.docs &&
+      !attachments.urls.some(({ value }) => value)
+    ) {
+      return setAttachments(prev => ({ ...prev, error: true }));
+    } else if (
+      !multiFileUpload &&
+      !attachments.docs &&
+      !attachments.urls[0].value
+    ) {
+      return setAttachments(prev => ({ ...prev, error: true }));
     }
 
     const formData = new FormData();
-
     Object.keys(form).forEach(key => formData.append(key, form[key] || ''));
-    // append file or text from CourseSyllabus component to formData since it doesn't come thru in form callback from Flora
-    formData.append('courseSyllabus', courseSyllabusField.value);
 
     try {
-      await axios.post('/academia/api/registration', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      submitForm(formData, attachments);
       setFormSuccess(true);
     } catch (e) {
       setFormError(true);
@@ -180,10 +67,13 @@ export default function Form({
       <div sx={styles.FormModal}>
         <FormPanel
           onClose={onClose}
-          title="MongoDB for Educators Program Application"
+          title={texts.title}
+          subtitle={texts.subtitle || ''}
           postSubmissionState={formSuccess}
-          postSubmissionTitle="Thanks for applying to MongoDB for Educators!"
-          postSubmissionDescription="We will review your application and email you within 5-7 business days."
+          onPostSubmissionButtonClick={closeForm}
+          postSubmissionTitle={texts.postSubmissionTitle}
+          postSubmissionDescription={texts.postSubmissionDescription}
+          postSubmissionButtonText={texts.postSubmissionButtonText || ''}
         >
           <FormGeneric
             inverse
@@ -194,12 +84,15 @@ export default function Form({
           >
             {fields.map(
               ({ component, label, name, options, type, validators }) => {
-                if (name === 'courseSyllabus') {
+                if (name === 'attachments') {
                   return (
-                    <CourseSyllabus
+                    <Attachments
                       key={name}
-                      hasError={courseSyllabusField.error}
-                      setValue={setCourseSyllabusField}
+                      label={label}
+                      prompt={texts.attachments}
+                      multiFile={multiFileUpload}
+                      attachments={attachments}
+                      setAttachments={setAttachments}
                     />
                   );
                 }
@@ -233,7 +126,7 @@ export default function Form({
                 width: '100%',
               }}
             >
-              Submit my Application
+              {texts.button}
             </Button>
           </FormGeneric>
         </FormPanel>

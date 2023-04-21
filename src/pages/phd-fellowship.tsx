@@ -1,20 +1,47 @@
 import { Button, GridLayout, TypographyScale } from '@mdb/flora';
-import Accordion from 'components/accordion';
 
 import faqData from 'data/FAQs/phd-fellowship';
 
+import Accordion from 'components/accordion';
+import {
+  PHD_FELLOWSHIP_FIELDS,
+  submitPhdFellowshipForm,
+} from 'components/form/utils';
+import { FormState } from 'components/form/types';
+
 import styles from 'styles/phd-fellowship';
 
-export default function PhdFellowship() {
+export default function PhdFellowship({
+  setFormState,
+}: {
+  setFormState: (form: FormState) => void;
+}) {
+  const renderForm = () =>
+    setFormState({
+      isOpen: true,
+      fields: PHD_FELLOWSHIP_FIELDS,
+      multiFileUpload: true,
+      texts: {
+        title: 'MongoDB PhD Fellowship Program',
+        subtitle: 'Application Form',
+        postSubmissionTitle: 'Application Submitted',
+        postSubmissionDescription:
+          'Thank you for submitting your application, we look forward to reviewing it',
+        postSubmissionButtonText: 'Close',
+        button: 'Submit',
+        attachments:
+          'Upload your CV, Research Summary and Transcripts (undergraduate and graduate)',
+      },
+      submitForm: submitPhdFellowshipForm,
+    });
+
   return (
     <>
       <header sx={styles.HeroWrapper}>
         <TypographyScale inverse variant="heading2">
           MongoDB PhD Fellowship Program
         </TypographyScale>
-        <Button onClick={() => alert('Form to be implemented')}>
-          Apply Now
-        </Button>
+        <Button onClick={renderForm}>Apply Now</Button>
       </header>
       <GridLayout>
         <main sx={styles.Main}>
@@ -55,7 +82,7 @@ export default function PhdFellowship() {
                   To apply, please complete this{' '}
                   <button
                     type="button"
-                    onClick={() => alert('Form to be implemented')}
+                    onClick={renderForm}
                     sx={styles.TextBtn}
                   >
                     form

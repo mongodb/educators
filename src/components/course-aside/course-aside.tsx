@@ -4,6 +4,11 @@ import { Link, TypographyScale } from '@mdb/flora';
 import { useModalContext } from 'contexts/modal';
 import Image from 'components/image';
 import SocialShare from 'components/social-share';
+import {
+  EDUCATOR_PROGRAM_FORM_FIELDS,
+  EDUCATOR_PROGRAM_FORM_TEXTS,
+  submitEducatorProgramForm,
+} from 'components/form/utils';
 import EducatorVerification from 'components/modal/educator-verification';
 import CourseAsideProps from './types';
 
@@ -28,14 +33,25 @@ export default function CourseAside({
   level,
   title,
   duration,
-  openForm,
+  setFormState,
   wrapperStyles = {},
 }: CourseAsideProps): JSX.Element {
   const { openModal } = useModalContext();
   const [currentPageUrl, setCurrentPageUrl] = useState<string>('');
 
   function onPromptClick() {
-    openModal(<EducatorVerification openForm={openForm} />);
+    openModal(
+      <EducatorVerification
+        openForm={() =>
+          setFormState({
+            isOpen: true,
+            fields: EDUCATOR_PROGRAM_FORM_FIELDS,
+            texts: EDUCATOR_PROGRAM_FORM_TEXTS,
+            submitForm: submitEducatorProgramForm,
+          })
+        }
+      />
+    );
   }
 
   // because of SSR, we need to assure the component mounts before trying to access window obj

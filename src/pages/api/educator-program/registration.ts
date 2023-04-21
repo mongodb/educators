@@ -16,7 +16,7 @@ const limiter = rateLimit({
   ttl: 30 * 1000,
 });
 
-const endpoint = '/api/registration';
+const endpoint = '/api/educator-program/registration';
 
 // This is needed by Next.js when receiving 'Content-Type': 'multipart/form-data'
 export const config = {
