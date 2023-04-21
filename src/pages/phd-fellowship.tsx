@@ -9,18 +9,28 @@ import {
 } from 'components/form/utils';
 
 import styles from 'styles/phd-fellowship';
+import { FormState } from 'components/form/types';
 
-export default function PhdFellowship({ setFormState }) {
+export default function PhdFellowship({
+  setFormState,
+}: {
+  setFormState: (form: FormState) => void;
+}) {
   const renderForm = () =>
     setFormState({
       isOpen: true,
       fields: PHD_FELLOWSHIP_FIELDS,
+      multiFileUpload: true,
       texts: {
-        title: 'MongoDB PhD Fellowship Program', // TODO: check for subtitle in form?
+        title: 'MongoDB PhD Fellowship Program',
+        subtitle: 'Application Form',
         postSubmissionTitle: 'Application Submitted',
         postSubmissionDescription:
           'Thank you for submitting your application, we look forward to reviewing it',
+        postSubmissionButtonText: 'Close',
         button: 'Submit',
+        attachments:
+          'Upload your CV, Research Summary and Transcripts (undergraduate and graduate)',
       },
       submitForm: submitPhdFellowshipForm,
     });

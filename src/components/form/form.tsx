@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Field, FormGeneric, FormPanel, FormValues } from '@mdb/flora';
 
 import Attachments from './custom-fields/attachments';
-import FormProps from './types';
+import { AttachmentsType, FormProps } from './types';
 
 import styles from './styles';
 
@@ -12,24 +12,36 @@ export default function Form({
   fields,
   closeForm,
   submitForm,
+  multiFileUpload = false,
 }: FormProps): JSX.Element | null {
   const [formError, setFormError] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
-  const [attachments, setAttachments] = useState<{
-    value: string | File;
-    error: boolean;
-  }>({
-    value: '',
+  const [attachments, setAttachments] = useState<AttachmentsType>({
+    docs: null,
+    urls: [],
     error: false,
   });
+
+  console.log('attachments', attachments);
 
   async function onSubmit(form: FormValues): Promise<void> {
     // clear out existing error state if present
     if (formError) {
       setFormError(false);
     }
+
     // we have to do a specific check for attachments since it's not a Flora field (those have their own validators)
-    if (!attachments.value) {
+    if (
+      multiFileUpload &&
+      !attachments.docs &&
+      !attachments.urls.some(({ value }) => value)
+    ) {
+      return setAttachments(prev => ({ ...prev, error: true }));
+    } else if (
+      !multiFileUpload &&
+      !attachments.docs &&
+      !attachments.urls[0].value
+    ) {
       return setAttachments(prev => ({ ...prev, error: true }));
     }
 
@@ -37,7 +49,8 @@ export default function Form({
     Object.keys(form).forEach(key => formData.append(key, form[key] || ''));
 
     try {
-      await submitForm(formData, attachments);
+      // TODO: make sure forms take into account having one or multiple Files
+      submitForm(formData, attachments);
       setFormSuccess(true);
     } catch (e) {
       setFormError(true);
@@ -56,9 +69,12 @@ export default function Form({
         <FormPanel
           onClose={onClose}
           title={texts.title}
+          subtitle={texts.subtitle || ''}
           postSubmissionState={formSuccess}
+          onPostSubmissionButtonClick={closeForm}
           postSubmissionTitle={texts.postSubmissionTitle}
           postSubmissionDescription={texts.postSubmissionDescription}
+          postSubmissionButtonText={texts.postSubmissionButtonText || ''}
         >
           <FormGeneric
             inverse
@@ -68,14 +84,16 @@ export default function Form({
             }}
           >
             {fields.map(
-              ({ component, label, name, options, type, validators }: any) => {
+              ({ component, label, name, options, type, validators }) => {
                 if (name === 'attachments') {
                   return (
                     <Attachments
                       key={name}
                       label={label}
-                      hasError={attachments.error}
-                      setValue={setAttachments}
+                      prompt={texts.attachments}
+                      multiFile={multiFileUpload}
+                      attachments={attachments}
+                      setAttachments={setAttachments}
                     />
                   );
                 }

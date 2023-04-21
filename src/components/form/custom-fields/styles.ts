@@ -22,6 +22,11 @@ const AttachmentsBtn = {
 };
 
 const AttachmentsPromptText = {
+  display: 'block',
+  marginBottom: 'inc30',
+};
+
+const AttachmentsOptionText = {
   mx: 'inc20',
 };
 
@@ -32,12 +37,18 @@ const AttachmentsFileUpload = {
   fontFamily: theme.fonts['euclid-circular-a'],
 };
 
+const AttachmentsWebUrlInputWrapper = {
+  display: 'flex',
+  alignItems: 'center',
+  marginTop: 'inc30',
+};
+
+// TODO: make sure this looks correct and matches other inputs
 const AttachmentsWebUrlInput = {
   backgroundColor: theme.colors.black70,
   borderTopLeftRadius: 'inc20',
   borderTopRightRadius: 'inc20',
-  borderBottom: `4px solid ${theme.colors.black00}`,
-  marginTop: 'inc30',
+  flex: 1,
   input: {
     backgroundColor: 'transparent !important',
     border: 'none',
@@ -46,6 +57,7 @@ const AttachmentsWebUrlInput = {
     fontSize: 'inc40',
     fontFamily: theme.fonts['euclid-circular-a'],
     color: theme.colors.black00,
+    borderBottom: `4px solid ${theme.colors.black00}`,
     py: 'inc40',
     px: 'inc40',
     '::placeholder': {
@@ -55,11 +67,40 @@ const AttachmentsWebUrlInput = {
       boxShadow: `0 0 0 100px ${theme.colors.black70} inset`,
       textFillColor: theme.colors.black00,
     },
+    '&:focus': {
+      borderBottom: `4px solid ${theme.colors.blue40}`,
+    },
   },
 };
 
-const AttachmentsWebUrlInputFocus = {
-  borderBottom: `4px solid ${theme.colors.blue40}`,
+const AttachmentsRemoveInput = {
+  border: 'none',
+  backgroundColor: 'transparent',
+  marginLeft: 'inc20',
+
+  '&:hover': {
+    cursor: 'pointer',
+  },
+};
+
+const AttachmentsAddInput = {
+  border: 'none',
+  backgroundColor: 'transparent',
+  color: theme.colors.black00,
+  display: 'flex',
+  alignItems: 'center',
+  fontFamily: 'inherit',
+  marginTop: 'inc30',
+  paddingBottom: 'inc10',
+  borderBottom: '1px solid transparent',
+  svg: {
+    fill: theme.colors.black00,
+    marginRight: 'inc20',
+  },
+  '&:hover': {
+    cursor: 'pointer',
+    borderBottom: `1px solid ${theme.colors.black00}`,
+  },
 };
 
 const AttachmentsErrorMsg = {
@@ -72,10 +113,13 @@ const styles = {
   AttachmentsBtn,
   AttachmentsTitle,
   AttachmentsErrorMsg,
+  AttachmentsAddInput,
   AttachmentsFileUpload,
+  AttachmentsOptionText,
   AttachmentsPromptText,
+  AttachmentsRemoveInput,
   AttachmentsWebUrlInput,
-  AttachmentsWebUrlInputFocus,
+  AttachmentsWebUrlInputWrapper,
 };
 
 export default styles;

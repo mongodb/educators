@@ -8,6 +8,11 @@ import EducatorVerification from 'components/modal/educator-verification';
 import CourseAsideProps from './types';
 
 import styles from './styles';
+import {
+  EDUCATOR_PROGRAM_FORM_FIELDS,
+  EDUCATOR_PROGRAM_FORM_TEXTS,
+  submitEducatorProgramForm,
+} from 'components/form/utils';
 
 export function generateSocialSharingURLs(
   socialUrl: string,
@@ -28,14 +33,25 @@ export default function CourseAside({
   level,
   title,
   duration,
-  openForm,
+  setFormState,
   wrapperStyles = {},
 }: CourseAsideProps): JSX.Element {
   const { openModal } = useModalContext();
   const [currentPageUrl, setCurrentPageUrl] = useState<string>('');
 
   function onPromptClick() {
-    openModal(<EducatorVerification openForm={openForm} />);
+    openModal(
+      <EducatorVerification
+        openForm={() =>
+          setFormState({
+            isOpen: true,
+            fields: EDUCATOR_PROGRAM_FORM_FIELDS,
+            texts: EDUCATOR_PROGRAM_FORM_TEXTS,
+            submitForm: submitEducatorProgramForm,
+          })
+        }
+      />
+    );
   }
 
   // because of SSR, we need to assure the component mounts before trying to access window obj

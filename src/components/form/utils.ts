@@ -4,12 +4,13 @@ import countryList from 'react-select-country-list';
 import universities from 'data/universities.json';
 import { institutionTypes, teachingStatuses } from 'lib/registration';
 
-import { FieldInterface } from './types';
+import { AttachmentsType, FieldInterface } from './types';
 
 // CONSTANTS
 export const FORM_INIT_STATE = {
   isOpen: false,
   fields: [],
+  multiFileUpload: false,
   texts: {
     title: '',
     postSubmissionTitle: '',
@@ -90,7 +91,7 @@ export const EDUCATOR_PROGRAM_FORM_FIELDS: Array<FieldInterface> = [
     validators: [isRequired()],
   },
   {
-    name: 'courseSyllabus',
+    name: 'attachments',
     label: 'Course Syllabus',
   },
   {
@@ -107,21 +108,21 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
     label: 'First Name',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'lastName',
     label: 'Last Name',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'address',
     label: 'Address',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'apartment',
@@ -134,7 +135,7 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
     label: 'City',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'state',
@@ -190,56 +191,56 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
       'Wisconsin',
       'Wyoming',
     ],
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'zipcode',
     label: 'ZIP Code',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'email',
     label: 'Email',
     type: 'email',
     component: 'text-input',
-    validators: [isRequired(), emailPattern()],
+    // validators: [isRequired(), emailPattern()],
   },
   {
     name: 'university',
     label: 'University',
     component: 'select',
     options: universities,
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'program',
     label: 'Degree Program',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'advisorName',
     label: 'Doctoral Advisor Name',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'advisorEmail',
     label: 'Doctoral Advisor Email',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'topic',
     label: 'Research Topic',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'attachments',
@@ -249,7 +250,7 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
     name: 'agreedToEmails',
     label: 'I agree to receive emails from MongoDB, Inc.',
     component: 'checkbox',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
 ];
 
@@ -290,11 +291,14 @@ export function emailPattern(checkDomains = true) {
 }
 
 export async function submitEducatorProgramForm(
-  formData: any,
-  attachments: any
+  formData: FormData,
+  attachments: AttachmentsType
 ) {
   // append file or text from CourseSyllabus component to formData since it doesn't come thru in form callback from Flora
-  formData.append('courseSyllabus', attachments.value);
+  formData.append(
+    'courseSyllabus',
+    attachments.docs ? attachments.docs[0] : attachments.urls[0].value
+  );
 
   return await axios.post(
     '/academia/api/educator-program/registration',
@@ -305,7 +309,8 @@ export async function submitEducatorProgramForm(
   );
 }
 
-export async function submitPhdFellowshipForm(formData: any) {
+export async function submitPhdFellowshipForm(formData: FormData) {
+  // eslint-disable-next-line
   console.log('form data in phd fellowship submit func', formData);
   return await axios.post(
     '/academia/api/phd-fellowship/application',

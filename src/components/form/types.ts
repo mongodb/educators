@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface FieldInterface {
   name: string;
   label: string;
@@ -10,30 +12,36 @@ export interface FieldInterface {
   }>;
 }
 
+export interface AttachmentsType {
+  docs: FileList | null;
+  urls: Array<{ id: number; value: string }>;
+  error: boolean;
+}
+
 export interface FormState {
   isOpen: boolean;
   texts: {
     title: string;
+    subtitle?: string;
     postSubmissionTitle: string;
     postSubmissionDescription: string;
+    postSubmissionButtonText?: string;
+    attachments?: string;
     button: string;
   };
+  multiFileUpload?: boolean;
   fields: Array<FieldInterface>;
-  submitForm: (formData: FormData, attachments: any) => void; // TODO: proper type
+  submitForm: (formData: FormData, attachments: AttachmentsType) => void;
 }
 
-export default interface FormProps extends FormState {
+export interface FormProps extends FormState {
   closeForm: () => void;
 }
 
-export interface Attachments {
+export interface AttachmentsProps {
   label: string;
-  hasError: boolean;
-  setValue: ({
-    value,
-    error,
-  }: {
-    value: string | File;
-    error: boolean;
-  }) => void;
+  prompt?: string;
+  attachments: AttachmentsType;
+  multiFile?: boolean;
+  setAttachments: Dispatch<SetStateAction<AttachmentsType>>;
 }
