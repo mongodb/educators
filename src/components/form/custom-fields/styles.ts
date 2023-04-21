@@ -43,7 +43,6 @@ const AttachmentsWebUrlInputWrapper = {
   marginTop: 'inc30',
 };
 
-// TODO: make sure this looks correct and matches other inputs
 const AttachmentsWebUrlInput = {
   backgroundColor: theme.colors.black70,
   borderTopLeftRadius: 'inc20',

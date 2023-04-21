@@ -7,9 +7,9 @@ import {
   PHD_FELLOWSHIP_FIELDS,
   submitPhdFellowshipForm,
 } from 'components/form/utils';
+import { FormState } from 'components/form/types';
 
 import styles from 'styles/phd-fellowship';
-import { FormState } from 'components/form/types';
 
 export default function PhdFellowship({
   setFormState,

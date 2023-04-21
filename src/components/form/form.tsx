@@ -49,7 +49,6 @@ export default function Form({
     Object.keys(form).forEach(key => formData.append(key, form[key] || ''));
 
     try {
-      // TODO: make sure forms take into account having one or multiple Files
       submitForm(formData, attachments);
       setFormSuccess(true);
     } catch (e) {

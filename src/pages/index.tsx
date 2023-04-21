@@ -20,19 +20,19 @@ import {
   EDUCATOR_PROGRAM_FORM_TEXTS,
   submitEducatorProgramForm,
 } from 'components/form/utils';
+import { FormState } from 'components/form/types';
 import EducatorVerification from 'components/modal/educator-verification';
 
 import styles from 'styles/home';
 
 interface HomePageProps {
-  // openForm: () => void;
-  setFormState: (content: any) => null;
   content: ContentData;
+  setFormState: (formState: FormState) => null;
 }
 
 export default function Home({
-  setFormState,
   content,
+  setFormState,
 }: HomePageProps): JSX.Element {
   const { openModal } = useModalContext();
 

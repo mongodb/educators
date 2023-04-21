@@ -4,15 +4,15 @@ import { Link, TypographyScale } from '@mdb/flora';
 import { useModalContext } from 'contexts/modal';
 import Image from 'components/image';
 import SocialShare from 'components/social-share';
-import EducatorVerification from 'components/modal/educator-verification';
-import CourseAsideProps from './types';
-
-import styles from './styles';
 import {
   EDUCATOR_PROGRAM_FORM_FIELDS,
   EDUCATOR_PROGRAM_FORM_TEXTS,
   submitEducatorProgramForm,
 } from 'components/form/utils';
+import EducatorVerification from 'components/modal/educator-verification';
+import CourseAsideProps from './types';
+
+import styles from './styles';
 
 export function generateSocialSharingURLs(
   socialUrl: string,

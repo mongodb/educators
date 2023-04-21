@@ -6,10 +6,11 @@ import CourseHeader from 'components/course-header';
 import CourseAside from 'components/course-aside';
 import CourseList from 'components/course-list';
 
+import { FormState } from 'components/form/types';
+
 import { ContentItem, getAllContent, getContentBySlug } from 'lib/cms-content';
 
 import styles from 'styles/course';
-import { FormState } from 'components/form/types';
 
 interface PageProps {
   content: ContentItem;

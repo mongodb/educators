@@ -15,7 +15,6 @@ const AttachmentsField = ({
 }: AttachmentsProps) => {
   const [showDocUpload, setShowDocUpload] = useState(false);
 
-  // update names and ids
   function onUploadDocClick() {
     if (error) {
       setAttachments(prev => ({ ...prev, error: false }));
