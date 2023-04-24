@@ -1,7 +1,6 @@
 import axios from 'axios';
 import countryList from 'react-select-country-list';
 
-import universities from 'data/universities.json';
 import { institutionTypes, teachingStatuses } from 'lib/registration';
 
 import { AttachmentsType, FieldInterface } from './types';
@@ -210,9 +209,9 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
   {
     name: 'university',
     label: 'University',
-    component: 'select',
-    options: universities,
-    // validators: [isRequired()],
+    type: 'text',
+    component: 'text-input',
+    validators: [isRequired()],
   },
   {
     name: 'program',
@@ -231,9 +230,9 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
   {
     name: 'advisorEmail',
     label: 'Doctoral Advisor Email',
-    type: 'text',
+    type: 'email',
     component: 'text-input',
-    // validators: [isRequired()],
+    // validators: [isRequired(), emailPattern()],
   },
   {
     name: 'topic',
@@ -311,17 +310,17 @@ export async function submitEducatorProgramForm(
 
 export async function submitPhdFellowshipForm(
   formData: FormData,
-  attachments: AttachmentsType,
-  ) {
+  attachments: AttachmentsType
+) {
   if (attachments.urls.length) {
     attachments.urls.forEach(({ value }) => {
-      formData.append('submittedUrl', value);
-    })
+      formData.append('url', value);
+    });
   }
-  
+
   if (attachments.docs) {
     for (let i = 0; i < attachments.docs.length; i++) {
-      formData.append('file', attachments.docs[i]);
+      formData.append('doc', attachments.docs[i]);
     }
   }
 
