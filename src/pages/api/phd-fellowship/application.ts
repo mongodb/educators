@@ -10,7 +10,8 @@ import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
 import { responseWrapper } from 'lib/utils';
 // import { sendEmail } from 'lib/ses';
 // import logger from 'lib/logger';
-// import googleDriveFileUpload from 'lib/google-drive-file-upload';
+import googleSheetFileUpload from 'lib/google-sheet-upload';
+import googleDriveFileUpload, { googleDriveFolderUpload } from 'lib/google-drive-file-upload';
 
 const limiter = rateLimit({
   max: 600, // cache limit of 600 per 30 second period.
@@ -51,7 +52,41 @@ const registrationHandler = async (
     files: any; // eslint-disable-line
   };
 
-  console.log('files in endpoint', files, fields);
+  // googleSheetFileUpload();
+
+  // console.log('parsed in endpoint', files, fields);
+
+  // console.log('FILES', files);
+  // console.log('FILES', files.length);
+
+  if (files?.file.length) {
+    // NEW FOLDER ID FOR THE PROJECT:
+    // 0AAgh7YgJ3A53Uk9PVA
+
+    // create the folder
+    // const id = await googleDriveFolderUpload('');
+
+    const newFolder = await googleDriveFileUpload(
+      '',
+      'Testing Folder',
+      'application/vnd.google-apps.folder',
+      '0AAgh7YgJ3A53Uk9PVA'
+    );
+
+    console.log('new folder', newFolder);
+
+    // TEST FOLDER ID HERE:
+    // 1nSDF1UgPTCwxHpjTwloTYwkp1VPMlNS-
+
+    // const file = await googleDriveFileUpload(
+    //   files.file[0].filepath,
+    //   'Lorem Ipsum',
+    //   files.file[0].mimetype,
+    //   '1nSDF1UgPTCwxHpjTwloTYwkp1VPMlNS-',
+    // )
+
+    // console.log('file', file);
+  }
 
   // // If a file is present in Form, it will always come through as "courseSyllabus" since that is the name of the field in the body's Form Data
   // if (files?.courseSyllabus) {
