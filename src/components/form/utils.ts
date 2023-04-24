@@ -1,7 +1,6 @@
 import axios from 'axios';
 import countryList from 'react-select-country-list';
 
-import universities from 'data/universities.json';
 import { institutionTypes, teachingStatuses } from 'lib/registration';
 
 import { AttachmentsType, FieldInterface } from './types';
@@ -210,8 +209,8 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
   {
     name: 'university',
     label: 'University',
-    component: 'select',
-    options: universities,
+    type: 'text',
+    component: 'text-input',
     validators: [isRequired()],
   },
   {
@@ -231,9 +230,9 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
   {
     name: 'advisorEmail',
     label: 'Doctoral Advisor Email',
-    type: 'text',
+    type: 'email',
     component: 'text-input',
-    validators: [isRequired()],
+    validators: [isRequired(), emailPattern()],
   },
   {
     name: 'topic',
