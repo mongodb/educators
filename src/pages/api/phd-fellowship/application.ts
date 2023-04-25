@@ -1,17 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { withSentry } from '@sentry/nextjs';
 
-// import { Registration, validateRegistrationBody } from 'lib/registration';
-// import { uploadToAirtable } from 'lib/airtable';
-// import { getDBRegistration, uploadToDB } from 'lib/db';
-import { parseForm, FormidableField } from 'lib/parse-form';
-// import { parseForm, FormidableField, FormidableFile } from 'lib/parse-form';
+import { parseForm, FormidableField, FormidableFile } from 'lib/parse-form';
 import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
 import { responseWrapper } from 'lib/utils';
-// import { sendEmail } from 'lib/ses';
-// import logger from 'lib/logger';
 import googleSheetFileUpload from 'lib/google-sheet-upload';
-import googleDriveFileUpload, { googleDriveFolderUpload } from 'lib/google-drive-file-upload';
+import {
+  googleDriveFileUpload,
+  googleDriveFolderUpload,
+} from 'lib/google-drive-uploads';
 
 const limiter = rateLimit({
   max: 600, // cache limit of 600 per 30 second period.
@@ -34,8 +31,9 @@ const registrationHandler = async (
   const method = req.method;
 
   if (method !== 'POST') {
-    const message = 'This is a POST-only endpoint.';
-    return responseWrapper(res, endpoint, 405, method, { message });
+    return responseWrapper(res, endpoint, 405, method, {
+      message: 'This is a POST-only endpoint.',
+    });
   }
 
   try {
@@ -49,86 +47,70 @@ const registrationHandler = async (
 
   const { fields, files } = (await parseForm(req)) as {
     fields: FormidableField | { [field: string]: boolean };
-    files: any; // eslint-disable-line
+    files: { uploads: FormidableFile };
   };
 
-  // googleSheetFileUpload();
+  let applicantFolderId;
 
-  // console.log('parsed in endpoint', files, fields);
-
-  // console.log('FILES', files);
-  // console.log('FILES', files.length);
-
-  if (files?.file.length) {
-    // NEW FOLDER ID FOR THE PROJECT:
-    // 0AAgh7YgJ3A53Uk9PVA
-
-    // create the folder
-    // const id = await googleDriveFolderUpload('');
-
-    const newFolder = await googleDriveFileUpload(
-      '',
-      'Testing Folder',
-      'application/vnd.google-apps.folder',
-      '0AAgh7YgJ3A53Uk9PVA'
+  if (files?.uploads) {
+    applicantFolderId = await googleDriveFolderUpload(
+      process.env['PHD_FELLOWSHIP_GOOGLE_DRIVE_FOLDER_ID'],
+      `${fields.firstName} ${fields.lastName} - ${fields.university}`
     );
 
-    console.log('new folder', newFolder);
-
-    // TEST FOLDER ID HERE:
-    // 1nSDF1UgPTCwxHpjTwloTYwkp1VPMlNS-
-
-    // const file = await googleDriveFileUpload(
-    //   files.file[0].filepath,
-    //   'Lorem Ipsum',
-    //   files.file[0].mimetype,
-    //   '1nSDF1UgPTCwxHpjTwloTYwkp1VPMlNS-',
-    // )
-
-    // console.log('file', file);
+    if (applicantFolderId) {
+      if (Array.isArray(files.uploads)) {
+        for (let i = 0; i < files.uploads.length; i++) {
+          await googleDriveFileUpload(
+            files.uploads[i].filepath,
+            files.uploads[i].originalFilename || new Date().toJSON(),
+            files.uploads[i].mimetype || 'application/pdf',
+            applicantFolderId
+          );
+        }
+      } else {
+        await googleDriveFileUpload(
+          files.uploads.filepath,
+          files.uploads.originalFilename || new Date().toJSON(),
+          files.uploads.mimetype || 'application/pdf',
+          applicantFolderId
+        );
+      }
+    }
   }
 
-  // // If a file is present in Form, it will always come through as "courseSyllabus" since that is the name of the field in the body's Form Data
-  // if (files?.courseSyllabus) {
-  //   const { filepath, mimetype, originalFilename } = files.courseSyllabus;
+  await googleSheetFileUpload(
+    process.env['PHD_FELLOWSHIP_SPREADSHEET_ID'],
+    'Applications',
+    // explicitly map fields so we can have control of the order of columns in the Google Sheet
+    [
+      fields.firstName,
+      fields.lastName,
+      fields.address,
+      fields.apartment,
+      fields.city,
+      fields.state,
+      fields.zipcode,
+      `=HYPERLINK(mailto:${fields.email})`,
+      fields.university,
+      fields.program,
+      fields.advisorName,
+      `=HYPERLINK(mailto:${fields.advisorEmail})`,
+      fields.topic,
+      applicantFolderId
+        ? `https://drive.google.com/drive/folders/${applicantFolderId}`
+        : '',
+      Array.isArray(fields.urls)
+        ? fields.urls.join(',')
+        : `=HYPERLINK(${fields.urls})`, // TODO: figure out how to hyperlink multiple
+    ] as string[]
+  );
 
-  //   const fileUrl = await googleDriveFileUpload(
-  //     filepath,
-  //     originalFilename || new Date().toJSON(),
-  //     mimetype || 'application/pdf'
-  //   );
-
-  //   fields.courseSyllabus = fileUrl; // add fileUrl to courseSyllabus field so it can be linked in AirTable
-  // }
-
-  // // Typecast agreedToEmails back to boolean since "new FormData()" only sends strings or Blobs
-  // fields.agreedToEmails = fields.agreedToEmails === 'true';
-
-  // try {
-  //   validateRegistrationBody(fields);
-  // } catch (err) {
-  //   const message = (err as Error).message;
-  //   return responseWrapper(res, endpoint, 400, method, { message });
-  // }
-
-  // const registrationToUpload = getDBRegistration(
-  //   fields as unknown as Registration
-  // );
-
-  // // TODO: should really have error handling if form doesnt submit at least to Airtable?
-  // if (
-  //   process.env['APP_ENV'] === 'staging' ||
-  //   process.env['APP_ENV'] === 'production'
-  // ) {
-  //   // Don't need to await these since they can fail gracefully.
-  //   uploadToAirtable(registrationToUpload);
-  //   uploadToDB(registrationToUpload);
-  //   sendEmail(registrationToUpload);
-  // } else {
-  //   logger.info(
-  //     'Bypassed DB/Airtable upload and email in non-production environment.'
-  //   );
-  // }
+  await googleSheetFileUpload(
+    process.env['PHD_FELLOWSHIP_SPREADSHEET_ID'],
+    'Applicants Status',
+    [fields.firstName, fields.lastName] as string[]
+  );
 
   return responseWrapper(res, endpoint, 200, 'POST', { message: 'Success' });
 };

@@ -22,8 +22,6 @@ export default function Form({
     error: false,
   });
 
-  console.log('attachments', attachments);
-
   async function onSubmit(form: FormValues): Promise<void> {
     // clear out existing error state if present
     if (formError) {
@@ -70,7 +68,7 @@ export default function Form({
           title={texts.title}
           subtitle={texts.subtitle || ''}
           postSubmissionState={formSuccess}
-          onPostSubmissionButtonClick={closeForm}
+          onPostSubmissionButtonClick={onClose}
           postSubmissionTitle={texts.postSubmissionTitle}
           postSubmissionDescription={texts.postSubmissionDescription}
           postSubmissionButtonText={texts.postSubmissionButtonText || ''}

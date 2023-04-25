@@ -166,7 +166,8 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
       'Minnesota',
       'Mississippi',
       'Missouri',
-      'MontanaNebraska',
+      'Montana',
+      'Nebraska',
       'Nevada',
       'New Hampshire',
       'New Jersey',
@@ -177,7 +178,8 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
       'Ohio',
       'Oklahoma',
       'Oregon',
-      'PennsylvaniaRhode Island',
+      'Pennsylvania',
+      'Rhode Island',
       'South Carolina',
       'South Dakota',
       'Tennessee',
@@ -211,7 +213,7 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
     label: 'University',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    // validators: [isRequired()],
   },
   {
     name: 'program',
@@ -312,16 +314,20 @@ export async function submitPhdFellowshipForm(
   formData: FormData,
   attachments: AttachmentsType
 ) {
-  if (attachments.urls.length) {
-    attachments.urls.forEach(({ value }) => {
-      formData.append('url', value);
-    });
-  }
-
   if (attachments.docs) {
     for (let i = 0; i < attachments.docs.length; i++) {
-      formData.append('doc', attachments.docs[i]);
+      formData.append('uploads', attachments.docs[i]);
     }
+  } else {
+    formData.set('uploads', '');
+  }
+
+  if (attachments.urls.length) {
+    attachments.urls.forEach(({ value }) => {
+      formData.append('urls', value);
+    });
+  } else {
+    formData.set('urls', '');
   }
 
   return await axios.post(
