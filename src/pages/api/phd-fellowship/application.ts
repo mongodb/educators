@@ -51,6 +51,7 @@ const registrationHandler = async (
   };
 
   let applicantFolderId;
+  const date = new Date();
 
   if (files?.uploads) {
     applicantFolderId = await googleDriveFolderUpload(
@@ -63,7 +64,7 @@ const registrationHandler = async (
         for (let i = 0; i < files.uploads.length; i++) {
           await googleDriveFileUpload(
             files.uploads[i].filepath,
-            files.uploads[i].originalFilename || new Date().toJSON(),
+            files.uploads[i].originalFilename || date.toJSON(),
             files.uploads[i].mimetype || 'application/pdf',
             applicantFolderId
           );
@@ -71,7 +72,7 @@ const registrationHandler = async (
       } else {
         await googleDriveFileUpload(
           files.uploads.filepath,
-          files.uploads.originalFilename || new Date().toJSON(),
+          files.uploads.originalFilename || date.toJSON(),
           files.uploads.mimetype || 'application/pdf',
           applicantFolderId
         );
@@ -91,18 +92,19 @@ const registrationHandler = async (
       fields.city,
       fields.state,
       fields.zipcode,
-      `=HYPERLINK(mailto:${fields.email})`,
+      `=HYPERLINK("mailto:${fields.email}")`,
       fields.university,
       fields.program,
       fields.advisorName,
-      `=HYPERLINK(mailto:${fields.advisorEmail})`,
+      `=HYPERLINK("mailto:${fields.advisorEmail}")`,
       fields.topic,
       applicantFolderId
         ? `https://drive.google.com/drive/folders/${applicantFolderId}`
         : '',
       Array.isArray(fields.urls)
         ? fields.urls.join(',')
-        : `=HYPERLINK(${fields.urls})`, // TODO: figure out how to hyperlink multiple
+        : `=HYPERLINK("${fields.urls}")`, // TODO: figure out how to hyperlink multiple
+      `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
     ] as string[]
   );
 
