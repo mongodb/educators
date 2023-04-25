@@ -166,7 +166,8 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
       'Minnesota',
       'Mississippi',
       'Missouri',
-      'MontanaNebraska',
+      'Montana',
+      'Nebraska',
       'Nevada',
       'New Hampshire',
       'New Jersey',
@@ -177,7 +178,8 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
       'Ohio',
       'Oklahoma',
       'Oregon',
-      'PennsylvaniaRhode Island',
+      'Pennsylvania',
+      'Rhode Island',
       'South Carolina',
       'South Dakota',
       'Tennessee',
@@ -308,9 +310,26 @@ export async function submitEducatorProgramForm(
   );
 }
 
-export async function submitPhdFellowshipForm(formData: FormData) {
-  // eslint-disable-next-line
-  console.log('form data in phd fellowship submit func', formData);
+export async function submitPhdFellowshipForm(
+  formData: FormData,
+  attachments: AttachmentsType
+) {
+  if (attachments.docs) {
+    for (let i = 0; i < attachments.docs.length; i++) {
+      formData.append('uploads', attachments.docs[i]);
+    }
+  } else {
+    formData.set('uploads', '');
+  }
+
+  if (attachments.urls.length) {
+    attachments.urls.forEach(({ value }) => {
+      formData.append('urls', value);
+    });
+  } else {
+    formData.set('urls', '');
+  }
+
   return await axios.post(
     '/academia/api/phd-fellowship/application',
     formData,
