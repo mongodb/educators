@@ -47,7 +47,7 @@ export default function Form({
     Object.keys(form).forEach(key => formData.append(key, form[key] || ''));
 
     try {
-      submitForm(formData, attachments);
+      await submitForm(formData, attachments);
       setFormSuccess(true);
     } catch (e) {
       setFormError(true);
