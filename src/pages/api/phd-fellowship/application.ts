@@ -80,11 +80,22 @@ const registrationHandler = async (
     }
   }
 
+  if (fields.urls) {
+    if (Array.isArray(fields.urls)) {
+      fields.urls = fields.urls.map(url => `=HYPERLINK("${url}")`);
+    } else {
+      fields.urls = [`=HYPERLINK("${fields.urls}")`];
+    }
+  } else {
+    fields.urls = [];
+  }
+
   await googleSheetFileUpload(
     process.env['PHD_FELLOWSHIP_SPREADSHEET_ID'],
     'Applications',
     // explicitly map fields so we can have control of the order of columns in the Google Sheet
     [
+      `${date.toLocaleDateString()}`,
       fields.firstName,
       fields.lastName,
       fields.address,
@@ -92,19 +103,16 @@ const registrationHandler = async (
       fields.city,
       fields.state,
       fields.zipcode,
-      `=HYPERLINK("mailto:${fields.email}")`,
+      fields.email,
       fields.university,
       fields.program,
       fields.advisorName,
-      `=HYPERLINK("mailto:${fields.advisorEmail}")`,
+      fields.advisorEmail,
       fields.topic,
       applicantFolderId
         ? `https://drive.google.com/drive/folders/${applicantFolderId}`
         : '',
-      Array.isArray(fields.urls)
-        ? fields.urls.join(',')
-        : `=HYPERLINK("${fields.urls}")`, // TODO: figure out how to hyperlink multiple
-      `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
+      ...fields.urls,
     ] as string[]
   );
 

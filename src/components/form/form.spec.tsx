@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { act, render, screen, fireEvent } from '@testing-library/react';
 import Form from '.';
 import {
