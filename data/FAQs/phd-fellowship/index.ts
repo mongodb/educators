@@ -12,12 +12,13 @@ const CONFIG = [
     body: 'Yes, we accept applications from all accredited institutions worldwide. Applications must be submitted in English.',
   },
   {
-    title: 'How does the application process work?',
+    title:
+      'Are there any research areas that MongoDB is more interested in than others?',
     body: researchFAQ as unknown as string, // lets us typecast the markdown as string since it comes in as "(MDXProps) => Element"
   },
   {
     title: 'Who will review the applications?',
-    body: 'Applications will be reviewed by a panel of 5 Distinguished Engineers, most of whom have published research and taught computer science at the graduate level.',
+    body: 'Applications will be reviewed by a panel of 5 MongoDB Distinguished Engineers, most of whom have published research and taught computer science at the graduate level.',
   },
   {
     title: 'If selected, when does the Fellowship start?',

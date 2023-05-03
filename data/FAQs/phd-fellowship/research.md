@@ -1,7 +1,8 @@
 MongoDB welcomes all research that is related to document databases. In addition, we welcome research in the following areas:
 
 - Machine Learning: including application of Machine Learning to databases software to improve correctness, resiliency, and performance
-- Software for Multi-Cluster/Multi-Cloud management: including networking optimization tools, connection management Distributed Systems and Learning Runtimes
+- Software for Multi-Cluster/Multi-Cloud management: including networking optimization tools and connection management
+- Distributed Systems and Learning Runtimes
 - Performance Testing: including analysis or optimization for databases and distributed systems
 - Software Engineering: including techniques to automate the analysis, design, testing, or implementation of software systems
 - Cryptography, Privacy and Security

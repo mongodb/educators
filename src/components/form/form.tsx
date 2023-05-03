@@ -14,6 +14,7 @@ export default function Form({
   submitForm,
   multiFileUpload = false,
 }: FormProps): JSX.Element | null {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
   const [attachments, setAttachments] = useState<AttachmentsType>({
@@ -27,6 +28,8 @@ export default function Form({
     if (formError) {
       setFormError(false);
     }
+
+    setIsSubmitting(true);
 
     // we have to do a specific check for attachments since it's not a Flora field (those have their own validators)
     if (
@@ -52,6 +55,8 @@ export default function Form({
     } catch (e) {
       setFormError(true);
     }
+
+    setIsSubmitting(false);
   }
 
   function onClose() {
@@ -123,6 +128,7 @@ export default function Form({
               customWrapperStyles={{
                 width: '100%',
               }}
+              disabled={isSubmitting}
             >
               {texts.button}
             </Button>

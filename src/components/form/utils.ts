@@ -241,7 +241,7 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
     label: 'Research Topic',
     type: 'text',
     component: 'text-input',
-    validators: [isRequired()],
+    validators: [isRequired(), wordLimit(15)],
   },
   {
     name: 'attachments',
@@ -251,7 +251,6 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
     name: 'agreedToEmails',
     label: 'I agree to receive emails from MongoDB, Inc.',
     component: 'checkbox',
-    validators: [isRequired()],
   },
 ];
 
@@ -286,6 +285,21 @@ export function emailPattern(checkDomains = true) {
         return 'School or Institution email is required';
       }
       return '';
+    }
+    return '';
+  };
+}
+
+export function wordLimit(limit: number) {
+  return function (str: string): string {
+    if (str) {
+      const count = str.match(/[^\s]+/g)?.length || 0;
+
+      if (count > limit) {
+        return `Input is too long. Maximum words allowed: ${limit}`;
+      } else {
+        return '';
+      }
     }
     return '';
   };
