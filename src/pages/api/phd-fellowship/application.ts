@@ -119,7 +119,11 @@ const registrationHandler = async (
   await googleSheetFileUpload(
     process.env['PHD_FELLOWSHIP_SPREADSHEET_ID'],
     'Applicants Status',
-    [fields.firstName, fields.lastName] as string[]
+    [
+      fields.firstName,
+      fields.lastName,
+      `${date.toLocaleDateString()}`,
+    ] as string[]
   );
 
   return responseWrapper(res, endpoint, 200, 'POST', { message: 'Success' });
