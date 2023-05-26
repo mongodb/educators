@@ -195,6 +195,13 @@ export const PHD_FELLOWSHIP_FIELDS: Array<FieldInterface> = [
     validators: [isRequired()],
   },
   {
+    name: 'country',
+    label: 'Country',
+    component: 'select',
+    options: countryList().getLabels() || [],
+    validators: [isRequired()],
+  },
+  {
     name: 'zipcode',
     label: 'ZIP Code',
     type: 'text',

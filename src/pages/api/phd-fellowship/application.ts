@@ -103,6 +103,7 @@ const registrationHandler = async (
       fields.city,
       fields.state,
       fields.zipcode,
+      fields.country,
       fields.email,
       fields.university,
       fields.program,
