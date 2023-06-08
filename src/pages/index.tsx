@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { Button, GridLayout, TypographyScale } from '@mdb/flora';
 
@@ -53,6 +54,9 @@ export default function Home({
 
   return (
     <>
+      <Head>
+        <link rel="canonical" href="https://www.mongodb.com/academia" />
+      </Head>
       <header sx={styles.HomePageHeroWrapper}>
         <TypographyScale
           inverse
