@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Button, GridLayout, TypographyScale } from '@mdb/flora';
 
 import faqData from 'data/FAQs/phd-fellowship';
@@ -37,8 +38,15 @@ export default function PhdFellowship({
 
   return (
     <>
+      <Head>
+        <title>PhD Fellowship Program | MongoDB</title>
+        <link
+          rel="canonical"
+          href="https://www.mongodb.com/academia/phd-fellowship"
+        />
+      </Head>
       <header sx={styles.HeroWrapper}>
-        <TypographyScale inverse variant="heading2">
+        <TypographyScale inverse variant="heading2" customElement="h1">
           MongoDB PhD Fellowship Program
         </TypographyScale>
         <Button onClick={renderForm}>Apply Now</Button>
