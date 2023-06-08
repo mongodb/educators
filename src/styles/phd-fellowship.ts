@@ -11,7 +11,7 @@ const HeroWrapper: ThemeUICSSObject = {
   px: 'inc80',
   borderBottomLeftRadius: ['80px', null, 0],
   borderBottomRightRadius: ['80px', null, 0],
-  h2: {
+  h1: {
     textAlign: 'center',
     paddingBottom: ['inc70', null, 'inc50', 'inc40'],
   },
