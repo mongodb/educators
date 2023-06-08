@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { GridLayout } from '@mdb/flora';
+import Head from 'next/head';
 
 import Markdown from 'components/markdown';
 import CourseHeader from 'components/course-header';
@@ -35,6 +36,9 @@ export default function CoursePage({
 }: CoursePageProps) {
   return (
     <>
+      <Head>
+        <link rel="canonical" href="https://www.mongodb.com/academia" />
+      </Head>
       <CourseHeader
         title={title}
         link={externalLink}
