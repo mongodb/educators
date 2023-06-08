@@ -38,6 +38,10 @@ export default function CoursePage({
     <>
       <Head>
         <link rel="canonical" href="https://www.mongodb.com/academia" />
+        <meta
+          name="description"
+          content="Explore free resources for educators crafted by MongoDB experts to prepare learners with in-demand database skills and knowledge."
+        />
       </Head>
       <CourseHeader
         title={title}

@@ -44,6 +44,10 @@ export default function PhdFellowship({
           rel="canonical"
           href="https://www.mongodb.com/academia/phd-fellowship"
         />
+        <meta
+          name="description"
+          content="The MongoDB PhD Fellowship is an exciting new opportunity for PhD candidates to receive funding and recognition for innovative computer science research."
+        />
       </Head>
       <header sx={styles.HeroWrapper}>
         <TypographyScale inverse variant="heading2" customElement="h1">
