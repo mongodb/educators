@@ -35,7 +35,7 @@ export default function Layout({
         sx={{
           position: 'sticky',
           top: '0',
-          zIndex: '9999',
+          zIndex: '1000',
           width: '100%',
         }}
       >
