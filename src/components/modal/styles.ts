@@ -2,7 +2,7 @@ import theme from '@mdb/flora/theme';
 import { ThemeUICSSObject } from 'theme-ui';
 
 const ModalWrapper: ThemeUICSSObject = {
-  zIndex: 999,
+  zIndex: 1001,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
