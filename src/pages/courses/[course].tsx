@@ -1,10 +1,13 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { GridLayout } from '@mdb/flora';
+import Head from 'next/head';
 
 import Markdown from 'components/markdown';
 import CourseHeader from 'components/course-header';
 import CourseAside from 'components/course-aside';
 import CourseList from 'components/course-list';
+
+import { FormState } from 'components/form/types';
 
 import { ContentItem, getAllContent, getContentBySlug } from 'lib/cms-content';
 
@@ -15,12 +18,12 @@ interface PageProps {
 }
 
 interface CoursePageProps {
-  openForm: () => void;
   content: ContentItem;
+  setFormState: (form: FormState) => void;
 }
 
 export default function CoursePage({
-  openForm,
+  setFormState,
   content: {
     title = '',
     level = '',
@@ -33,6 +36,13 @@ export default function CoursePage({
 }: CoursePageProps) {
   return (
     <>
+      <Head>
+        <link rel="canonical" href="https://www.mongodb.com/academia" />
+        <meta
+          name="description"
+          content="Explore free resources for educators crafted by MongoDB experts to prepare learners with in-demand database skills and knowledge."
+        />
+      </Head>
       <CourseHeader
         title={title}
         link={externalLink}
@@ -47,8 +57,8 @@ export default function CoursePage({
           <CourseAside
             title={title}
             level={level}
-            openForm={openForm}
             duration={durationHours}
+            setFormState={setFormState}
             wrapperStyles={styles.CoursePageAside}
           />
         </GridLayout>

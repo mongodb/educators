@@ -9,20 +9,17 @@ import { ModalProvider } from 'contexts/modal';
 import Form from 'components/form';
 import Layout from 'components/layout';
 import ModalRoot from 'components/modal';
+import { FormState } from 'components/form/types';
+import { FORM_INIT_STATE } from 'components/form/utils';
 
 export default function EducatorPortal({ Component, pageProps }: AppProps) {
-  const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
+  const [formState, setFormState] = useState<FormState>(FORM_INIT_STATE);
 
   return (
     <>
       <Head>
         <title>MongoDB Educator Center</title>
         <link rel="icon" href="/academia/favicon.ico" />
-        <link rel="canonical" href="https://www.mongodb.com/academia" />
-        <meta
-          name="description"
-          content="Explore free resources for educators crafted by MongoDB experts to prepare learners with in-demand database skills and knowledge."
-        />
         {/* Open Graph Default Metadata (Used by Facebook, LinkedIn) */}
         <meta property="og:title" content="MongoDB Educator Center" />
         <meta
@@ -54,10 +51,17 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <ModalProvider>
-          <Layout isFormOpen={isFormOpen}>
+          <Layout isFormOpen={formState.isOpen}>
             <ModalRoot />
-            <Form isOpen={isFormOpen} closeForm={() => setIsFormOpen(false)} />
-            <Component {...pageProps} openForm={() => setIsFormOpen(true)} />
+            <Form
+              texts={formState.texts}
+              isOpen={formState.isOpen}
+              fields={formState.fields}
+              multiFileUpload={formState.multiFileUpload}
+              submitForm={formState.submitForm}
+              closeForm={() => setFormState(FORM_INIT_STATE)}
+            />
+            <Component {...pageProps} setFormState={setFormState} />
           </Layout>
         </ModalProvider>
       </ThemeProvider>

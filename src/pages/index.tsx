@@ -1,8 +1,9 @@
+import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { Button, GridLayout, TypographyScale } from '@mdb/flora';
 
 import heroData from 'data/hero.json';
-import faqData from 'data/FAQs/config';
+import faqData from 'data/FAQs/educators-program';
 import statisticsData from 'data/statistics.json';
 import studentResourcesData from 'data/student-resources.json';
 
@@ -10,42 +11,73 @@ import { ContentData, getAllContent } from 'lib/cms-content';
 
 import { useModalContext } from 'contexts/modal';
 
-import Hero from 'components/hero';
 import Statistic from 'components/statistic';
 import Accordion from 'components/accordion';
 import ContentPreview from 'components/content-preview';
 import ProgramBenefits from 'components/program-benefits';
 import StudentResources from 'components/student-resources';
+import {
+  EDUCATOR_PROGRAM_FORM_FIELDS,
+  EDUCATOR_PROGRAM_FORM_TEXTS,
+  submitEducatorProgramForm,
+} from 'components/form/utils';
+import { FormState } from 'components/form/types';
 import EducatorVerification from 'components/modal/educator-verification';
 
 import styles from 'styles/home';
 
 interface HomePageProps {
-  openForm: () => void;
   content: ContentData;
+  setFormState: (formState: FormState) => null;
 }
 
 export default function Home({
-  openForm,
   content,
+  setFormState,
 }: HomePageProps): JSX.Element {
   const { openModal } = useModalContext();
 
   function onHeroButtonClick() {
-    openModal(<EducatorVerification openForm={openForm} />);
+    openModal(
+      <EducatorVerification
+        openForm={() =>
+          setFormState({
+            isOpen: true,
+            fields: EDUCATOR_PROGRAM_FORM_FIELDS,
+            texts: EDUCATOR_PROGRAM_FORM_TEXTS,
+            submitForm: submitEducatorProgramForm,
+          })
+        }
+      />
+    );
   }
 
   return (
     <>
-      <Hero
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        cta={
+      <Head>
+        <link rel="canonical" href="https://www.mongodb.com/academia" />
+        <meta
+          name="description"
+          content="Explore free resources for educators crafted by MongoDB experts to prepare learners with in-demand database skills and knowledge."
+        />
+      </Head>
+      <header sx={styles.HomePageHeroWrapper}>
+        <TypographyScale
+          inverse
+          variant="heading1"
+          sx={styles.HomePageHeroTitle}
+        >
+          {heroData.title}
+        </TypographyScale>
+        <div sx={styles.HomePageHeroContent}>
+          <TypographyScale inverse variant="body1">
+            {heroData.subtitle}
+          </TypographyScale>
           <Button onClick={onHeroButtonClick} sx={styles.HomePageHeroButton}>
             {heroData.buttonText}
           </Button>
-        }
-      />
+        </div>
+      </header>
       <main sx={styles.HomePageMainStyles}>
         <ProgramBenefits />
         <section sx={styles.HomePageStatsSection}>

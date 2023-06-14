@@ -1,4 +1,31 @@
+import theme from '@mdb/flora/theme';
 import { ThemeUICSSObject } from 'theme-ui';
+
+const HERO_BORDER_RADIUS = ['80px', null, null, '180px'];
+const HERO_DEFAULT_SPACING = ['inc70', null, null, 'inc100'];
+
+const HomePageHeroWrapper: ThemeUICSSObject = {
+  paddingTop: HERO_DEFAULT_SPACING,
+  paddingBottom: HERO_DEFAULT_SPACING,
+  paddingLeft: 'inc40',
+  paddingRight: 'inc40',
+  borderBottomLeftRadius: HERO_BORDER_RADIUS,
+  borderBottomRightRadius: HERO_BORDER_RADIUS,
+  backgroundColor: theme.colors.blue80,
+};
+
+const HomePageHeroTitle: ThemeUICSSObject = {
+  textAlign: 'center',
+  marginBottom: ['inc40', null, null, 'inc50'],
+};
+
+const HomePageHeroContent: ThemeUICSSObject = {
+  display: 'flex',
+  flexDirection: 'column',
+  textAlign: 'center',
+  width: [null, '80%', null, '60%'],
+  margin: '0 auto',
+};
 
 const HomePageMainStyles: ThemeUICSSObject = {
   overflow: 'hidden',
@@ -52,8 +79,11 @@ const HomePageFAQs: ThemeUICSSObject = {
 const styles = {
   HomePageFAQs,
   HomePageFAQTitle,
+  HomePageHeroTitle,
   HomePageMainStyles,
   HomePageHeroButton,
+  HomePageHeroWrapper,
+  HomePageHeroContent,
   HomePageStatsSection,
   HomePageResourcesTitle,
   HomePageCurriculumTitle,

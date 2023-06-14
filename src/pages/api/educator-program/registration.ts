@@ -9,14 +9,14 @@ import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
 import { responseWrapper } from 'lib/utils';
 import { sendEmail } from 'lib/ses';
 import logger from 'lib/logger';
-import googleDriveFileUpload from 'lib/google-drive-file-upload';
+import { googleDriveFileUpload } from 'lib/google-drive-uploads';
 
 const limiter = rateLimit({
   max: 600, // cache limit of 600 per 30 second period.
   ttl: 30 * 1000,
 });
 
-const endpoint = '/api/registration';
+const endpoint = '/api/educator-program/registration';
 
 // This is needed by Next.js when receiving 'Content-Type': 'multipart/form-data'
 export const config = {
@@ -56,7 +56,8 @@ const registrationHandler = async (
     const fileUrl = await googleDriveFileUpload(
       filepath,
       originalFilename || new Date().toJSON(),
-      mimetype || 'application/pdf'
+      mimetype || 'application/pdf',
+      process.env['EDUCATOR_GOOGLE_DRIVE_FOLDER_ID'] || ''
     );
 
     fields.courseSyllabus = fileUrl; // add fileUrl to courseSyllabus field so it can be linked in AirTable

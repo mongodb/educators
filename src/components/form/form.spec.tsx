@@ -1,6 +1,10 @@
-import axios from 'axios';
 import { act, render, screen, fireEvent } from '@testing-library/react';
-import Form, { isRequired, emailPattern } from '.';
+import Form from '.';
+import {
+  isRequired,
+  emailPattern,
+  EDUCATOR_PROGRAM_FORM_FIELDS,
+} from './utils';
 
 jest.mock('axios');
 
@@ -27,13 +31,13 @@ function populateRequiredFormFields(
   }
 }
 
-function populateCourseSyllabusField() {
+function populateAttachments() {
   const enterWebUrlBtn = screen.getByText('Enter a Web URL');
   expect(enterWebUrlBtn).toBeInTheDocument();
 
   fireEvent.click(enterWebUrlBtn);
 
-  const webUrlInput = screen.getByTestId('url-syllabus-upload');
+  const webUrlInput = screen.getByTestId('url-upload-1');
 
   // populate the input and then call blur event since that is when value is set on the element
   fireEvent.change(webUrlInput, { target: { value: 'http://www.test.com' } });
@@ -42,14 +46,40 @@ function populateCourseSyllabusField() {
 
 describe('[component] Form', () => {
   it('renders the component', () => {
-    render(<Form isOpen closeForm={() => {}} />);
+    render(
+      <Form
+        isOpen
+        closeForm={() => {}}
+        texts={{
+          title: 'Test',
+          postSubmissionTitle: 'Test',
+          postSubmissionDescription: 'Test',
+          button: 'Submit',
+        }}
+        fields={[{ name: 'test', label: 'test' }]}
+        submitForm={() => {}}
+      />
+    );
 
     const form = screen.getByTestId('form-modal');
     expect(form).toBeInTheDocument();
   });
 
   it('does not render the component if isOpen prop is false', () => {
-    const { container } = render(<Form isOpen={false} closeForm={() => {}} />);
+    const { container } = render(
+      <Form
+        isOpen={false}
+        closeForm={() => {}}
+        texts={{
+          title: 'Test',
+          postSubmissionTitle: 'Test',
+          postSubmissionDescription: 'Test',
+          button: 'Submit',
+        }}
+        fields={[{ name: 'test', label: 'test' }]}
+        submitForm={() => {}}
+      />
+    );
     expect(container.firstChild).toBeNull();
   });
 
@@ -77,7 +107,20 @@ describe('[component] Form', () => {
   });
 
   it('renders the expected components', () => {
-    const { container } = render(<Form isOpen closeForm={() => {}} />);
+    const { container } = render(
+      <Form
+        isOpen
+        closeForm={() => {}}
+        texts={{
+          title: 'Test',
+          postSubmissionTitle: 'Test',
+          postSubmissionDescription: 'Test',
+          button: 'Submit',
+        }}
+        fields={EDUCATOR_PROGRAM_FORM_FIELDS}
+        submitForm={() => {}}
+      />
+    );
 
     // Text inputs
     const inputs = container.getElementsByTagName('input');
@@ -94,7 +137,20 @@ describe('[component] Form', () => {
 
   it('calls the onClose prop when the close modal button is clicked', () => {
     const onClose = jest.fn();
-    const { container } = render(<Form isOpen closeForm={onClose} />);
+    const { container } = render(
+      <Form
+        isOpen
+        closeForm={onClose}
+        texts={{
+          title: 'Test',
+          postSubmissionTitle: 'Test',
+          postSubmissionDescription: 'Test',
+          button: 'Submit',
+        }}
+        fields={EDUCATOR_PROGRAM_FORM_FIELDS}
+        submitForm={() => {}}
+      />
+    );
 
     const closeBtn = container.getElementsByTagName('button')[0]; // first button found in component is the close button
 
@@ -104,13 +160,27 @@ describe('[component] Form', () => {
   });
 
   it('should display post submission message if submit POST is successful', async () => {
-    const { container } = render(<Form isOpen closeForm={() => {}} />);
+    const { container } = render(
+      <Form
+        isOpen
+        closeForm={() => {}}
+        texts={{
+          title: 'Test',
+          postSubmissionTitle: 'Thanks for applying to MongoDB for Educators!',
+          postSubmissionDescription:
+            'We will review your application and email you within 5-7 business days.',
+          button: 'Submit my Application',
+        }}
+        fields={EDUCATOR_PROGRAM_FORM_FIELDS}
+        submitForm={() => {}}
+      />
+    );
 
     const inputs = container.getElementsByTagName('input');
     const selects = screen.getAllByRole('select');
 
     populateRequiredFormFields(inputs, selects);
-    populateCourseSyllabusField();
+    populateAttachments();
 
     await act(async () => {
       fireEvent.click(screen.getByText('Submit my Application'));
@@ -127,15 +197,27 @@ describe('[component] Form', () => {
   });
 
   it('should display error message if submit POST fails', async () => {
-    jest.spyOn(axios, 'post').mockRejectedValue(Promise.resolve(new Error()));
-
-    const { container } = render(<Form isOpen closeForm={() => {}} />);
+    const { container } = render(
+      <Form
+        isOpen
+        closeForm={() => {}}
+        texts={{
+          title: 'Test',
+          postSubmissionTitle: 'Thanks for applying to MongoDB for Educators!',
+          postSubmissionDescription:
+            'We will review your application and email you within 5-7 business days.',
+          button: 'Submit my Application',
+        }}
+        fields={EDUCATOR_PROGRAM_FORM_FIELDS}
+        submitForm={() => Promise.reject(new Error())}
+      />
+    );
 
     const inputs = container.getElementsByTagName('input');
     const selects = screen.getAllByRole('select');
 
     populateRequiredFormFields(inputs, selects);
-    populateCourseSyllabusField();
+    populateAttachments();
 
     await act(async () => {
       fireEvent.click(screen.getByText('Submit my Application'));
@@ -148,8 +230,22 @@ describe('[component] Form', () => {
     ).toBeInTheDocument();
   });
 
-  it('displays course syllabus field options', () => {
-    render(<Form isOpen closeForm={() => {}} />);
+  it('displays attachments field', () => {
+    render(
+      <Form
+        isOpen
+        closeForm={() => {}}
+        texts={{
+          title: 'Test',
+          postSubmissionTitle: 'Thanks for applying to MongoDB for Educators!',
+          postSubmissionDescription:
+            'We will review your application and email you within 5-7 business days.',
+          button: 'Submit my Application',
+        }}
+        fields={EDUCATOR_PROGRAM_FORM_FIELDS}
+        submitForm={() => {}}
+      />
+    );
 
     const uploadDocumentBtn = screen.getByText('Upload a document');
     const enterWebUrlBtn = screen.getByText('Enter a Web URL');
@@ -163,6 +259,6 @@ describe('[component] Form', () => {
 
     fireEvent.click(uploadDocumentBtn);
 
-    expect(screen.getByTestId('file-syllabus-upload')).toBeInTheDocument();
+    expect(screen.getByTestId('document-upload')).toBeInTheDocument();
   });
 });

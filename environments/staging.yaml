@@ -17,7 +17,9 @@ envSecrets:
   MONGODB_URL: educators-secrets
   AIRTABLE_BASE_ID: educators-secrets
   AIRTABLE_API_KEY: educators-secrets
-  GOOGLE_DRIVE_FOLDER_ID: educators-secrets
+  EDUCATOR_GOOGLE_DRIVE_FOLDER_ID: educators-secrets
+  PHD_FELLOWSHIP_GOOGLE_DRIVE_FOLDER_ID: educators-secrets
+  PHD_FELLOWSHIP_SPREADSHEET_ID: educators-secrets
   GOOGLE_DRIVE_PRIVATE_KEY: educators-secrets
   GOOGLE_DRIVE_CLIENT_EMAIL: educators-secrets
 
