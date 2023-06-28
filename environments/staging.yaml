@@ -8,8 +8,8 @@ env:
 envSecrets:
   NPM_EMAIL: educators-secrets
   NPM_AUTH: educators-secrets
-  CMS_URL: educators-secrets
-  CMS_API_KEY: educators-secrets
+  CS_GRAPHQL_URL: educators-secrets
+  CS_DELIVERY_TOKEN: educators-secrets
   REVALIDATE_TOKEN: educators-secrets
   NEXT_PUBLIC_SENTRY_DSN: educators-secrets
   NEXT_PUBLIC_SHEER_ID_KEY: educators-secrets

@@ -5,8 +5,8 @@ on:
 env:
   NPM_AUTH: ${{ secrets.NPM_AUTH }}
   NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
-  CMS_URL: ${{ secrets.CMS_URL }}
-  CMS_API_KEY: ${{ secrets.CMS_API_KEY }}
+  CS_GRAPHQL_URL: ${{ secrets.CS_GRAPHQL_URL }}
+  CS_DELIVERY_TOKEN: ${{ secrets.CS_DELIVERY_TOKEN }}
 jobs:
   check-formatting-and-lint:
     runs-on: ubuntu-latest

@@ -17,10 +17,10 @@ steps:
         from_secret: NPM_AUTH
       NPM_EMAIL:
         from_secret: NPM_EMAIL
-      CMS_URL:
-        from_secret: CMS_URL_STAGING
-      CMS_API_KEY:
-        from_secret: CMS_API_KEY
+      CS_GRAPHQL_URL:
+        from_secret: CS_GRAPHQL_URL_STAGING
+      CS_DELIVERY_TOKEN:
+        from_secret: CS_DELIVERY_TOKEN
       SENTRY_AUTH_TOKEN:
         from_secret: SENTRY_AUTH_TOKEN
       NEXT_PUBLIC_SENTRY_DSN:
@@ -34,8 +34,8 @@ steps:
       build_args:
         - NPM_AUTH
         - NPM_EMAIL
-        - CMS_URL
-        - CMS_API_KEY
+        - CS_GRAPHQL_URL
+        - CS_DELIVERY_TOKEN
         - APP_ENV
         - SENTRY_AUTH_TOKEN
         - NEXT_PUBLIC_SENTRY_DSN
@@ -113,10 +113,10 @@ steps:
         from_secret: NPM_AUTH
       NPM_EMAIL:
         from_secret: NPM_EMAIL
-      CMS_URL:
-        from_secret: CMS_URL_PROD
-      CMS_API_KEY:
-        from_secret: CMS_API_KEY
+      CS_GRAPHQL_URL:
+        from_secret: CS_GRAPHQL_URL_PROD
+      CS_DELIVERY_TOKEN:
+        from_secret: CS_DELIVERY_TOKEN
       SENTRY_AUTH_TOKEN:
         from_secret: SENTRY_AUTH_TOKEN
       NEXT_PUBLIC_SENTRY_DSN:
@@ -130,8 +130,8 @@ steps:
       build_args:
         - NPM_AUTH
         - NPM_EMAIL
-        - CMS_URL
-        - CMS_API_KEY
+        - CS_GRAPHQL_URL
+        - CS_DELIVERY_TOKEN
         - APP_ENV
         - SENTRY_AUTH_TOKEN
         - NEXT_PUBLIC_SENTRY_DSN
