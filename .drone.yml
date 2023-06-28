@@ -18,7 +18,7 @@ steps:
       NPM_EMAIL:
         from_secret: NPM_EMAIL
       CS_GRAPHQL_URL:
-        from_secret: CS_GRAPHQL_URL_STAGING
+        from_secret: CS_GRAPHQL_URL
       CS_DELIVERY_TOKEN:
         from_secret: CS_DELIVERY_TOKEN
       SENTRY_AUTH_TOKEN:
@@ -114,7 +114,7 @@ steps:
       NPM_EMAIL:
         from_secret: NPM_EMAIL
       CS_GRAPHQL_URL:
-        from_secret: CS_GRAPHQL_URL_PROD
+        from_secret: CS_GRAPHQL_URL
       CS_DELIVERY_TOKEN:
         from_secret: CS_DELIVERY_TOKEN
       SENTRY_AUTH_TOKEN:
