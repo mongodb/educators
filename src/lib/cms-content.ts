@@ -1,9 +1,9 @@
-import axios from 'axios';
+import { gql } from '@apollo/client';
+import client from './apollo-client';
 
 type ContentType = 'Case Study' | 'Course' | 'Lab' | 'PDF' | string;
 
 export interface Lesson {
-  id: string;
   title: string;
   link: string;
 }
@@ -13,8 +13,24 @@ export interface ContentData {
   resources: ContentItem[];
 }
 
+interface Connection<ConnectionType> {
+  edges: { node: ConnectionType }[];
+}
+interface CMSItem {
+  content_type: string;
+  duration_hours: number;
+  external_link: string;
+  file_downloadConnection: Connection<{ url: string }>;
+  lessons: { lesson: Lesson }[];
+  level: string;
+  long_description: string;
+  short_description: string;
+  slug: string;
+  spoken_language: string;
+  title: string;
+}
+
 export interface ContentItem {
-  id: string;
   title: string;
   contentType: ContentType;
   longDescription: string;
@@ -27,74 +43,101 @@ export interface ContentItem {
   fileDownload: string;
 }
 
-interface StrapiItem {
-  id: string;
-  title: string;
-  contentType: ContentType;
-  slug: string;
-  shortDescription: string;
-  longDescription: string;
-  externalLink: string;
-  level: string;
-  durationHours: number;
-  lessons: Array<Lesson>;
-  fileDownload: { url: string };
-}
-
-interface StrapiData {
-  curriculumResources: Array<StrapiItem>;
-  additionalEducatorResources: Array<StrapiItem>;
-}
-
-const itemMap = ({
-  id = '',
-  title = '',
-  contentType = '',
-  slug = '',
-  shortDescription = '',
-  longDescription = '',
-  externalLink = '',
-  level = '',
-  durationHours = 0,
-  lessons = [],
-  fileDownload = { url: '' },
-}: StrapiItem): ContentItem => ({
-  id,
-  title,
-  contentType: contentType === 'CaseStudy' ? 'Case Study' : contentType,
-  slug,
-  shortDescription,
-  longDescription,
-  externalLink,
-  level,
-  durationHours,
+const itemMap = (item: CMSItem): ContentItem => ({
+  title: item.title,
+  contentType: item.content_type,
+  slug: item.slug,
+  shortDescription: item.short_description,
+  longDescription: item.long_description,
+  externalLink: item.external_link,
+  level: item.level,
+  durationHours: item.duration_hours,
   // The below properties actually have many more fields in the CMS, so we filter them out here.
-  lessons: lessons.map(({ id, link, title }: Lesson) => ({
-    id,
-    title,
-    link,
-  })),
-  fileDownload: fileDownload.url,
+  lessons: item.lessons.map(({ lesson }) => lesson),
+  fileDownload: item.file_downloadConnection.edges.length
+    ? item.file_downloadConnection.edges[0].node.url
+    : '',
 });
 
-const getHeaders = (): { 'strapi-token': string } => {
-  const API_KEY = process.env['CMS_API_KEY'];
-  if (!API_KEY) {
-    throw Error('CMS_API_KEY is not defined.');
+const academiaFields = ` 
+      content_type
+      duration_hours
+      external_link
+      file_downloadConnection {
+        edges {
+          node {
+            url
+          }
+        }
+      }
+      lessons {
+        ... on AcademiaLessonsLesson {
+          __typename
+          lesson {
+            link
+            title
+          }
+        }
+      }
+      level
+      long_description
+      short_description
+      slug
+      spoken_language
+      title
+`;
+
+const getAllAcademiaQuery = gql`
+  query all_academia_homepage {
+    all_academia_homepage {
+      items {
+        additional_educator_resourcesConnection(limit: 50) {
+          edges {
+            node {
+              ... on Academia {
+                ${academiaFields}
+              }
+            }
+          }
+        }
+        curriculum_resourcesConnection(limit: 50) {
+          edges {
+            node {
+              ... on Academia {
+                ${academiaFields}
+              }
+            }
+          }
+        }
+      }
+    }
   }
-  return {
-    'strapi-token': API_KEY,
-  };
-};
+`;
+
+const getAcademiaBySlugQuery = gql`
+  query all_academia_homepage($slug: String!) {
+    all_academia(where: { slug: $slug }) {
+      items {
+        ${academiaFields}
+      }
+    }
+  }
+`;
 
 export const getAllContent = async () => {
-  const headers = getHeaders();
-  const {
-    data: { curriculumResources, additionalEducatorResources },
-  } = await axios.get<StrapiData>(
-    `${process.env['CMS_URL']}/public/academia-homepage`,
-    { headers }
+  const response: any = await client.query({
+    query: getAllAcademiaQuery,
+  });
+
+  const { items } = response.data.all_academia_homepage;
+
+  const curriculumResources = items[0].curriculum_resourcesConnection.edges.map(
+    (edge: any) => edge.node
   );
+  const additionalEducatorResources =
+    items[0].additional_educator_resourcesConnection.edges.map(
+      (edge: any) => edge.node
+    );
 
   return {
     lectures: curriculumResources.map(itemMap),
@@ -103,10 +146,10 @@ export const getAllContent = async () => {
 };
 
 export const getContentBySlug = async (slug: string) => {
-  const headers = getHeaders();
-  const { data } = await axios.get<StrapiItem>(
-    `${process.env['CMS_URL']}/public/academia/${slug}`,
-    { headers }
-  );
-  return itemMap(data);
+  const response: any = await client.query({
+    query: getAcademiaBySlugQuery,
+    variables: { slug },
+  });
+  const { items } = response.data.all_academia;
+  return itemMap(items[0]);
 };

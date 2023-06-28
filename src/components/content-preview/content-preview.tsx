@@ -99,7 +99,6 @@ export default function ContentPreview({
         <Grid columns={[1, null, 2, 3]} sx={styles.ContentPreviewGrid}>
           {content.map(
             ({
-              id,
               slug,
               lessons,
               contentType,
@@ -109,7 +108,7 @@ export default function ContentPreview({
               title: cardTitle,
             }) => (
               <Card
-                key={id}
+                key={slug}
                 title={cardTitle}
                 tag={contentType}
                 count={lessons?.length}
