@@ -6,6 +6,10 @@ import { AttachmentsType, FormProps } from './types';
 
 import styles from './styles';
 
+function isOnlyWhitespace(str: string) {
+  return !str.replace(/\s/g, '').length;
+}
+
 export default function Form({
   texts,
   isOpen,
@@ -37,12 +41,16 @@ export default function Form({
       !attachments.docs &&
       !attachments.urls.some(({ value }) => value)
     ) {
+      setIsSubmitting(false);
       return setAttachments(prev => ({ ...prev, error: true }));
     } else if (
       !multiFileUpload &&
       !attachments.docs &&
-      !attachments.urls[0].value
+      (!attachments.urls.length ||
+        !attachments.urls[0]?.value ||
+        isOnlyWhitespace(attachments.urls[0]?.value))
     ) {
+      setIsSubmitting(false);
       return setAttachments(prev => ({ ...prev, error: true }));
     }
 
