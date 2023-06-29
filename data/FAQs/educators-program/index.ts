@@ -5,6 +5,7 @@ import creditsFAQ from './credits.md';
 import studentBenefitsFAQ from './student-benefits.md';
 import certficationFAQ from './certfication.md';
 import contactFAQ from './contact.md';
+import fellowshipFAQ from './fellowship.md';
 
 const CONFIG = [
   {
@@ -40,6 +41,10 @@ const CONFIG = [
   {
     title: 'What benefits are available for my students?',
     body: studentBenefitsFAQ as unknown as string,
+  },
+  {
+    title: 'Does MongoDB provide fellowships for university students?',
+    body: fellowshipFAQ as unknown as string,
   },
   {
     title: 'How do I access free certification for educators?',

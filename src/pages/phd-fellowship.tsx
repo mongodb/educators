@@ -17,24 +17,42 @@ export default function PhdFellowship({
 }: {
   setFormState: (form: FormState) => void;
 }) {
-  const renderForm = () =>
-    setFormState({
-      isOpen: true,
-      fields: PHD_FELLOWSHIP_FIELDS,
-      multiFileUpload: true,
-      texts: {
-        title: 'MongoDB PhD Fellowship Program',
-        subtitle: 'Application Form',
-        postSubmissionTitle: 'Application Submitted',
-        postSubmissionDescription:
-          'Thank you for submitting your application, we look forward to reviewing it',
-        postSubmissionButtonText: 'Close',
-        button: 'Submit',
-        attachments:
-          'Upload your CV, Research Summary and Transcripts (undergraduate and graduate)',
-      },
-      submitForm: submitPhdFellowshipForm,
-    });
+  const onFieldChange = (value: string, field: string) => {
+    // Hide the "State" field in any non-US countries: UP-6077
+    if (field === 'country') {
+      if (value === 'United States') {
+        setFormState(defaultFormState);
+      } else {
+        setFormState({
+          ...defaultFormState,
+          fields: PHD_FELLOWSHIP_FIELDS.map(field =>
+            field.name === 'state' ? { ...field, hidden: true } : field
+          ),
+        });
+      }
+    }
+  };
+
+  const defaultFormState = {
+    isOpen: true,
+    fields: PHD_FELLOWSHIP_FIELDS,
+    multiFileUpload: true,
+    texts: {
+      title: 'MongoDB PhD Fellowship Program',
+      subtitle: 'Application Form',
+      postSubmissionTitle: 'Application Submitted',
+      postSubmissionDescription:
+        'Thank you for submitting your application, we look forward to reviewing it',
+      postSubmissionButtonText: 'Close',
+      button: 'Submit',
+      attachments:
+        'Upload your CV, Research Summary and Transcripts (undergraduate and graduate)',
+    },
+    onFieldChange,
+    submitForm: submitPhdFellowshipForm,
+  };
+
+  const renderForm = () => setFormState(defaultFormState);
 
   return (
     <>
