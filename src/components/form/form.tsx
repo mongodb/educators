@@ -10,6 +10,12 @@ function isOnlyWhitespace(str: string) {
   return !str.replace(/\s/g, '').length;
 }
 
+const formDefaultState = {
+  docs: null,
+  urls: [],
+  error: false,
+};
+
 export default function Form({
   texts,
   isOpen,
@@ -22,11 +28,8 @@ export default function Form({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
-  const [attachments, setAttachments] = useState<AttachmentsType>({
-    docs: null,
-    urls: [],
-    error: false,
-  });
+  const [attachments, setAttachments] =
+    useState<AttachmentsType>(formDefaultState);
 
   async function onSubmit(form: FormValues): Promise<void> {
     // clear out existing error state if present
@@ -71,6 +74,7 @@ export default function Form({
   function onClose() {
     setFormSuccess(false);
     setFormError(false);
+    setAttachments(formDefaultState);
     closeForm();
   }
 
