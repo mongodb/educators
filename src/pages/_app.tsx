@@ -59,6 +59,7 @@ export default function EducatorPortal({ Component, pageProps }: AppProps) {
               fields={formState.fields}
               multiFileUpload={formState.multiFileUpload}
               submitForm={formState.submitForm}
+              onFieldChange={formState.onFieldChange}
               closeForm={() => setFormState(FORM_INIT_STATE)}
             />
             <Component {...pageProps} setFormState={setFormState} />

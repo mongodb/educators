@@ -6,6 +6,10 @@ import { AttachmentsType, FormProps } from './types';
 
 import styles from './styles';
 
+function isOnlyWhitespace(str: string) {
+  return !str.replace(/\s/g, '').length;
+}
+
 export default function Form({
   texts,
   isOpen,
@@ -13,6 +17,7 @@ export default function Form({
   closeForm,
   submitForm,
   multiFileUpload = false,
+  onFieldChange = () => null,
 }: FormProps): JSX.Element | null {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<boolean>(false);
@@ -37,12 +42,16 @@ export default function Form({
       !attachments.docs &&
       !attachments.urls.some(({ value }) => value)
     ) {
+      setIsSubmitting(false);
       return setAttachments(prev => ({ ...prev, error: true }));
     } else if (
       !multiFileUpload &&
       !attachments.docs &&
-      !attachments.urls[0].value
+      (!attachments.urls.length ||
+        !attachments.urls[0]?.value ||
+        isOnlyWhitespace(attachments.urls[0]?.value))
     ) {
+      setIsSubmitting(false);
       return setAttachments(prev => ({ ...prev, error: true }));
     }
 
@@ -86,7 +95,30 @@ export default function Form({
             }}
           >
             {fields.map(
-              ({ component, label, name, options, type, validators }) => {
+              ({
+                component,
+                label,
+                hidden,
+                name,
+                options,
+                type,
+                validators,
+              }) => {
+                /*
+                  Ugly workaround to hide State field for any non-US country: https://jira.mongodb.org/browse/UP-6077
+                  
+                  This is needed because it seems like "formData" in <FormGeneric /> is only set on initial render
+                  and does update when children (in this case, "fields") updates, so when the form goes to validate formData upon submission,
+                  it still has the state field present in its formData (and it is required when country === "United States"), so it fails validation and does not submit.
+                */
+                if (hidden) {
+                  return (
+                    <div key={name} sx={{ display: 'none' }}>
+                      <Field key={name} name={name} validators={[]} />
+                    </div>
+                  );
+                }
+
                 if (name === 'attachments') {
                   return (
                     <Attachments
@@ -109,6 +141,9 @@ export default function Form({
                     component={component}
                     options={options || []}
                     validators={validators || []}
+                    onChange={({ target: { value } }) =>
+                      onFieldChange(value, name)
+                    }
                   />
                 );
               }

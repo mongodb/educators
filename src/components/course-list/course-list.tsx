@@ -7,8 +7,8 @@ export default function CourseList({ lessons }: CourseListProps): JSX.Element {
     <>
       <h2>Lesson Slides</h2>
       <ol sx={styles.CourseList}>
-        {lessons.map(({ id, link, title }) => (
-          <li key={id}>
+        {lessons.map(({ link, title }) => (
+          <li key={title}>
             <h3>
               <Link href={link} target="_blank" sx={styles.CourseListLinks}>
                 {title}

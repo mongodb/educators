@@ -36,14 +36,16 @@ export default function CourseHeader({
           <Button href={link} target="_blank">
             Open in Google Drive
           </Button>
-          <Link
-            inverse
-            href={fileDownload}
-            linkIcon={ESystemIconNames.DOWNLOAD}
-            sx={styles.CourseHeaderDownload}
-          >
-            Download
-          </Link>
+          {fileDownload && (
+            <Link
+              inverse
+              href={fileDownload}
+              linkIcon={ESystemIconNames.DOWNLOAD}
+              sx={styles.CourseHeaderDownload}
+            >
+              Download
+            </Link>
+          )}
         </div>
       </GridLayout>
     </header>
