@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 export interface FieldInterface {
   name: string;
   label: string;
+  hidden?: boolean;
   options?: Array<string>;
   type?: 'text' | 'email';
   component?: 'text-input' | 'select' | 'text-area' | 'checkbox';
@@ -30,6 +31,7 @@ export interface FormState {
     button: string;
   };
   multiFileUpload?: boolean;
+  onFieldChange?: (value: string, field: string) => void;
   fields: Array<FieldInterface>;
   submitForm: (formData: FormData, attachments: AttachmentsType) => void;
 }
