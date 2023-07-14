@@ -9,6 +9,7 @@ import {
   googleDriveFileUpload,
   googleDriveFolderUpload,
 } from 'lib/google-drive-uploads';
+import axios from 'axios';
 
 const limiter = rateLimit({
   max: 600, // cache limit of 600 per 30 second period.
@@ -49,6 +50,42 @@ const registrationHandler = async (
     fields: FormidableField | { [field: string]: boolean };
     files: { uploads: FormidableFile };
   };
+
+  // Creates a markdown table of all fields.
+  const description = Object.entries(fields).reduce(
+    (acc, [key, value]) => acc + `\r\n|${key || ' '}|${value || ' '}|`,
+    ''
+  );
+
+  const jiraBody = {
+    fields: {
+      summary: `PhD Fellowship Application: ${fields.firstName} ${fields.lastName} - ${fields.university}`,
+      issuetype: {
+        id: 3,
+      },
+      reporter: {
+        name: 'eliza.spang@mongodb.com',
+      },
+      assignee: {
+        name: 'eliza.spang@mongodb.com',
+      },
+      project: {
+        key: 'ACADEMIA',
+      },
+      description,
+    },
+  };
+
+  const resp = await axios.post(
+    `${process.env.JIRA_URL}/rest/api/latest/issue`,
+    jiraBody,
+    { headers: { Authorization: `Bearer ${process.env.JIRA_AUTH_TOKEN}` } }
+  );
+
+  const ticketKey = resp.data?.key;
+  const jiraTicketURL = ticketKey
+    ? `${process.env.JIRA_URL}/browse/${ticketKey}`
+    : 'FAILED TO CREATE JIRA TICKET';
 
   let applicantFolderId;
   const date = new Date();
@@ -96,6 +133,7 @@ const registrationHandler = async (
     // explicitly map fields so we can have control of the order of columns in the Google Sheet
     [
       `${date.toLocaleDateString()}`,
+      jiraTicketURL,
       fields.firstName,
       fields.lastName,
       fields.address,
