@@ -24,6 +24,8 @@ envSecrets:
   PHD_FELLOWSHIP_SPREADSHEET_ID: educators-secrets
   GOOGLE_DRIVE_PRIVATE_KEY: educators-secrets
   GOOGLE_DRIVE_CLIENT_EMAIL: educators-secrets
+  JIRA_URL: educators-secrets 
+  JIRA_AUTH_TOKEN: educators-secrets
 
 autoscaling:
   minReplicas: 2
