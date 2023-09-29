@@ -52,10 +52,27 @@ const registrationHandler = async (
   };
 
   // Creates a markdown table of all fields.
-  const description = Object.entries(fields).reduce(
-    (acc, [key, value]) => acc + `\r\n|${key || ' '}|${value || ' '}|`,
+  const fieldsTable = Object.entries(fields).reduce(
+    (acc, [key, value]) => acc + `\r\n||${key || ' '}|${value || ' '}|`,
     ''
   );
+
+  const acceptanceCriteriaTable = `
+  | ||Yes||Maybe||No||
+  ||Research Applicability|The candidate’s research is directly applicable and high value to MongoDB.|The candidate’s research is applicable to MongoDB.|The candidate’s research is not applicable to MongoDB.
+  ||Research Contributions|The candidate’s research is likely to lead to novel contributions in computer science and to MongoDB.|The candidate’s research may lead to novel contributions in computer science and to MongoDB.|The candidate’s research will not lead to novel contributions in computer science and to MongoDB.
+  ||Future Researcher|The candidate demonstrates promise as a future contributor to innovative and impactful research in computer science.|The candidate somewhat demonstrates promise as a future contributor to innovative and impactful research in computer science.|The candidate does not demonstrate promise as a future contributor to innovative and impactful research in computer science.
+  `;
+
+  const description = `
+  *Application Data*
+
+  ${fieldsTable}
+
+  *Acceptance Criteria*
+
+  ${acceptanceCriteriaTable}
+  `;
 
   const jiraBody = {
     fields: {
