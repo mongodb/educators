@@ -87,7 +87,7 @@ const registrationHandler = async (
         name: 'eliza.spang@mongodb.com',
       },
       project: {
-        key: 'DEVHUB', // Temporarily DEVHUB until we can get the correct token for ACADEMIA.
+        key: 'ACADEMIA',
       },
       description,
     },
