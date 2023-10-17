@@ -78,7 +78,7 @@ const registrationHandler = async (
     fields: {
       summary: `PhD Fellowship Application: ${fields.firstName} ${fields.lastName} - ${fields.university}`,
       issuetype: {
-        id: 3,
+        id: 15300,
       },
       reporter: {
         name: 'eliza.spang@mongodb.com',
@@ -90,6 +90,12 @@ const registrationHandler = async (
         key: 'ACADEMIA',
       },
       description,
+      // Required Voters
+      customfield_23670: [
+        { name: 'david.daly@mongodb.com' },
+        { name: 'rachelle.palmer@mongodb.com' },
+        { name: 'seny.kamara@mongodb.com' },
+      ],
     },
   };
 
