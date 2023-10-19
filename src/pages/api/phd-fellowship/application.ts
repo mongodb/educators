@@ -51,11 +51,49 @@ const registrationHandler = async (
     files: { uploads: FormidableFile };
   };
 
+  let applicantFolderId;
+  const date = new Date();
+
+  if (files?.uploads) {
+    applicantFolderId = await googleDriveFolderUpload(
+      process.env['PHD_FELLOWSHIP_GOOGLE_DRIVE_FOLDER_ID'],
+      `${fields.firstName} ${fields.lastName} - ${fields.university}`
+    );
+
+    if (applicantFolderId) {
+      if (Array.isArray(files.uploads)) {
+        for (let i = 0; i < files.uploads.length; i++) {
+          await googleDriveFileUpload(
+            files.uploads[i].filepath,
+            files.uploads[i].originalFilename || date.toJSON(),
+            files.uploads[i].mimetype || 'application/pdf',
+            applicantFolderId
+          );
+        }
+      } else {
+        await googleDriveFileUpload(
+          files.uploads.filepath,
+          files.uploads.originalFilename || date.toJSON(),
+          files.uploads.mimetype || 'application/pdf',
+          applicantFolderId
+        );
+      }
+    }
+  }
+
   // Creates a markdown table of all fields.
-  const fieldsTable = Object.entries(fields).reduce(
-    (acc, [key, value]) => acc + `\r\n||${key || ' '}|${value || ' '}|`,
-    ''
-  );
+  const fieldsTable =
+    Object.entries(fields)
+      .filter(([key, _]) => key !== 'uploads' && key !== 'urls')
+      .reduce(
+        (acc, [key, value]) => acc + `\r\n||${key || ' '}|${value || ' '}|`,
+        ''
+      ) +
+    `\r\n||URLs|${fields?.urls?.toString() || ' '}|\r\n||Uploaded Documents|${
+      applicantFolderId
+        ? `https://drive.google.com/drive/folders/${applicantFolderId}`
+        : ''
+    }|`;
 
   const acceptanceCriteriaTable = `
   | ||Yes||Maybe||No||
@@ -109,36 +147,6 @@ const registrationHandler = async (
   const jiraTicketURL = ticketKey
     ? `${process.env.JIRA_URL}/browse/${ticketKey}`
     : 'FAILED TO CREATE JIRA TICKET';
-
-  let applicantFolderId;
-  const date = new Date();
-
-  if (files?.uploads) {
-    applicantFolderId = await googleDriveFolderUpload(
-      process.env['PHD_FELLOWSHIP_GOOGLE_DRIVE_FOLDER_ID'],
-      `${fields.firstName} ${fields.lastName} - ${fields.university}`
-    );
-
-    if (applicantFolderId) {
-      if (Array.isArray(files.uploads)) {
-        for (let i = 0; i < files.uploads.length; i++) {
-          await googleDriveFileUpload(
-            files.uploads[i].filepath,
-            files.uploads[i].originalFilename || date.toJSON(),
-            files.uploads[i].mimetype || 'application/pdf',
-            applicantFolderId
-          );
-        }
-      } else {
-        await googleDriveFileUpload(
-          files.uploads.filepath,
-          files.uploads.originalFilename || date.toJSON(),
-          files.uploads.mimetype || 'application/pdf',
-          applicantFolderId
-        );
-      }
-    }
-  }
 
   if (fields.urls) {
     if (Array.isArray(fields.urls)) {
