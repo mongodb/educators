@@ -23,7 +23,7 @@
     "@emotion/css": "11.10.5",
     "@emotion/react": "11.10.5",
     "@emotion/styled": "11.10.5",
-    "@mdb/consistent-nav": "^2.0.3-rc.1",
+    "@mdb/consistent-nav": "2.0.3-rc.9",
     "@mdb/flora": "1.5.6",
     "@mdx-js/react": "2.2.1",
     "@sentry/nextjs": "7.9.0",
