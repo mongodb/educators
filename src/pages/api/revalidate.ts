@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { wrapApiWithSentry } from '@sentry/nextjs';
+import { wrapApiHandlerWithSentry } from '@sentry/nextjs';
 
 import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
 import { responseWrapper } from 'lib/utils';
@@ -64,4 +64,4 @@ const revalidateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   return responseWrapper(res, endpoint, 200, method, { message });
 };
 
-export default wrapApiWithSentry(revalidateHandler);
+export default wrapApiHandlerWithSentry(revalidateHandler, endpoint);
