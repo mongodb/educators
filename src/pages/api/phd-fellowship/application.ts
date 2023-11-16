@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { withSentry } from '@sentry/nextjs';
+import { wrapApiHandlerWithSentry } from '@sentry/nextjs';
 
 import { parseForm, FormidableField, FormidableFile } from 'lib/parse-form';
 import rateLimit, { getIP, MAX_POSTS_PER_PERIOD } from 'lib/rate-limit';
@@ -199,4 +199,4 @@ const registrationHandler = async (
   return responseWrapper(res, endpoint, 200, 'POST', { message: 'Success' });
 };
 
-export default withSentry(registrationHandler);
+export default wrapApiHandlerWithSentry(registrationHandler, endpoint);
